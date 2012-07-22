@@ -1,0 +1,16 @@
+jAddressBook 0.5 : Source Code
+
+jAddressBook is an addressbook based on java and SWT.
+In jAddressBook users can assign to preson more addresses, emails, photos, web pages etc, can easy manage address books settings, move users or address books etc.
+
+You need : Java Runtime Envirnoment (http://www.java.sun.com)
+	   The Standard Widget Toolkit and JFace (http://www.eclipse.org/swt)
+	   MySQL jConnector (http://www.mysql.com/products/connector-j)
+
+Compile from source code : 
+	You need ANT (http://ant.apache.org/).
+	Run "ant" command to see compile options
+
+Launch : start script "start.sh"
+
+If have problems with jAddressBook please report on email : obadadenis@users.sf.net

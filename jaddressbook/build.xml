@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jAddressBook" default="default" basedir=".">
+    <description>Builds, tests, and runs the project jAddressBook.</description>
+   <target name="default">
+	<echo> jAddressBook  </echo>
+	<echo> Options : </echo>
+	<echo> compile - compile jAddressBook </echo>
+	<echo> jar - create JAR file </echo>
+	<echo> run - run jAddressBook </echo>
+	</target>
+
+	<target name="compile">
+	<exec executable="./counter.sh"> </exec>
+        <javac srcdir="./src" destdir="./bin" target="1.4" source="1.4">
+        </javac>
+        </target>
+
+        <target name="run">
+        <exec executable="./start.sh">
+        </exec>
+	</target>
+
+	<target name="jar" depends="compile">
+	  <jar destfile="jaddressbook.jar"
+	       compress="true">
+     	<fileset dir="./bin"/>
+	  </jar>
+	</target>
+
+</project>
