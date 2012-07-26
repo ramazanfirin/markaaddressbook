@@ -6,16 +6,17 @@ import model.model.Driver;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.Wizard;
 
+import com.AddressBook;
+import com.AddressBookNew;
+
 
 public class BusEntityWizard extends Wizard {
   
   private BasicBusPage page1;
 
-  private AddressContactPage page2;
-
   private ISelection selection;
   
-  private Bus bus;
+
 
   public BusEntityWizard() {
     super();
@@ -33,6 +34,7 @@ public class BusEntityWizard extends Wizard {
 
   public boolean performFinish() {
 
+	  Bus bus = (Bus)AddressBookNew.getInstance().getTabItemBus().getEntity();
 	  bus.setPlate(page1.getPlate().getText());
 	  bus.setPhone(page1.getPhone().getText());
 	  

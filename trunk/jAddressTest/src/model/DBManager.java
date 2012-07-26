@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import model.interfaces.AbsractInterface;
+import model.model.Bus;
 import model.model.Driver;
 import model.model.User;
 
@@ -20,7 +22,7 @@ public class DBManager {
 		}
 	 
 	 
-	 public void saveOrUpdate(Object o){
+	 public void saveOrUpdate(Object o) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -31,12 +33,13 @@ public class DBManager {
 			} catch (HibernateException e) {
 				tx.rollback();
 				e.printStackTrace();
+				throw e;
 			}finally {
 				session.close();
 			}
 	 }
 	 
-	 public void delete(Object o){
+	 public void delete(Object o) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -47,12 +50,13 @@ public class DBManager {
 			} catch (HibernateException e) {
 				tx.rollback();
 				e.printStackTrace();
+				throw e;
 			}finally {
 				session.close();
 			}
 	 }
 	 
-	 public List<Driver> loadAllDriver(){
+	 public List<Driver> loadAllDriver() throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -63,16 +67,73 @@ public class DBManager {
 				return  query.list();
 
 			} catch (HibernateException e) {
-		
 				e.printStackTrace();
+				throw e;
 			}finally {
 				session.close();
 			}
-			return null;
+			
+	 }
+	 
+	 public List<AbsractInterface> loadAllDriver2() throws Exception{
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from Driver p where 1=1 order by p.name";
+		        Query query = session.createQuery(hql);
+
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
+	 }
+	 
+	 public List<Bus> loadAllBus() throws Exception{
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from Bus p where 1=1 order by p.plate";
+		        Query query = session.createQuery(hql);
+
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
+	 }
+	 
+	 public List<AbsractInterface> loadAllBus2() throws Exception{
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from Bus p where 1=1 order by p.plate";
+		        Query query = session.createQuery(hql);
+
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
 	 }
 	 
 	 
-	 public User checkPassword(String username,String password){
+	 public User checkPassword(String username,String password) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -84,12 +145,12 @@ public class DBManager {
 				return  (User)query.uniqueResult();
 
 			} catch (HibernateException e) {
-		
 				e.printStackTrace();
+				throw e;
 			}finally {
 				session.close();
 			}
-			return null;
+		
 	 }
 	 
 }

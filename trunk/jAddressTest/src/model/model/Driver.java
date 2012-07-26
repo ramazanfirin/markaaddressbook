@@ -2,7 +2,9 @@ package model.model;
 
 import java.util.Date;
 
-public class Driver {
+import model.interfaces.AbsractInterface;
+
+public class Driver implements AbsractInterface{
 
 	
 	private String name="";
@@ -10,6 +12,8 @@ public class Driver {
 	private String phone="";
 	private Long id;
 	private Date insertDate;
+	
+	private Bus bus;
 	
 	public String getName() {
 		return name;
@@ -40,5 +44,11 @@ public class Driver {
 	}
 	public void setInsertDate(Date insertDate) {
 		this.insertDate = insertDate;
+	}
+	public Bus getBus() {
+		return bus;
+	}
+	public void setBus(Bus bus) {
+		this.bus = bus;
 	}
 }

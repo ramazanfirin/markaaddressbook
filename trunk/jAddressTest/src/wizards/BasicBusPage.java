@@ -1,5 +1,6 @@
 package wizards;
 
+import model.model.Bus;
 import model.model.Driver;
 
 import org.eclipse.jface.viewers.ISelection;
@@ -12,6 +13,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
+import com.AddressBookNew;
 
 import util.Util;
 
@@ -29,7 +32,7 @@ class BasicBusPage extends WizardPage {
   public BasicBusPage(ISelection selection) {
     super("wizardPage");
     setTitle(Util.getString("bus"));
-    setDescription("This wizard creates a new contact.");
+    setDescription("This wizard creates a new bus.");
     this.selection = selection;
   }
 
@@ -40,13 +43,14 @@ class BasicBusPage extends WizardPage {
     layout.numColumns = 2;
     layout.verticalSpacing = 9;
 
+    Bus bus = (Bus)AddressBookNew.getInstance().getTabItemBus().getEntity();
+    
     Label label = new Label(container, SWT.NULL);
     label.setText(Util.getString("bus.plate"));
 
     plate = new Text(container, SWT.BORDER | SWT.SINGLE);
-
-    GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-    plate.setLayoutData(gd);
+    plate.setText(bus.getPlate());
+    plate.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     plate.addModifyListener(new ModifyListener() {
       public void modifyText(ModifyEvent e) {
         dialogChanged();
@@ -57,8 +61,8 @@ class BasicBusPage extends WizardPage {
     label.setText(Util.getString("bus.phoneNumber"));
 
     phone = new Text(container, SWT.BORDER | SWT.SINGLE);
-    gd = new GridData(GridData.FILL_HORIZONTAL);
-    phone.setLayoutData(gd);
+    phone.setText(bus.getPhone());
+    phone.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     phone.addModifyListener(new ModifyListener() {
         public void modifyText(ModifyEvent e) {
           dialogChanged();
@@ -66,25 +70,24 @@ class BasicBusPage extends WizardPage {
       });
 
     createLine(container, layout.numColumns);
-
-    //dialogChanged();
+    setPageComplete(false);
+    dialogChanged();
     setControl(container);
   }
 
   public boolean dialogChanged() {
     if (this.plate.getText().length() == 0) {
-      updateStatus("Given plate must be specified.");
-
+      updateStatus("Plaka alaninin girilmesi gereklidir.");
       return false;
     }
 
     if (this.phone.getText().length() == 0) {
-      updateStatus("Phone name must be specified.");
-
+      updateStatus("Telefon alanin girilmesi gereklidir.");
       return false;
     }
 
     updateStatus(null);
+    setPageComplete(true);
     return true;
   }  
   
@@ -97,7 +100,7 @@ class BasicBusPage extends WizardPage {
 	  }
   private void updateStatus(String message) {
 	    setErrorMessage(message);
-	    setPageComplete(message == null);
+	    //setPageComplete(message == null);
 	  }
 
 public Text getNameVariable() {

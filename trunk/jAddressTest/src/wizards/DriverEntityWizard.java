@@ -1,18 +1,16 @@
 package wizards;
 
-import model.DBManager;
 import model.model.Driver;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.Wizard;
 
 import com.AddressBook;
+import com.AddressBookNew;
 
 
 public class DriverEntityWizard extends Wizard {
   private BasicDriverPage page1;
-
-  private AddressContactPage page2;
 
   private ISelection selection;
   
@@ -30,12 +28,12 @@ public class DriverEntityWizard extends Wizard {
     //addPage(page2);
     
     System.out.println("test");
-
+    
   }
 
   public boolean performFinish() {
 
-	 Driver driver = AddressBook.getInstance().getDriver();
+	 Driver driver = (Driver)AddressBookNew.getInstance().getTabItemDriver().getEntity();
 	 driver.setName(page1.getNameVariable().getText());
 	 driver.setSurname(page1.getSurname().getText());
 	 driver.setPhone(page1.getPhone().getText());

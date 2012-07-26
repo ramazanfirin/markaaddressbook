@@ -1,8 +1,9 @@
 package model.model;
 
-import java.util.Date;
+import model.interfaces.AbsractInterface;
 
-public class User {
+
+public class User implements AbsractInterface{
 
 	
 	private Long id;
