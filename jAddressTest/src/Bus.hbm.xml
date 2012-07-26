@@ -2,17 +2,22 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-<class name="model.model.Driver" table="Driver">
+<class name="model.model.Bus" table="Bus">
 	<id name="id" column="id" type="long">
 		<generator class="native"></generator>
 	</id>
-	<property name="name" column="name" type="string"></property>
-	<property name="surname" column="surname" type="string"></property>
+	<property name="plate" column="plate" type="string"></property>
 	<property name="phone" column="phone" type="string"></property>
-	<property name="insertDate" column="insertDate" type="timestamp"></property>
 	
-	<many-to-one name="bus" class="model.model.Bus" fetch="select">
-            <column name="BUS_ID"  />
-    </many-to-one>
+	<set name="driverList" table="bus_drivers" 
+				inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="BUS_ID" not-null="true" />
+            </key>
+            <one-to-many class="model.model.Driver" />
+     </set>
+	
+	
+	
 </class>
 </hibernate-mapping>

@@ -5,6 +5,8 @@ import model.model.Driver;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
@@ -13,9 +15,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.AddressBook;
-
 import util.Util;
+
+import com.AddressBook;
+import com.AddressBookNew;
 
 class BasicDriverPage extends WizardPage {
   
@@ -48,7 +51,7 @@ class BasicDriverPage extends WizardPage {
     layout.verticalSpacing = 9;
 
     
-    Driver driver = AddressBook.getInstance().getDriver();
+    Driver driver = (Driver)AddressBookNew.getInstance().getTabItemDriver().getEntity();
     
     Label label = new Label(container, SWT.NULL);
     label.setText(Util.getString("driver.name"));
@@ -58,11 +61,20 @@ class BasicDriverPage extends WizardPage {
 
     GridData gd = new GridData(GridData.FILL_HORIZONTAL);
     _name.setLayoutData(gd);
-    _name.addModifyListener(new ModifyListener() {
-      public void modifyText(ModifyEvent e) {
-        dialogChanged();
-      }
-    });
+    _name.addKeyListener(new KeyListener() {
+
+		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		public void keyReleased(KeyEvent e) {
+			if (!_name.getText().isEmpty()) {
+				dialogChanged();
+			}
+		}
+
+	});
 
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("driver.surname"));
@@ -99,10 +111,11 @@ class BasicDriverPage extends WizardPage {
       }
     });
 
-    //dialogChanged();
+    dialogChanged();
     setControl(container);
   // super.
   }
+
 
 
   
@@ -110,10 +123,17 @@ class BasicDriverPage extends WizardPage {
     if (this._name.getText().length() == 0) {
       updateStatus("Sofor ismi zorunludur");
       return false;
-    }else if (this.surname.getText().length() == 0) {
-      updateStatus("Sofor ismi zorunludur.");
+    }else
+      updateStatus(null);	 
+    
+    
+    if (this.surname.getText().length() == 0) {
+      updateStatus("Sofor soyisim zorunludur.");
       return false;
-    } if (this.emailText.getText().length() > 0) {
+    } else 
+    	updateStatus(null);	
+    	
+    if (this.emailText.getText().length() > 0) {
       if (this.emailText.getText().indexOf("@") < 0) {
         updateStatus("Please enter a complete email address in the form yourname@yourdomain.com");
         return false;

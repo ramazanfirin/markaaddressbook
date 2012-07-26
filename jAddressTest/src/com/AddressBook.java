@@ -23,6 +23,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import model.DBManager;
+import model.model.Bus;
 import model.model.Driver;
 import model.model.User;
 
@@ -58,16 +59,17 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
-import org.mihalis.opal.login.LoginDialog;
 import org.mihalis.opal.login.LoginDialogVerifier;
 
 import util.Util;
-import widgets.DriverSearchGroup;
+
 import wizards.BusEntityWizard;
 import wizards.DriverEntityWizard;
 
-import com.providers.DriverContentProviders;
-import com.providers.DriverLabelProviders;
+//import com.providers.BusContentProviders;
+//import com.providers.BusLabelProviders;
+//import com.providers.DriverContentProviders;
+//import com.providers.DriverLabelProviders;
 /**
  * AddressBookExample is an example that uses <code>org.eclipse.swt 
  * libraries to implement a simple address book.  This application has 
@@ -83,7 +85,6 @@ public class AddressBook {
 	private Table busTable;
 
 
-	
 	private File file;
 	private boolean isModified;
 	
@@ -111,20 +112,25 @@ public class AddressBook {
 	
 	 
 	 private ScrolledComposite cSUserData;
-	 
-	 DriverSearchGroup driverSearchGroup;
+	 ;
 	 
 	 SashForm sashForm;
 	 
 	 WizardDialog wizardDriver;
 	 WizardDialog wizardBus;
+	 WizardDialog wizardUser;
 	 
 	 Driver driver;
 	 User user;
+	 Bus bus;
 	 
 	 private TableViewer viewerDriver;
-	 List<Driver> driverList= new ArrayList<Driver>();
+	 private TableViewer viewerBus;
+	 private TableViewer viewerUser;
 	 
+	 List<Driver> driverList= new ArrayList<Driver>();
+	 List<Bus> busList= new ArrayList<Bus>();
+	 List<User> userList= new ArrayList<User>();
 	 
 	 private static AddressBook instance = new AddressBook();
 	 public static AddressBook getInstance() {
@@ -133,7 +139,7 @@ public class AddressBook {
 
 	 
 	 
-public static void main(String[] args) {
+public static void main(String[] args) throws Exception{
 	Display display = new Display();
 	Shell shell = instance.open(display);
 	while(!shell.isDisposed()){
@@ -142,7 +148,7 @@ public static void main(String[] args) {
 	}
 	display.dispose();
 }
-public Shell open(Display display) {
+public Shell open(Display display) throws Exception{
 	shell = new Shell(display);
 	shell.setLayout(new FillLayout());
 	 
@@ -158,8 +164,7 @@ public Shell open(Display display) {
     
     createMenuBar();
      
-	wizardDriver = new WizardDialog(shell,
-	        new DriverEntityWizard());
+	wizardDriver = new WizardDialog(shell,new DriverEntityWizard());
 	
 	wizardBus = new WizardDialog(shell,
 	        new BusEntityWizard());
@@ -260,8 +265,8 @@ public Shell open(Display display) {
     grpDriverList.setLayout(gridDriverList);
 	
     viewerDriver = new TableViewer(grpDriverList,SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
-    viewerDriver.setContentProvider(new DriverContentProviders());
-    viewerDriver.setLabelProvider(new DriverLabelProviders());
+//    viewerDriver.setContentProvider(new DriverContentProviders());
+//    viewerDriver.setLabelProvider(new DriverLabelProviders());
     viewerDriver.setInput(driverList);
     //driverTable = new Table(grpDriverList, SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
     driverTable = viewerDriver.getTable();
@@ -273,8 +278,13 @@ public Shell open(Display display) {
 		public void widgetDefaultSelected(SelectionEvent e) {
 			TableItem[] items = driverTable.getSelection();
 			driverTable.getSelectionIndex();
-			if (items.length > 0) 
-				editEntry(items[0]);
+			if (items.length > 0)
+				try {
+					editEntry(items[0]);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 		}
 	});
 	
@@ -347,7 +357,13 @@ public Shell open(Display display) {
     grpBusList.setLayout(gridBusList);
 	
 	//BusTable -
-	 busTable = new Table(grpBusList, SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
+    viewerBus = new TableViewer(grpBusList,SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
+//    viewerBus.setContentProvider(new BusContentProviders());
+//    viewerBus.setLabelProvider(new BusLabelProviders());
+    viewerBus.setInput(driverList);
+    
+    
+     busTable = viewerBus.getTable();
 	 busTable.setHeaderVisible(true);	
 	 busTable.setLinesVisible(true);
 	 busTable.setMenu(createPopUpMenu());	
@@ -356,8 +372,13 @@ public Shell open(Display display) {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				TableItem[] items = driverTable.getSelection();
 				
-				if (items.length > 0) 
-					editEntry(items[0]);
+				if (items.length > 0)
+					try {
+						editEntry(items[0]);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			}
 		});
 		for(int i = 0; i < columnNamesBus.length; i++) {
@@ -386,13 +407,19 @@ public Shell open(Display display) {
 	return shell;
 }
 
-public void loadData(){
+public void loadData() throws Exception{
 	driverList = DBManager.getInstance().loadAllDriver();
+	busList = DBManager.getInstance().loadAllBus();
 	System.out.println("driver sayisi="+driverList.size());
+	
 	viewerDriver.refresh();
 	viewerDriver.setInput(driverList);
-	driver = new Driver();
 	
+	viewerBus.refresh();
+	viewerBus.setInput(busList);
+	
+	driver = new Driver();
+	bus = new Bus();
 }
 
 
@@ -426,21 +453,46 @@ private void newAddressBook() {
 	isModified = false;
 }
 
-public void editEntry(TableItem item) {
+public void editEntry(TableItem item) throws Exception{
 	driver = (Driver)item.getData();
-	wizardDriver.open();
-	DBManager.getInstance().saveOrUpdate(driver);
-    loadData();
+	wizardDriver = new WizardDialog(shell,
+	        new DriverEntityWizard());
+	if(wizardDriver.open()==Window.OK){
+		DBManager.getInstance().saveOrUpdate(driver);
+	    loadData();
+	}
 }
 
-public void newDriverEntry() {
-	driver = new Driver();
-	int result=wizardDriver.open();
-    DBManager.getInstance().saveOrUpdate(driver);
-    loadData();
+public void newDriverEntry() throws Exception{
+	if(cTabFolder.getSelectionIndex()==0){
+		driver = new Driver();
+		wizardDriver = new WizardDialog(shell, new DriverEntityWizard());
+		int result=wizardDriver.open();
+		if(result==Window.OK){
+		    DBManager.getInstance().saveOrUpdate(driver);
+		    
+		}else
+			return;
+	}
+		
+		
+	if(cTabFolder.getSelectionIndex()==1){
+		bus = new Bus();
+	    wizardBus = new WizardDialog(shell, new BusEntityWizard());
+	    if(wizardBus.open()==Window.OK){
+		    DBManager.getInstance().saveOrUpdate(bus);
+		}else
+			return;
+	}
+	
+	if(cTabFolder.getSelectionIndex()==2){
+		user = new User();
+	}
+	
+	loadData();
 }
 
-public void deleteEntry(TableItem item) {
+public void deleteEntry(TableItem item) throws Exception {
 	driver = (Driver)item.getData();
 	boolean answer = MessageDialog.openConfirm(shell, "Onaylama", "Deneme");
     if(answer){
@@ -540,7 +592,12 @@ private void createFileMenu(Menu menuBar) {
 	subItem.setAccelerator(SWT.MOD1 + 'N');
 	subItem.addSelectionListener(new SelectionAdapter() {
 		public void widgetSelected(SelectionEvent e) {
-			newDriverEntry();
+			try {
+				newDriverEntry();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	});
 	
@@ -549,9 +606,16 @@ private void createFileMenu(Menu menuBar) {
 	subItem.setAccelerator(SWT.MOD1 + 'E');
 	subItem.addSelectionListener(new SelectionAdapter() {
 		public void widgetSelected(SelectionEvent e) {
+			MenuItem itemxx = (MenuItem)e.getSource();
+			//itemxx.getParent().getp
 			TableItem[] items = driverTable.getSelection();
 			if (items.length == 0) return;
-			editEntry(items[0]);
+			try {
+				editEntry(items[0]);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	});
 
@@ -620,7 +684,12 @@ private MenuItem createEditMenu(Menu menuBar) {
 		public void widgetSelected(SelectionEvent e) {
 			TableItem[] items = driverTable.getSelection();
 			if (items.length == 0) return;
-			editEntry(items[0]);
+			try {
+				editEntry(items[0]);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	});
 
@@ -730,6 +799,19 @@ private void createSearchMenu(Menu menuBar) {
 	});
 }
 
+public int getSelectedItemCount(){
+	if(cTabFolder.getSelectionIndex()==0)
+		return viewerDriver.getTable().getSelectionCount();
+	if(cTabFolder.getSelectionIndex()==1)
+		return viewerBus.getTable().getSelectionCount();
+	if(cTabFolder.getSelectionIndex()==2)
+		return viewerUser.getTable().getSelectionCount();
+
+	return 0;
+}
+
+
+
 /** 
  * Creates all items located in the popup menu and associates
  * all the menu items with their appropriate functions.
@@ -748,7 +830,7 @@ private Menu createPopUpMenu() {
 		public void menuShown(MenuEvent e) {
 			Menu menu = (Menu)e.widget;
 			MenuItem[] items = menu.getItems();
-			int count = driverTable.getSelectionCount();
+			int count = getSelectedItemCount();
 			items[2].setEnabled(count != 0); // edit
 			//items[3].setEnabled(count != 0); // copy
 			items[4].setEnabled(count != 0); // paste
@@ -762,7 +844,12 @@ private Menu createPopUpMenu() {
 	item.setText(resAddressBook.getString("Pop_up_new"));
 	item.addSelectionListener(new SelectionAdapter() {
 		public void widgetSelected(SelectionEvent e) {
-			newDriverEntry();
+			try {
+				newDriverEntry();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	});
 	
@@ -775,9 +862,14 @@ private Menu createPopUpMenu() {
 		public void widgetSelected(SelectionEvent e) {
 			e.getSource();
 			TableItem[] items = driverTable.getSelection();
-			driverTable.getSelectionIndex();
+			
 			if (items.length == 0) return;
-			editEntry(items[0]);
+			try {
+				editEntry(items[0]);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	});
 
@@ -791,7 +883,12 @@ private Menu createPopUpMenu() {
 		public void widgetSelected(SelectionEvent e) {
 			TableItem[] items = driverTable.getSelection();
 			if (items.length == 0) return;
-			deleteEntry(items[0]);
+			try {
+				deleteEntry(items[0]);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	});
 	
@@ -924,5 +1021,17 @@ public Driver getDriver() {
 
 public void setDriver(Driver driver) {
 	this.driver = driver;
+}
+
+
+
+public Bus getBus() {
+	return bus;
+}
+
+
+
+public void setBus(Bus bus) {
+	this.bus = bus;
 }
 }
