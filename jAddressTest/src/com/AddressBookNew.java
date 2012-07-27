@@ -30,6 +30,8 @@ import org.mihalis.opal.login.LoginDialog;
 
 import util.MenuUtil;
 import util.Util;
+import widgets.BasicCTabFolder;
+import widgets.BasicTabItem;
 import widgets.BusTabItem;
 import widgets.DriverTabItem;
 /**
@@ -43,7 +45,7 @@ public class AddressBookNew {
 	public static ResourceBundle resAddressBook = ResourceBundle.getBundle("examples_addressbook",new Locale("tr", "TR"));
 	private Shell shell;
 	
-	 private CTabFolder cTabFolder;
+	 private BasicCTabFolder cTabFolder;
 	 private DriverTabItem tabItemDriver;
 	 private BusTabItem tabItemBus;
 	 
@@ -71,16 +73,16 @@ public Shell open(Display display) throws Exception{
 	shell = new Shell(display);
 	shell.setLayout(new FillLayout());
 	 
-    if(checkLogin())
-    	shell.setText(loginUser.getUsername());
-    else{
-    	shell.dispose();
-    	return shell;
-    }
+//    if(checkLogin())
+//    	shell.setText(loginUser.getUsername());
+//    else{
+//    	shell.dispose();
+//    	return shell;
+//    }
   
     createMenuBar();
  	
-    cTabFolder = new CTabFolder(shell, SWT.BORDER);
+    cTabFolder = new BasicCTabFolder(shell, SWT.BORDER);
     cTabFolder.setLayoutData(new GridData(GridData.FILL_BOTH));
     
     cTabFolder.setSimple(false);

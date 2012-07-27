@@ -1,8 +1,19 @@
 package wizards;
 
+import java.util.List;
+
+import model.DBManager;
+import model.model.Bus;
 import model.model.Driver;
 
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -17,7 +28,6 @@ import org.eclipse.swt.widgets.Text;
 
 import util.Util;
 
-import com.AddressBook;
 import com.AddressBookNew;
 
 class BasicDriverPage extends WizardPage {
@@ -31,6 +41,8 @@ class BasicDriverPage extends WizardPage {
   private Text emailText;
  
   private ISelection selection;
+  
+  ComboViewer viewer;
 
   
 
@@ -100,17 +112,35 @@ class BasicDriverPage extends WizardPage {
     createLine(container, layout.numColumns);
 
     label = new Label(container, SWT.NULL);
-    label.setText("&E-Mail Address:");
+    label.setText(Util.getString("bus"));
 
-    emailText = new Text(container, SWT.BORDER | SWT.SINGLE);
-    gd = new GridData(GridData.FILL_HORIZONTAL);
-    emailText.setLayoutData(gd);
-    emailText.addModifyListener(new ModifyListener() {
-      public void modifyText(ModifyEvent e) {
-        dialogChanged();
-      }
+    viewer = new ComboViewer(container, SWT.READ_ONLY);
+    viewer.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer.setContentProvider(new ArrayContentProvider());
+    viewer.setLabelProvider(new LabelProvider() {
+    	@Override
+    	public String getText(Object element) {
+    		if (element instanceof Bus) {
+    			Bus bus = (Bus) element;
+    			return bus.getPlate();
+    		}
+    		return super.getText(element);
+    	}
     });
-
+    List busList=DBManager.getInstance().loadAllBus2();
+    viewer.setInput(busList);
+    viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+    	@Override
+    	public void selectionChanged(SelectionChangedEvent event) {
+    		IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+    		if(selection.isEmpty()==false)
+    		System.out.println(((Bus) selection.getFirstElement()).getPlate());
+    		dialogChanged();
+    	}
+    }); 
+    
+    if(driver.getBus()!=null)
+    		viewer.getCombo().setText(driver.getBus().getPlate());
     dialogChanged();
     setControl(container);
   // super.
@@ -120,7 +150,9 @@ class BasicDriverPage extends WizardPage {
 
   
   public boolean dialogChanged() {
-    if (this._name.getText().length() == 0) {
+
+	 
+		if (this._name.getText().length() == 0) {
       updateStatus("Sofor ismi zorunludur");
       return false;
     }else
@@ -133,12 +165,11 @@ class BasicDriverPage extends WizardPage {
     } else 
     	updateStatus(null);	
     	
-    if (this.emailText.getText().length() > 0) {
-      if (this.emailText.getText().indexOf("@") < 0) {
-        updateStatus("Please enter a complete email address in the form yourname@yourdomain.com");
+    if (this.viewer.getSelection().isEmpty()) {
+        updateStatus("Otobus secilmesi zorunludur");
         return false;
-      }
-    }
+      } else 
+      	updateStatus(null);	
 
     updateStatus(null);
     setPageComplete(true);
@@ -210,6 +241,14 @@ public ISelection getSelection() {
 
 public void setSelection(ISelection selection) {
 	this.selection = selection;
+}
+
+public ComboViewer getViewer() {
+	return viewer;
+}
+
+public void setViewer(ComboViewer viewer) {
+	this.viewer = viewer;
 }
 
 

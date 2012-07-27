@@ -11,8 +11,11 @@
 	<property name="phone" column="phone" type="string"></property>
 	<property name="insertDate" column="insertDate" type="timestamp"></property>
 	
-	<many-to-one name="bus" class="model.model.Bus" fetch="select">
+	 
+	<many-to-one name="bus" class="model.model.Bus" lazy="false" not-null="false">
             <column name="BUS_ID"  />
     </many-to-one>
+     
+
 </class>
 </hibernate-mapping>

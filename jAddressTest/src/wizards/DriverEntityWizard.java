@@ -1,11 +1,12 @@
 package wizards;
 
+import model.model.Bus;
 import model.model.Driver;
 
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 
-import com.AddressBook;
 import com.AddressBookNew;
 
 
@@ -38,9 +39,15 @@ public class DriverEntityWizard extends Wizard {
 	 driver.setSurname(page1.getSurname().getText());
 	 driver.setPhone(page1.getPhone().getText());
 	  
+	 IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
+	 if(selection.isEmpty())
+		 driver.setBus(null);
+	 else
+		 driver.setBus((Bus)selection.getFirstElement());
 	// DBManager.getInstance().saveOrUpdate(driver);
 	  
     return true;
+   // return false;
   }
 
 public Driver getDriver() {

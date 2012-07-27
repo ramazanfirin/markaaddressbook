@@ -22,7 +22,7 @@ public class DBManager {
 		}
 	 
 	 
-	 public void saveOrUpdate(Object o) throws Exception{
+	 public void saveOrUpdate(Object o) {
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -75,7 +75,7 @@ public class DBManager {
 			
 	 }
 	 
-	 public List<AbsractInterface> loadAllDriver2() throws Exception{
+	 public List<AbsractInterface> loadAllDriver2(){
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -94,7 +94,7 @@ public class DBManager {
 			
 	 }
 	 
-	 public List<Bus> loadAllBus() throws Exception{
+	 public List<Bus> loadAllBus() {
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -113,7 +113,26 @@ public class DBManager {
 			
 	 }
 	 
-	 public List<AbsractInterface> loadAllBus2() throws Exception{
+	 public Bus getBus(Long id) {
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from Bus p where id="+id;
+		        Query query = session.createQuery(hql);
+
+				return  (Bus)query.uniqueResult();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
+	 }
+	 
+	 public List<AbsractInterface> loadAllBus2(){
 		 Session session=null;
 			Transaction tx=null;
 			try {

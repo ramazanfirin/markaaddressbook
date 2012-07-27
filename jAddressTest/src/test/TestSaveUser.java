@@ -18,6 +18,7 @@ import util.HibernateUtil;
 
 public class TestSaveUser extends TestCase{
 
+	/*
 	public void testSave(){
 		Driver user = new Driver();
 		user.setName("ramazan");
@@ -47,9 +48,87 @@ public class TestSaveUser extends TestCase{
 		}
 		
 		
+		List<Bus> list = DBManager.getInstance().loadAllBus();
+		Bus bus2 = list.get(0);
+		System.out.println("Driver Listesi ="+ bus2.getDriverList().size());
+		
+		bus2.getDriverList().clear();
+		
 		HibernateUtil.shutdown();
 	}
+	*/
+	public void testCascade(){
+		
+		System.out.println("bus sayisi ="+ DBManager.getInstance().loadAllBus().size());
+		
+		Bus bus=new Bus();
+		
+		Driver driver = new Driver();
+		driver.setName("name");
+		driver.setSurname("name");
+		driver.setPhone("name");
+		
+		//DBManager.getInstance().saveOrUpdate(driver);
+		
+		
+		
+		bus.getDriverList().add(driver);
+		driver.setBus(bus);
+		DBManager.getInstance().saveOrUpdate(bus);
+		
+		System.out.println("bus sayisi ="+ DBManager.getInstance().loadAllBus().size());
+		bus = DBManager.getInstance().getBus(new Long(1));
+		System.out.println("Driver Listesi ="+ bus.getDriverList().size());
+		
+		
+		bus.getDriverList().clear();
+		DBManager.getInstance().saveOrUpdate(bus);
+		
+		bus = DBManager.getInstance().getBus(new Long(1));
+		System.out.println("Driver Listesi ="+ bus.getDriverList().size());
+		
+		
+		
+	}
 
+	/*	
+	
+	public void testBus(){
+		Bus bus = new Bus();
+		bus.setPlate("plaka");
+		bus.setPhone("telefon");
+		
+		Driver firstDriver = new Driver();
+		firstDriver.setName("junit");
+		firstDriver.setSurname("junit");
+		
+		Driver secondDriver = new Driver();
+		secondDriver.setName("junit2");
+		secondDriver.setSurname("junit2");
+		
+		bus.setFirstDriver(firstDriver);
+		bus.setSecondDriver(secondDriver);
+		
+		Session session=null;
+		Transaction tx=null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+
+			session.saveOrUpdate(bus);
+			tx.commit();
+		} catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		
+		HibernateUtil.shutdown();
+	}
+	
+	
 	public void testUser(){
 		User user = new User();
 		user.setUsername("ramazan");
@@ -73,30 +152,6 @@ public class TestSaveUser extends TestCase{
 		HibernateUtil.shutdown();
 	}
 	
-	public void testBus(){
-		Bus bus = new Bus();
-		bus.setPlate("plaka");
-		bus.setPhone("telefon");
-		
-		Session session=null;
-		Transaction tx=null;
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			tx = session.beginTransaction();
-			session.save(bus);
-			tx.commit();
-		} catch (HibernateException e) {
-			tx.rollback();
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-		
-		
-		HibernateUtil.shutdown();
-	}
-	
-	
 	public void testDriverall2(){
 		
 			
@@ -116,5 +171,5 @@ public class TestSaveUser extends TestCase{
 			session.close();
 		}
 	}
-	
+	*/
 }
