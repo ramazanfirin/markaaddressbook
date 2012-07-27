@@ -9,15 +9,15 @@
 	<property name="plate" column="plate" type="string"></property>
 	<property name="phone" column="phone" type="string"></property>
 	
-	<set name="driverList" table="bus_drivers" 
-				inverse="true" lazy="false" fetch="select">
+	<set name="driverList" table="Driver" inverse="true" lazy="false"  cascade="save-update">
             <key>
-                <column name="BUS_ID" not-null="true" />
+                <column name="BUS_ID" not-null="false" />
             </key>
             <one-to-many class="model.model.Driver" />
      </set>
 	
 	
-	
+	<many-to-one name="firstDriver"  class="model.model.Driver" column="FIRST_DRIVER"  cascade="all" unique="true" />
+	<many-to-one name="secondDriver" class="model.model.Driver" column="SECOND_DRIVER"  cascade="all" unique="true" />		
 </class>
 </hibernate-mapping>

@@ -1,9 +1,12 @@
 package wizards;
 
+import java.util.HashSet;
+
 import model.model.Bus;
 import model.model.Driver;
 
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 
 import com.AddressBook;
@@ -37,9 +40,22 @@ public class BusEntityWizard extends Wizard {
 	  Bus bus = (Bus)AddressBookNew.getInstance().getTabItemBus().getEntity();
 	  bus.setPlate(page1.getPlate().getText());
 	  bus.setPhone(page1.getPhone().getText());
+
+	  bus.getDriverList().clear();
 	  
-	  
-    return true;
+	  IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
+      bus.getDriverList().clear();
+	  if(selection.isEmpty()){
+		 Driver d =(Driver)bus.getDriverList().toArray()[0];
+		 
+	  }
+	  else{
+		 Driver d = (Driver)selection.getFirstElement();
+		 d.setBus(bus);
+		 bus.getDriverList().add(d);
+	  }
+    
+	  return true;
   }
 
 

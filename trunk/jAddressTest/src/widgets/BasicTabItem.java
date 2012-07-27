@@ -124,7 +124,7 @@ public abstract class BasicTabItem extends CTabItem{
 			});
 		}
 	    
-	    refresh();
+	    notifyAllTabItems();
 	}
 
 	
@@ -144,6 +144,12 @@ public abstract class BasicTabItem extends CTabItem{
 		loadData();
 		tableViewer.setInput(entityList);
 		tableViewer.refresh();
+	}
+	
+	public void notifyAllTabItems(){
+		 BasicCTabFolder basicCTabFolder = (BasicCTabFolder)getParent();
+	        basicCTabFolder.refreshAllTabItems();
+		
 	}
 	
 	public void newEntity(){
@@ -166,7 +172,7 @@ public abstract class BasicTabItem extends CTabItem{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			refresh();
+			notifyAllTabItems();
 		}
 	}
 	
@@ -179,7 +185,7 @@ public abstract class BasicTabItem extends CTabItem{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		refresh();
+		notifyAllTabItems();
 	}
 	
 	public void save(Object object){

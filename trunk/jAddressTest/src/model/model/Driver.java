@@ -51,4 +51,8 @@ public class Driver implements AbsractInterface{
 	public void setBus(Bus bus) {
 		this.bus = bus;
 	}
+	
+	public String getNameSurname(){
+		return getName()+" "+getSurname();
+	}
 }

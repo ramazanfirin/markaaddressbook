@@ -26,12 +26,12 @@ import wizards.DriverEntityWizard;
 
 public class DriverTabItem extends BasicTabItem{
 
-	private static final String[] columnNames = {Util.getString("Last_name"),
-		Util.getString("First_name"),
-		Util.getString("Business_phone"),
-		Util.getString("Home_phone"),
-		Util.getString("Email"),
-		Util.getString("Fax")};
+	private static final String[] columnNames = {
+		Util.getString("driver.name"),
+		Util.getString("driver.surname"),
+		Util.getString("driver.phoneNumber"),
+		Util.getString("bus.plate"),
+		Util.getString("bus.phoneNumber")};
 	
 			
 	public DriverTabItem(CTabFolder parent, String name) {
@@ -114,6 +114,10 @@ public class DriverTabItem extends BasicTabItem{
 	      return ae.getSurname();
 	    case 2:
 	      return ae.getPhone();
+	    case 3:
+		  return ae.getBus().getPlate();
+	    case 4:
+	      return ae.getBus().getPhone();    
 	    }
 	    return "";
 		

@@ -1,9 +1,19 @@
 package wizards;
 
+import java.util.List;
+import java.util.Set;
+
+import model.DBManager;
 import model.model.Bus;
 import model.model.Driver;
 
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -26,6 +36,7 @@ class BasicBusPage extends WizardPage {
 
    private ISelection selection;
 
+   ComboViewer viewer;
   
 
   
@@ -70,11 +81,60 @@ class BasicBusPage extends WizardPage {
       });
 
     createLine(container, layout.numColumns);
+    
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("driver"));
+    
+    viewer = new ComboViewer(container, SWT.READ_ONLY);
+    viewer.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer.setContentProvider(new ArrayContentProvider());
+    viewer.setLabelProvider(new LabelProvider() {
+    	@Override
+    	public String getText(Object element) {
+    		if (element instanceof Driver) {
+    			Driver driver = (Driver) element;
+    			return driver.getNameSurname();
+    		}
+    		return super.getText(element);
+    	}
+    });
+    List driverList=DBManager.getInstance().loadAllDriver2();
+    driverList.add(0,Util.getString("select"));
+    viewer.setInput(driverList);
+    //viewer.getCombo().add("deneme");
+    viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+    	@Override
+    	public void selectionChanged(SelectionChangedEvent event) {
+    		IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+    		if(selection.isEmpty()==false && selection.getFirstElement() instanceof Driver)
+    		System.out.println(((Driver) selection.getFirstElement()).getName());
+    		dialogChanged();
+    	}
+    }); 
+    viewer.getCombo().setText(getDriverName(bus.getDriverList()));
+    
+    dialogChanged();
+    setControl(container);
+    
+    
+    
     setPageComplete(false);
     dialogChanged();
     setControl(container);
   }
 
+  public String getDriverName(Set<Driver> driverList){
+	  if (driverList == null || driverList.size()==0)
+		  return "";
+	  
+      if(driverList.size()>0){
+    	  Driver driver = (Driver)driverList.toArray()[0];
+    	  return driver.getNameSurname();
+      }	  
+    
+      return "";
+  }
+  
   public boolean dialogChanged() {
     if (this.plate.getText().length() == 0) {
       updateStatus("Plaka alaninin girilmesi gereklidir.");
@@ -134,6 +194,14 @@ public Text getPlate() {
 
 public void setPlate(Text plate) {
 	this.plate = plate;
+}
+
+public ComboViewer getViewer() {
+	return viewer;
+}
+
+public void setViewer(ComboViewer viewer) {
+	this.viewer = viewer;
 }
 
 
