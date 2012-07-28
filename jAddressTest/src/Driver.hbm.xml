@@ -17,5 +17,27 @@
 <!--     </many-to-one> -->
      
 <!-- 	<one-to-one name="bus" class="model.model.Bus" constrained="true"></one-to-one> -->
+
+	<set name="firstDriverBusList" table="Driver" inverse="true" lazy="false"  cascade="save-update">
+            <key>
+                <column name="FIRST_DRIVER" not-null="false" />
+            </key>
+            <one-to-many class="model.model.Bus" />
+     </set>
+     
+     <set name="secondDriverBusList" table="Driver" inverse="true" lazy="false"  cascade="save-update">
+            <key>
+                <column name="SECOND_DRIVER" not-null="false" />
+            </key>
+            <one-to-many class="model.model.Bus" />
+     </set>
+     
+     <set name="thirdDriverBusList" table="Driver" inverse="true" lazy="false"  cascade="save-update">
+            <key>
+                <column name="THIRD_DRIVER" not-null="false" />
+            </key>
+            <one-to-many class="model.model.Bus" />
+     </set>
+
 </class>
 </hibernate-mapping>

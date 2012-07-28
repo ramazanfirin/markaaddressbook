@@ -1,6 +1,7 @@
 package test;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -18,6 +19,24 @@ import util.HibernateUtil;
 
 public class TestSaveUser extends TestCase{
 
+	public void testDriver(){
+		
+         List<Driver> list = DBManager.getInstance().loadAllDriver();
+         System.out.println("bitti");
+         
+         for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Driver driver = (Driver) iterator.next();
+			if(driver.getName().equals("sofor1name")){
+				System.out.println(driver.getFirstDriverBusList().size());
+				driver.getFirstDriverBusList().addAll(driver.getSecondDriverBusList());
+				System.out.println(driver.getFirstDriverBusList().size());
+			}
+			
+		}
+		
+	}
+	
+	
 	/*
 	public void testSave(){
 		Driver user = new Driver();
@@ -56,7 +75,7 @@ public class TestSaveUser extends TestCase{
 		
 		HibernateUtil.shutdown();
 	}
-	*/
+	
 	public void testCascade(){
 		
 		System.out.println("bus sayisi ="+ DBManager.getInstance().loadAllBus().size());
@@ -90,6 +109,7 @@ public class TestSaveUser extends TestCase{
 		
 		
 	}
+	*/
 
 	/*	
 	

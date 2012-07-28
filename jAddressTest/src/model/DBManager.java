@@ -56,7 +56,7 @@ public class DBManager {
 			}
 	 }
 	 
-	 public List<Driver> loadAllDriver() throws Exception{
+	 public List<Driver> loadAllDriver(){
 		 Session session=null;
 			Transaction tx=null;
 			try {
