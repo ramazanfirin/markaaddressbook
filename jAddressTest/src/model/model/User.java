@@ -7,8 +7,11 @@ public class User implements AbsractInterface{
 
 	
 	private Long id;
-	private String username;
-	private String password;
+	private String username="";
+	private String password="";
+	private Authority authority;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -26,6 +29,12 @@ public class User implements AbsractInterface{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Authority getAuthority() {
+		return authority;
+	}
+	public void setAuthority(Authority authority) {
+		this.authority = authority;
 	}
 	
 }

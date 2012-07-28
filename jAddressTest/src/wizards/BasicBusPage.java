@@ -111,13 +111,16 @@ class BasicBusPage extends WizardPage {
     		dialogChanged();
     	}
     }); 
-    viewer.getCombo().setText(getDriverName(bus.getDriverList()));
+    if(bus.getDriverList()!=null && bus.getDriverList().size()!=0)
+    	viewer.getCombo().setText(getDriverName(bus.getDriverList()));
+    else
+    	viewer.getCombo().setText(Util.getString("select")); 
     
     dialogChanged();
     setControl(container);
     
     
-    
+    bus.getDriverList().size();
     setPageComplete(false);
     dialogChanged();
     setControl(container);

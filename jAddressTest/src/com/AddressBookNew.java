@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 import model.model.User;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Display;
@@ -31,9 +30,9 @@ import org.mihalis.opal.login.LoginDialog;
 import util.MenuUtil;
 import util.Util;
 import widgets.BasicCTabFolder;
-import widgets.BasicTabItem;
 import widgets.BusTabItem;
 import widgets.DriverTabItem;
+import widgets.UserTabItem;
 /**
  * AddressBookExample is an example that uses <code>org.eclipse.swt 
  * libraries to implement a simple address book.  This application has 
@@ -48,7 +47,7 @@ public class AddressBookNew {
 	 private BasicCTabFolder cTabFolder;
 	 private DriverTabItem tabItemDriver;
 	 private BusTabItem tabItemBus;
-	 
+	 private UserTabItem tabItemUser;
 	 private User loginUser;
 	
 	
@@ -91,6 +90,7 @@ public Shell open(Display display) throws Exception{
 	
     tabItemDriver = new DriverTabItem(cTabFolder,Util.getString("driver.list"));
     tabItemBus = new BusTabItem(cTabFolder,Util.getString("bus.list"));
+    tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
 
     shell.open();
 	return shell;
@@ -139,6 +139,18 @@ public User getLoginUser() {
 
 public void setLoginUser(User loginUser) {
 	this.loginUser = loginUser;
+}
+
+
+
+public UserTabItem getTabItemUser() {
+	return tabItemUser;
+}
+
+
+
+public void setTabItemUser(UserTabItem tabItemUser) {
+	this.tabItemUser = tabItemUser;
 }
 
 }

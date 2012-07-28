@@ -152,6 +152,44 @@ public class DBManager {
 	 }
 	 
 	 
+	 public List<AbsractInterface> loadUsers(){
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from User p where 1=1";
+		        Query query = session.createQuery(hql);
+
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
+	 }
+	 
+	 public List<AbsractInterface> loadAuthorith(){
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from Authority p where 1=1 order by p.authority";
+		        Query query = session.createQuery(hql);
+
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
+	 }
+	 
 	 public User checkPassword(String username,String password) throws Exception{
 		 Session session=null;
 			Transaction tx=null;

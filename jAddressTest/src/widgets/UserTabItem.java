@@ -1,0 +1,93 @@
+package widgets;
+
+import model.DBManager;
+import model.model.User;
+
+import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+
+import util.Util;
+import wizards.UserEntityWizard;
+
+public class UserTabItem extends BasicTabItem{
+
+	private static final String[] columnNames = {
+		Util.getString("user.name"),
+		Util.getString("user.authority")};
+	
+	
+	public UserTabItem(CTabFolder parent, String name) {
+		super(parent, name);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	void search() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void prepareComponents(Composite grpLocation) {
+		Label labelUserName=new Label(grpLocation,SWT.NONE);
+		labelUserName.setText(Util.getString("user.name"));
+		labelUserName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		Text textUserName=new Text(grpLocation,SWT.BORDER);
+		textUserName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+		Label labelAuthority=new Label(grpLocation,SWT.NONE);
+		labelAuthority.setText(Util.getString("user.authority"));
+		labelAuthority.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		Text textAuthority=new Text(grpLocation,SWT.BORDER);
+		textAuthority.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+	}
+
+	@Override
+	String[] getColumNames() {
+		return columnNames;
+	}
+
+	@Override
+	Wizard getNewWizard() {
+		return new UserEntityWizard();
+	}
+
+	@Override
+	void createNewEntity() {
+		entity = new User();
+		
+	}
+
+	@Override
+	void loadData() {
+		entityList = DBManager.getInstance().loadUsers();
+		
+	}
+
+	@Override
+	String getTableColumValues(Object object, int columnIndex) {
+		User ae = (User) object;
+	    switch (columnIndex) {
+	    case 0:
+	      return ae.getUsername();
+	    case 1:
+		  return ae.getAuthority().getAuthority();   
+	    }
+	    return "";
+	}
+
+	@Override
+	void saveData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

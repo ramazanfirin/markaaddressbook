@@ -101,6 +101,12 @@ public class DriverTabItem extends BasicTabItem{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+
+	@Override
+	void saveData() {
+		DBManager.getInstance().saveOrUpdate(entity);
 		
 	}
 	
@@ -115,13 +121,21 @@ public class DriverTabItem extends BasicTabItem{
 	    case 2:
 	      return ae.getPhone();
 	    case 3:
-		  return ae.getBus().getPlate();
+		  if(ae.getBus()!=null)
+	    	return ae.getBus().getPlate();
+		  else 
+			return   "";
 	    case 4:
-	      return ae.getBus().getPhone();    
+	    	if(ae.getBus()!=null)
+	    			return ae.getBus().getPhone();    
+	    	else 
+				return   "";
 	    }
 	    return "";
 		
 	}
+
+
 
 }
 
