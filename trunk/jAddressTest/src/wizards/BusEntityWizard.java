@@ -19,7 +19,7 @@ public class BusEntityWizard extends Wizard {
 
   private ISelection selection;
   
-
+  private Driver tempDriver;
 
   public BusEntityWizard() {
     super();
@@ -41,15 +41,19 @@ public class BusEntityWizard extends Wizard {
 	  bus.setPlate(page1.getPlate().getText());
 	  bus.setPhone(page1.getPhone().getText());
 
-	  bus.getDriverList().clear();
+	 // bus.getDriverList().clear();
 	  
 	  IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
-      bus.getDriverList().clear();
-	  if(selection.isEmpty()){
+      //bus.getDriverList().clear();
+	  if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  //bus.getDriverList().size();
+		 if(bus.getDriverList()!=null && bus.getDriverList().size()>0){
 		 Driver d =(Driver)bus.getDriverList().toArray()[0];
-		 
+		 d.setBus(null);
+		 }
 	  }
 	  else{
+		 //tempDriver = bus.getDriverList()
 		 Driver d = (Driver)selection.getFirstElement();
 		 d.setBus(bus);
 		 bus.getDriverList().add(d);
@@ -57,6 +61,14 @@ public class BusEntityWizard extends Wizard {
     
 	  return true;
   }
+
+public Driver getTempDriver() {
+	return tempDriver;
+}
+
+public void setTempDriver(Driver tempDriver) {
+	this.tempDriver = tempDriver;
+}
 
 
 }

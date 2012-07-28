@@ -138,6 +138,7 @@ public abstract class BasicTabItem extends CTabItem{
 	//abstract ITableLabelProvider getTableLabelProvider();
 	abstract void loadData();
 	abstract String getTableColumValues(Object object,int columnIndex);
+	abstract void saveData();
 	
 	
 	public void refresh(){
@@ -167,11 +168,13 @@ public abstract class BasicTabItem extends CTabItem{
 		if(wizardDialog.open()==Window.OK){
 			try {
 				DBManager.getInstance().saveOrUpdate(entity);
+				//saveData();
 				getParent().setSelection(this);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			notifyAllTabItems();
 		}
 	}

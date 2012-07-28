@@ -12,10 +12,10 @@
 	<property name="insertDate" column="insertDate" type="timestamp"></property>
 	
 	 
-	<many-to-one name="bus" class="model.model.Bus" lazy="false" not-null="false">
-            <column name="BUS_ID"  />
-    </many-to-one>
+<!-- 	<many-to-one name="bus" class="model.model.Bus" lazy="false" not-null="false"> -->
+<!--             <column name="BUS_ID"  /> -->
+<!--     </many-to-one> -->
      
-
+<!-- 	<one-to-one name="bus" class="model.model.Bus" constrained="true"></one-to-one> -->
 </class>
 </hibernate-mapping>
