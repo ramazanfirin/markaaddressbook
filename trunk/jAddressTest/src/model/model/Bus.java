@@ -15,6 +15,7 @@ public class Bus implements AbsractInterface{
 	
 	private Driver firstDriver;
 	private Driver secondDriver;
+	private Driver thirdDriver;
 	
 	
 	public String getPlate() {
@@ -52,6 +53,12 @@ public class Bus implements AbsractInterface{
 	}
 	public void setSecondDriver(Driver secondDriver) {
 		this.secondDriver = secondDriver;
+	}
+	public Driver getThirdDriver() {
+		return thirdDriver;
+	}
+	public void setThirdDriver(Driver thirdDriver) {
+		this.thirdDriver = thirdDriver;
 	}
 
 	

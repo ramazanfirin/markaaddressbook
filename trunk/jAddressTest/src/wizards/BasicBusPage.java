@@ -37,7 +37,8 @@ class BasicBusPage extends WizardPage {
    private ISelection selection;
 
    ComboViewer viewer;
-  
+   ComboViewer viewer2;
+   ComboViewer viewer3;
 
   
   public BasicBusPage(ISelection selection) {
@@ -82,8 +83,9 @@ class BasicBusPage extends WizardPage {
 
     createLine(container, layout.numColumns);
     
+    
     label = new Label(container, SWT.NULL);
-    label.setText(Util.getString("driver"));
+    label.setText(Util.getString("driver.first"));
     
     viewer = new ComboViewer(container, SWT.READ_ONLY);
     viewer.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -111,10 +113,97 @@ class BasicBusPage extends WizardPage {
     		dialogChanged();
     	}
     }); 
-    if(bus.getDriverList()!=null && bus.getDriverList().size()!=0)
-    	viewer.getCombo().setText(getDriverName(bus.getDriverList()));
+    if(bus.getFirstDriver()!=null)
+    	viewer.getCombo().setText(bus.getFirstDriver().getNameSurname());
     else
     	viewer.getCombo().setText(Util.getString("select")); 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("driver.second"));
+    
+    viewer2 = new ComboViewer(container, SWT.READ_ONLY);
+    viewer2.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer2.setContentProvider(new ArrayContentProvider());
+    viewer2.setLabelProvider(new LabelProvider() {
+    	@Override
+    	public String getText(Object element) {
+    		if (element instanceof Driver) {
+    			Driver driver = (Driver) element;
+    			return driver.getNameSurname();
+    		}
+    		return super.getText(element);
+    	}
+    });
+  
+    //driverList.add(0,Util.getString("select"));
+    viewer2.setInput(driverList);
+    //viewer.getCombo().add("deneme");
+    viewer2.addSelectionChangedListener(new ISelectionChangedListener() {
+    	@Override
+    	public void selectionChanged(SelectionChangedEvent event) {
+    		IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+    		if(selection.isEmpty()==false && selection.getFirstElement() instanceof Driver)
+    		System.out.println(((Driver) selection.getFirstElement()).getName());
+    		dialogChanged();
+    	}
+    }); 
+    if(bus.getSecondDriver()!=null)
+    	viewer2.getCombo().setText(bus.getSecondDriver().getNameSurname());
+    else
+    	viewer2.getCombo().setText(Util.getString("select")); 
+    
+    
+    
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("driver.third"));
+    
+    viewer3 = new ComboViewer(container, SWT.READ_ONLY);
+    viewer3.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer3.setContentProvider(new ArrayContentProvider());
+    viewer3.setLabelProvider(new LabelProvider() {
+    	@Override
+    	public String getText(Object element) {
+    		if (element instanceof Driver) {
+    			Driver driver = (Driver) element;
+    			return driver.getNameSurname();
+    		}
+    		return super.getText(element);
+    	}
+    });
+  
+    //driverList.add(0,Util.getString("select"));
+    viewer3.setInput(driverList);
+    //viewer.getCombo().add("deneme");
+    viewer3.addSelectionChangedListener(new ISelectionChangedListener() {
+    	@Override
+    	public void selectionChanged(SelectionChangedEvent event) {
+    		IStructuredSelection selection = (IStructuredSelection) event.getSelection();
+    		if(selection.isEmpty()==false && selection.getFirstElement() instanceof Driver)
+    		System.out.println(((Driver) selection.getFirstElement()).getName());
+    		dialogChanged();
+    	}
+    }); 
+    if(bus.getThirdDriver()!=null)
+    	viewer3.getCombo().setText(bus.getThirdDriver().getNameSurname());
+    else
+    	viewer3.getCombo().setText(Util.getString("select")); 
+    
+    
     
     dialogChanged();
     setControl(container);
@@ -205,6 +294,22 @@ public ComboViewer getViewer() {
 
 public void setViewer(ComboViewer viewer) {
 	this.viewer = viewer;
+}
+
+public ComboViewer getViewer2() {
+	return viewer2;
+}
+
+public void setViewer2(ComboViewer viewer2) {
+	this.viewer2 = viewer2;
+}
+
+public ComboViewer getViewer3() {
+	return viewer3;
+}
+
+public void setViewer3(ComboViewer viewer3) {
+	this.viewer3 = viewer3;
 }
 
 

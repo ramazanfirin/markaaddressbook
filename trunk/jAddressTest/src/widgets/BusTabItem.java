@@ -21,7 +21,14 @@ public class BusTabItem extends BasicTabItem{
 
 	private static final String[] columnNames = {
 		 Util.getString("bus.plate"),
-		 Util.getString("bus.phoneNumber")};
+		 Util.getString("bus.phoneNumber"),
+ 	     Util.getString("driver.first.nameSurname"),
+ 	     Util.getString("driver.first.phone"),
+ 	     Util.getString("driver.second.nameSurname"),
+	     Util.getString("driver.second.phone"),
+	     Util.getString("driver.third.nameSurname"),
+	     Util.getString("driver.third.phone")
+	};
 	
 			
 	public BusTabItem(CTabFolder parent, String name) {
@@ -95,6 +102,38 @@ public class BusTabItem extends BasicTabItem{
 	      return ae.getPlate();
 	    case 1:
 	      return ae.getPhone();
+	    case 2:
+	       if(ae.getFirstDriver()!=null)
+	    	   return ae.getFirstDriver().getNameSurname();
+	       else
+	    	   return "";
+	    case 3:
+		       if(ae.getFirstDriver()!=null)
+		    	   return ae.getFirstDriver().getPhone();
+		       else
+		    	   return "";
+	    case 4:
+		       if(ae.getSecondDriver()!=null)
+		    	   return ae.getSecondDriver().getNameSurname();
+		       else
+		    	   return "";
+		case 5:
+		       if(ae.getSecondDriver()!=null)
+		    	   return ae.getSecondDriver().getPhone();
+			   else
+			  	   return "";
+		case 6:
+		       if(ae.getThirdDriver()!=null)
+		    	   return ae.getThirdDriver().getNameSurname();
+		       else
+		    	   return "";
+		case 7:
+		       if(ae.getThirdDriver()!=null)
+		    	   return ae.getThirdDriver().getPhone();
+			   else
+			  	   return "";           
+	    
+	    
 	    }
 	    return "";
 		

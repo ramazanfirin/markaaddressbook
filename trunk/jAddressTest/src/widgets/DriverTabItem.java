@@ -1,23 +1,17 @@
 package widgets;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Set;
 
 import model.DBManager;
-import model.interfaces.AbsractInterface;
+import model.model.Bus;
 import model.model.Driver;
 
-import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -121,15 +115,27 @@ public class DriverTabItem extends BasicTabItem{
 	    case 2:
 	      return ae.getPhone();
 	    case 3:
-		  if(ae.getBus()!=null)
-	    	return ae.getBus().getPlate();
-		  else 
-			return   "";
+	      String result="";	
+		  Set list = ae.getBusList();
+		  if(list!=null && list.size()>0){
+			  for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+				Bus object2 = (Bus) iterator.next();
+				result=result+"-"+object2.getPlate();
+			}
+		  }
+	    	
+	    	return  result;
 	    case 4:
-	    	if(ae.getBus()!=null)
-	    			return ae.getBus().getPhone();    
-	    	else 
-				return   "";
+	    	String result2="";	
+			  Set list2 = ae.getBusList();
+			  if(list2!=null && list2.size()>0){
+				  for (Iterator iterator = list2.iterator(); iterator.hasNext();) {
+					Bus object2 = (Bus) iterator.next();
+					result2=result2+"-"+object2.getPhone();
+				}
+			  }
+		    	
+		    	return  result2;
 	    }
 	    return "";
 		

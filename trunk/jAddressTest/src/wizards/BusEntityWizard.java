@@ -41,22 +41,30 @@ public class BusEntityWizard extends Wizard {
 	  bus.setPlate(page1.getPlate().getText());
 	  bus.setPhone(page1.getPhone().getText());
 
-	 // bus.getDriverList().clear();
-	  
 	  IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
-      //bus.getDriverList().clear();
-	  if(selection.isEmpty() || selection.getFirstElement() instanceof String){
-		  //bus.getDriverList().size();
-		 if(bus.getDriverList()!=null && bus.getDriverList().size()>0){
-		 Driver d =(Driver)bus.getDriverList().toArray()[0];
-		 d.setBus(null);
-		 }
+      if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  bus.setFirstDriver(null);
+	  }else{
+		  Driver driver = (Driver)selection.getFirstElement();
+		  bus.setFirstDriver(driver);
 	  }
-	  else{
-		 //tempDriver = bus.getDriverList()
-		 Driver d = (Driver)selection.getFirstElement();
-		 d.setBus(bus);
-		 bus.getDriverList().add(d);
+	  
+      
+      selection = (IStructuredSelection)page1.getViewer2().getSelection();
+      if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  bus.setSecondDriver(null);
+	  }else{
+		  Driver driver = (Driver)selection.getFirstElement();
+		  bus.setSecondDriver(driver);
+	  }
+	  
+      
+      selection = (IStructuredSelection)page1.getViewer3().getSelection();
+      if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  bus.setThirdDriver(null);
+	  }else{
+		  Driver driver = (Driver)selection.getFirstElement();
+		  bus.setThirdDriver(driver);
 	  }
     
 	  return true;

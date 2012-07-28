@@ -39,12 +39,12 @@ public class DriverEntityWizard extends Wizard {
 	 driver.setSurname(page1.getSurname().getText());
 	 driver.setPhone(page1.getPhone().getText());
 	  
-	 IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
-	 if(selection.isEmpty())
-		 driver.setBus(null);
-	 else
-		 driver.setBus((Bus)selection.getFirstElement());
-	// DBManager.getInstance().saveOrUpdate(driver);
+//	 IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
+//	 if(selection.isEmpty())
+//		 driver.setBus(null);
+//	 else
+//		 driver.setBus((Bus)selection.getFirstElement());
+//	// DBManager.getInstance().saveOrUpdate(driver);
 	  
     return true;
    // return false;
