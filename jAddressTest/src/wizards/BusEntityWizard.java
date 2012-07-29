@@ -1,6 +1,7 @@
 package wizards;
 
 import model.model.Bus;
+import model.model.BusOwner;
 import model.model.Driver;
 import model.model.Host;
 
@@ -71,6 +72,22 @@ public class BusEntityWizard extends Wizard {
 	  }else{
 		  Host host = (Host)selection.getFirstElement();
 		  bus.setHost(host);
+	  }
+      
+      selection = (IStructuredSelection)page1.getViewer5().getSelection();
+      if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  bus.setFirstOwner(null);
+	  }else{
+		  BusOwner busOwner = (BusOwner)selection.getFirstElement();
+		  bus.setFirstOwner(busOwner);
+	  }
+      
+      selection = (IStructuredSelection)page1.getViewer6().getSelection();
+      if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  bus.setSecondOwner(null);
+	  }else{
+		  BusOwner busOwner = (BusOwner)selection.getFirstElement();
+		  bus.setSecondOwner(busOwner);
 	  }
     
 	  return true;

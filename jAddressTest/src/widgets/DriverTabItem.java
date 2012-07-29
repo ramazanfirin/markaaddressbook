@@ -78,7 +78,7 @@ public class DriverTabItem extends BasicTabItem{
 
 	@Override
 	Wizard getNewWizard() {
-		return new DriverEntityWizard();
+		return new DriverEntityWizard(entity);
 	}
 
 	@Override

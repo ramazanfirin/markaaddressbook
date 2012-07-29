@@ -3,21 +3,14 @@ package model.model;
 import model.interfaces.AbsractInterface;
 
 
-public class User implements AbsractInterface{
+public class User extends Person{
 
 	
-	private Long id;
 	private String username="";
 	private String password="";
 	private Authority authority;
 	
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getUsername() {
 		return username;
 	}

@@ -21,6 +21,8 @@
 	<many-to-one name="secondDriver" class="model.model.Driver" column="SECOND_DRIVER"  lazy="false"/>		
     <many-to-one name="thirdDriver"  class="model.model.Driver" column="THIRD_DRIVER"   lazy="false"/>
     <many-to-one name="host"         class="model.model.Host"   column="HOST"           lazy="false"/>
+    <many-to-one name="firstOwner"   class="model.model.BusOwner"   column="FIRST_OWNER"           lazy="false"/>
+    <many-to-one name="secondOwner"   class="model.model.BusOwner"   column="SECOND_OWNER"           lazy="false"/>
 
 <!-- <one-to-one name="firstDriver" class="model.model.Driver"  cascade="save-update"></one-to-one> -->
 <!-- <one-to-one name="secondDriver" class="model.model.Driver"  cascade="save-update"></one-to-one> -->

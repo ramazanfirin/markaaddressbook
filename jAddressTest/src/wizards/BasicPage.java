@@ -1,13 +1,17 @@
 package wizards;
 
+import java.util.Set;
+
 import model.model.Person;
 
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 
 public abstract class BasicPage extends WizardPage{
@@ -30,11 +34,13 @@ public abstract class BasicPage extends WizardPage{
 	}
 
 	@Override
-	public void createControl(Composite arg0) {
-		
+	public void createControl(Composite parent) {
 		
 	}
 
+	
+
+	
 
 	class ComboSelectionChangeProvider implements ISelectionChangedListener{
 
