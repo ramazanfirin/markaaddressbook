@@ -32,6 +32,7 @@ import util.Util;
 import widgets.BasicCTabFolder;
 import widgets.BusTabItem;
 import widgets.DriverTabItem;
+import widgets.HostTabItem;
 import widgets.UserTabItem;
 /**
  * AddressBookExample is an example that uses <code>org.eclipse.swt 
@@ -48,6 +49,7 @@ public class AddressBookNew {
 	 private DriverTabItem tabItemDriver;
 	 private BusTabItem tabItemBus;
 	 private UserTabItem tabItemUser;
+	 private HostTabItem tabItemHost;
 	 private User loginUser;
 	
 	
@@ -91,6 +93,7 @@ public Shell open(Display display) throws Exception{
     tabItemDriver = new DriverTabItem(cTabFolder,Util.getString("driver.list"));
     tabItemBus = new BusTabItem(cTabFolder,Util.getString("bus.list"));
     tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
+    tabItemHost = new HostTabItem(cTabFolder,Util.getString("host.list"));
 
     shell.open();
 	return shell;
@@ -152,5 +155,21 @@ public UserTabItem getTabItemUser() {
 public void setTabItemUser(UserTabItem tabItemUser) {
 	this.tabItemUser = tabItemUser;
 }
+
+
+
+public HostTabItem getTabItemHost() {
+	return tabItemHost;
+}
+
+
+
+public void setTabItemHost(HostTabItem tabItemHost) {
+	this.tabItemHost = tabItemHost;
+}
+
+
+
+
 
 }

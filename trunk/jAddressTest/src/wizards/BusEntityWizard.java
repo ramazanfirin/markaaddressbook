@@ -1,21 +1,19 @@
 package wizards;
 
-import java.util.HashSet;
-
 import model.model.Bus;
 import model.model.Driver;
+import model.model.Host;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 
-import com.AddressBook;
 import com.AddressBookNew;
 
 
 public class BusEntityWizard extends Wizard {
   
-  private BasicBusPage page1;
+  private BusPage page1;
 
   private ISelection selection;
   
@@ -27,7 +25,7 @@ public class BusEntityWizard extends Wizard {
   }
 
   public void addPages() {
-    page1 = new BasicBusPage(selection);
+    page1 = new BusPage(selection);
     //page2 = new AddressContactPage(selection);
     addPage(page1);
     //addPage(page2);
@@ -65,6 +63,14 @@ public class BusEntityWizard extends Wizard {
 	  }else{
 		  Driver driver = (Driver)selection.getFirstElement();
 		  bus.setThirdDriver(driver);
+	  }
+      
+      selection = (IStructuredSelection)page1.getViewer4().getSelection();
+      if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  bus.setHost(null);
+	  }else{
+		  Host host = (Host)selection.getFirstElement();
+		  bus.setHost(host);
 	  }
     
 	  return true;

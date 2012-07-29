@@ -11,7 +11,7 @@ import com.AddressBookNew;
 
 
 public class DriverEntityWizard extends Wizard {
-  private BasicDriverPage page1;
+  private DriverPage page1;
 
   private ISelection selection;
   
@@ -23,7 +23,7 @@ public class DriverEntityWizard extends Wizard {
   }
 
   public void addPages() {
-    page1 = new BasicDriverPage(selection);
+    page1 = new DriverPage(selection);
     //page2 = new AddressContactPage(selection);
     addPage(page1);
     //addPage(page2);

@@ -9,7 +9,7 @@ import java.util.Set;
 
 import model.interfaces.AbsractInterface;
 
-public class Driver implements AbsractInterface{
+public class Driver  extends Person implements AbsractInterface {
 
 	
 	private String name="";
