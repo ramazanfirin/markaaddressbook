@@ -11,12 +11,13 @@
 		<property name="connection.url">jdbc:sqlite:addressbook.db</property>
 		<property name="connection.username"></property>
 		<property name="connection.password"></property>
-	<property name="hibernate.hbm2ddl.auto">create</property>
+<!-- 	<property name="hibernate.hbm2ddl.auto">create</property> -->
 	   
 
 		<mapping resource="Driver.hbm.xml"/>
 		<mapping resource="User.hbm.xml"/>
 		<mapping resource="Bus.hbm.xml"/>
 		<mapping resource="Authority.hbm.xml"/>
+		<mapping resource="Host.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

@@ -33,7 +33,7 @@ import widgets.BasicTabItem.TableLabelProviders;
 
 import com.AddressBookNew;
 
-class BasicDriverPage extends WizardPage {
+class DriverPage extends WizardPage {
   
   private Text _name;
 
@@ -50,7 +50,7 @@ class BasicDriverPage extends WizardPage {
   
 
   
-  public BasicDriverPage(ISelection selection) {
+  public DriverPage(ISelection selection) {
     super("wizardPage");
     setTitle(Util.getString("driver"));
     setDescription("This wizard creates a new contact.");

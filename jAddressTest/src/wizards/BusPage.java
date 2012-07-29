@@ -1,11 +1,13 @@
 package wizards;
 
+import java.awt.peer.LabelPeer;
 import java.util.List;
 import java.util.Set;
 
 import model.DBManager;
 import model.model.Bus;
 import model.model.Driver;
+import model.model.Person;
 
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -24,11 +26,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import com.AddressBookNew;
-
 import util.Util;
 
-class BasicBusPage extends WizardPage {
+import com.AddressBookNew;
+
+class BusPage extends BasicPage{
   
   private Text plate;
 
@@ -39,9 +41,10 @@ class BasicBusPage extends WizardPage {
    ComboViewer viewer;
    ComboViewer viewer2;
    ComboViewer viewer3;
+   ComboViewer viewer4;
 
-  
-  public BasicBusPage(ISelection selection) {
+   
+  public BusPage(ISelection selection) {
     super("wizardPage");
     setTitle(Util.getString("bus"));
     setDescription("This wizard creates a new bus.");
@@ -59,115 +62,48 @@ class BasicBusPage extends WizardPage {
     
     Label label = new Label(container, SWT.NULL);
     label.setText(Util.getString("bus.plate"));
-
     plate = new Text(container, SWT.BORDER | SWT.SINGLE);
     plate.setText(bus.getPlate());
     plate.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    plate.addModifyListener(new ModifyListener() {
-      public void modifyText(ModifyEvent e) {
-        dialogChanged();
-      }
-    });
+    plate.addModifyListener(textModifyListener);
 
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("bus.phoneNumber"));
-
     phone = new Text(container, SWT.BORDER | SWT.SINGLE);
     phone.setText(bus.getPhone());
     phone.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-    phone.addModifyListener(new ModifyListener() {
-        public void modifyText(ModifyEvent e) {
-          dialogChanged();
-        }
-      });
+    phone.addModifyListener(textModifyListener);
 
     createLine(container, layout.numColumns);
     
+    List driverList=DBManager.getInstance().loadAllDriver2();
+    driverList.add(0,Util.getString("select"));
     
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("driver.first"));
-    
     viewer = new ComboViewer(container, SWT.READ_ONLY);
     viewer.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     viewer.setContentProvider(new ArrayContentProvider());
-    viewer.setLabelProvider(new LabelProvider() {
-    	@Override
-    	public String getText(Object element) {
-    		if (element instanceof Driver) {
-    			Driver driver = (Driver) element;
-    			return driver.getNameSurname();
-    		}
-    		return super.getText(element);
-    	}
-    });
-    List driverList=DBManager.getInstance().loadAllDriver2();
-    driverList.add(0,Util.getString("select"));
+    viewer.setLabelProvider(personLabelProvider);
     viewer.setInput(driverList);
-    //viewer.getCombo().add("deneme");
-    viewer.addSelectionChangedListener(new ISelectionChangedListener() {
-    	@Override
-    	public void selectionChanged(SelectionChangedEvent event) {
-    		IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-    		if(selection.isEmpty()==false && selection.getFirstElement() instanceof Driver)
-    		System.out.println(((Driver) selection.getFirstElement()).getName());
-    		dialogChanged();
-    	}
-    }); 
+    viewer.addSelectionChangedListener(comboSelectionChangeProvider); 
     if(bus.getFirstDriver()!=null)
     	viewer.getCombo().setText(bus.getFirstDriver().getNameSurname());
     else
     	viewer.getCombo().setText(Util.getString("select")); 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("driver.second"));
-    
     viewer2 = new ComboViewer(container, SWT.READ_ONLY);
     viewer2.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     viewer2.setContentProvider(new ArrayContentProvider());
-    viewer2.setLabelProvider(new LabelProvider() {
-    	@Override
-    	public String getText(Object element) {
-    		if (element instanceof Driver) {
-    			Driver driver = (Driver) element;
-    			return driver.getNameSurname();
-    		}
-    		return super.getText(element);
-    	}
-    });
-  
-    //driverList.add(0,Util.getString("select"));
+    viewer2.setLabelProvider(personLabelProvider);
     viewer2.setInput(driverList);
-    //viewer.getCombo().add("deneme");
-    viewer2.addSelectionChangedListener(new ISelectionChangedListener() {
-    	@Override
-    	public void selectionChanged(SelectionChangedEvent event) {
-    		IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-    		if(selection.isEmpty()==false && selection.getFirstElement() instanceof Driver)
-    		System.out.println(((Driver) selection.getFirstElement()).getName());
-    		dialogChanged();
-    	}
-    }); 
+    viewer2.addSelectionChangedListener(comboSelectionChangeProvider); 
     if(bus.getSecondDriver()!=null)
     	viewer2.getCombo().setText(bus.getSecondDriver().getNameSurname());
     else
     	viewer2.getCombo().setText(Util.getString("select")); 
-    
-    
     
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("driver.third"));
@@ -175,44 +111,37 @@ class BasicBusPage extends WizardPage {
     viewer3 = new ComboViewer(container, SWT.READ_ONLY);
     viewer3.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     viewer3.setContentProvider(new ArrayContentProvider());
-    viewer3.setLabelProvider(new LabelProvider() {
-    	@Override
-    	public String getText(Object element) {
-    		if (element instanceof Driver) {
-    			Driver driver = (Driver) element;
-    			return driver.getNameSurname();
-    		}
-    		return super.getText(element);
-    	}
-    });
-  
-    //driverList.add(0,Util.getString("select"));
+    viewer3.setLabelProvider(personLabelProvider);
     viewer3.setInput(driverList);
-    //viewer.getCombo().add("deneme");
-    viewer3.addSelectionChangedListener(new ISelectionChangedListener() {
-    	@Override
-    	public void selectionChanged(SelectionChangedEvent event) {
-    		IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-    		if(selection.isEmpty()==false && selection.getFirstElement() instanceof Driver)
-    		System.out.println(((Driver) selection.getFirstElement()).getName());
-    		dialogChanged();
-    	}
-    }); 
+    viewer3.addSelectionChangedListener(comboSelectionChangeProvider); 
     if(bus.getThirdDriver()!=null)
     	viewer3.getCombo().setText(bus.getThirdDriver().getNameSurname());
     else
     	viewer3.getCombo().setText(Util.getString("select")); 
     
+    createLine(container, layout.numColumns);
     
+    List hostList=DBManager.getInstance().loadHosts();
+    hostList.add(0,Util.getString("select"));
     
-    dialogChanged();
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("host"));
+    viewer4 = new ComboViewer(container, SWT.READ_ONLY);
+    viewer4.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer4.setContentProvider(new ArrayContentProvider());
+    viewer4.setLabelProvider(personLabelProvider);
+    viewer4.setInput(hostList);
+    viewer4.addSelectionChangedListener(comboSelectionChangeProvider); 
+    if(bus.getHost()!=null)
+    	viewer4.getCombo().setText(bus.getHost().getNameSurname());
+    else
+    	viewer4.getCombo().setText(Util.getString("select")); 
+    
+  
     setControl(container);
-    
-    
-    bus.getDriverList().size();
     setPageComplete(false);
     dialogChanged();
-    setControl(container);
+    
   }
 
   public String getDriverName(Set<Driver> driverList){
@@ -312,6 +241,15 @@ public void setViewer3(ComboViewer viewer3) {
 	this.viewer3 = viewer3;
 }
 
-
-  
+public ComboViewer getViewer4() {
+	return viewer4;
 }
+
+public void setViewer4(ComboViewer viewer4) {
+	this.viewer4 = viewer4;
+}
+
+
+
+}
+  
