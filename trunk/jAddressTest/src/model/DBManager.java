@@ -190,6 +190,25 @@ public class DBManager {
 			
 	 }
 	 
+	 public List<AbsractInterface> loadBusOwners(){
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from BusOwner p where 1=1";
+		        Query query = session.createQuery(hql);
+
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
+	 }
+	 
 	 public List<AbsractInterface> loadAuthorith(){
 		 Session session=null;
 			Transaction tx=null;

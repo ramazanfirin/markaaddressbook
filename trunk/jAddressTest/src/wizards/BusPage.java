@@ -42,6 +42,8 @@ class BusPage extends BasicPage{
    ComboViewer viewer2;
    ComboViewer viewer3;
    ComboViewer viewer4;
+   ComboViewer viewer5;
+   ComboViewer viewer6;
 
    
   public BusPage(ISelection selection) {
@@ -138,6 +140,39 @@ class BusPage extends BasicPage{
     	viewer4.getCombo().setText(Util.getString("select")); 
     
   
+    createLine(container, layout.numColumns);
+    
+    List ownerList=DBManager.getInstance().loadBusOwners();
+    ownerList.add(0,Util.getString("select"));
+    
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("busOwner.first"));
+    viewer5 = new ComboViewer(container, SWT.READ_ONLY);
+    viewer5.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer5.setContentProvider(new ArrayContentProvider());
+    viewer5.setLabelProvider(personLabelProvider);
+    viewer5.setInput(ownerList);
+    viewer5.addSelectionChangedListener(comboSelectionChangeProvider); 
+    if(bus.getFirstOwner()!=null)
+    	viewer5.getCombo().setText(bus.getFirstOwner().getNameSurname());
+    else
+    	viewer5.getCombo().setText(Util.getString("select")); 
+    
+   
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("busOwner.second"));
+    viewer6 = new ComboViewer(container, SWT.READ_ONLY);
+    viewer6.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer6.setContentProvider(new ArrayContentProvider());
+    viewer6.setLabelProvider(personLabelProvider);
+    viewer6.setInput(ownerList);
+    viewer6.addSelectionChangedListener(comboSelectionChangeProvider); 
+    if(bus.getSecondOwner()!=null)
+    	viewer6.getCombo().setText(bus.getSecondOwner().getNameSurname());
+    else
+    	viewer6.getCombo().setText(Util.getString("select")); 
+    
+    
     setControl(container);
     setPageComplete(false);
     dialogChanged();
@@ -247,6 +282,22 @@ public ComboViewer getViewer4() {
 
 public void setViewer4(ComboViewer viewer4) {
 	this.viewer4 = viewer4;
+}
+
+public ComboViewer getViewer5() {
+	return viewer5;
+}
+
+public void setViewer5(ComboViewer viewer5) {
+	this.viewer5 = viewer5;
+}
+
+public ComboViewer getViewer6() {
+	return viewer6;
+}
+
+public void setViewer6(ComboViewer viewer6) {
+	this.viewer6 = viewer6;
 }
 
 

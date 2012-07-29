@@ -9,6 +9,11 @@
 	<property name="username" column="username" type="string"></property>
 	<property name="password" column="password" type="string"></property>
 	
+	<property name="name" column="name" type="string"></property>
+	<property name="surname" column="surname" type="string"></property>
+	<property name="phone" column="phone" type="string"></property>
+	
+	
 	<many-to-one name="authority" class="model.model.Authority" column="Authority" lazy="false" />
 </class>
 </hibernate-mapping>

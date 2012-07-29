@@ -19,6 +19,9 @@ public class Bus implements AbsractInterface{
 	
 	private Host host;
 	
+	private BusOwner firstOwner;
+	private BusOwner secondOwner;
+	
 	public String getPlate() {
 		return plate;
 	}
@@ -66,6 +69,18 @@ public class Bus implements AbsractInterface{
 	}
 	public void setHost(Host host) {
 		this.host = host;
+	}
+	public BusOwner getFirstOwner() {
+		return firstOwner;
+	}
+	public void setFirstOwner(BusOwner firstOwner) {
+		this.firstOwner = firstOwner;
+	}
+	public BusOwner getSecondOwner() {
+		return secondOwner;
+	}
+	public void setSecondOwner(BusOwner secondOwner) {
+		this.secondOwner = secondOwner;
 	}
 
 	

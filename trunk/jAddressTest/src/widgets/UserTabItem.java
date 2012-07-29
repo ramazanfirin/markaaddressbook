@@ -17,6 +17,9 @@ import wizards.UserEntityWizard;
 public class UserTabItem extends BasicTabItem{
 
 	private static final String[] columnNames = {
+		Util.getString("name"),
+		Util.getString("surname"),
+		Util.getString("phone"),
 		Util.getString("user.name"),
 		Util.getString("user.authority")};
 	
@@ -57,7 +60,7 @@ public class UserTabItem extends BasicTabItem{
 
 	@Override
 	Wizard getNewWizard() {
-		return new UserEntityWizard();
+		return new UserEntityWizard(entity);
 	}
 
 	@Override
@@ -77,8 +80,14 @@ public class UserTabItem extends BasicTabItem{
 		User ae = (User) object;
 	    switch (columnIndex) {
 	    case 0:
-	      return ae.getUsername();
+	    	return ae.getName();
 	    case 1:
+	    	return ae.getSurname();
+	    case 2:
+	    	return ae.getPhone();
+	    case 3:
+	      return ae.getUsername();
+	    case 4:
 		  return ae.getAuthority().getAuthority();   
 	    }
 	    return "";

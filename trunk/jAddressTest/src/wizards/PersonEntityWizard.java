@@ -11,7 +11,7 @@ import com.AddressBookNew;
 
 
 public class PersonEntityWizard extends Wizard {
-  private PersonPage page1;
+  public PersonPage page1;
 
   private ISelection selection;
   
@@ -30,7 +30,7 @@ public class PersonEntityWizard extends Wizard {
 
   public boolean performFinish() {
 
-	 Person person = (Person)entity;
+ 	 Person person = (Person)entity;
 	 person.setName(page1.getNameVariable().getText());
 	 person.setSurname(page1.getSurname().getText());
 	 person.setPhone(page1.getPhone().getText());
