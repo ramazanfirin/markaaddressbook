@@ -30,6 +30,7 @@ import org.mihalis.opal.login.LoginDialog;
 import util.MenuUtil;
 import util.Util;
 import widgets.BasicCTabFolder;
+import widgets.BusOwnerTabItem;
 import widgets.BusTabItem;
 import widgets.DriverTabItem;
 import widgets.HostTabItem;
@@ -50,6 +51,7 @@ public class AddressBookNew {
 	 private BusTabItem tabItemBus;
 	 private UserTabItem tabItemUser;
 	 private HostTabItem tabItemHost;
+	 private BusOwnerTabItem tabItemBusOwner;
 	 private User loginUser;
 	
 	
@@ -94,7 +96,8 @@ public Shell open(Display display) throws Exception{
     tabItemBus = new BusTabItem(cTabFolder,Util.getString("bus.list"));
     tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
     tabItemHost = new HostTabItem(cTabFolder,Util.getString("host.list"));
-
+    tabItemBusOwner = new BusOwnerTabItem(cTabFolder,Util.getString("busOwner.list"));
+    
     shell.open();
 	return shell;
 }
