@@ -47,6 +47,11 @@ public class BusOwnerTabItem extends PersonTabItem{
 		
 	}
 
+	@Override
+	String getName() {
+		return Util.getString("busOwner.list");
+	}
+
 	
 
 }

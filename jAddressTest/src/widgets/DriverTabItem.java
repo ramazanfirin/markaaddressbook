@@ -32,6 +32,7 @@ public class DriverTabItem extends BasicTabItem{
 		super(parent, name);
 	}
 
+    
 	
 	@Override
 	void search() {
@@ -139,6 +140,13 @@ public class DriverTabItem extends BasicTabItem{
 	    }
 	    return "";
 		
+	}
+
+
+
+	@Override
+	String getName() {
+		return Util.getString("driver.list");
 	}
 
 

@@ -146,6 +146,12 @@ public class BusTabItem extends BasicTabItem{
 		
 	}
 
+
+	@Override
+	String getName() {
+		return Util.getString("bus.list");
+	}
+
 }
 
 

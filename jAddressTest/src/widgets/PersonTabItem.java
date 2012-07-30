@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Text;
 import util.Util;
 import wizards.PersonEntityWizard;
 
-public class PersonTabItem extends BasicTabItem{
+public abstract class PersonTabItem extends BasicTabItem{
 
 	private static final String[] columnNames = {
 		Util.getString("driver.name"),
@@ -62,7 +62,7 @@ public class PersonTabItem extends BasicTabItem{
 		
 		Text textDriverPhone=new Text(grpLocation,SWT.BORDER);
 		textDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		
+		textDriverPhone.setTextLimit(10);
 	}
 
 	@Override
@@ -115,6 +115,7 @@ public class PersonTabItem extends BasicTabItem{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 

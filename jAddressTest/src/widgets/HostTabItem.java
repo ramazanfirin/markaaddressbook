@@ -46,6 +46,11 @@ public class HostTabItem extends PersonTabItem{
 		
 	}
 
+	@Override
+	String getName() {
+		return Util.getString("bus.list");
+	}
+
 	
 
 }

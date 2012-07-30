@@ -11,6 +11,7 @@ import model.model.Bus;
 import model.model.Driver;
 import model.model.User;
 
+import org.dom4j.tree.AbstractEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -19,23 +20,37 @@ import util.HibernateUtil;
 
 public class TestSaveUser extends TestCase{
 
-	public void testDriver(){
-		
-         List<Driver> list = DBManager.getInstance().loadAllDriver();
-         System.out.println("bitti");
-         
-         for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			Driver driver = (Driver) iterator.next();
-			if(driver.getName().equals("sofor1name")){
-				System.out.println(driver.getFirstDriverBusList().size());
-				driver.getFirstDriverBusList().addAll(driver.getSecondDriverBusList());
-				System.out.println(driver.getFirstDriverBusList().size());
-			}
+	
+	public void testSearch(){
+		List<AbsractInterface>  list = DBManager.getInstance().searchEntiy(Driver.class,"Rama", "", "");
+		System.out.println(list.size());
+	    for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Driver driver = (Driver) iterator
+					.next();
 			
+			
+			System.out.println(driver.getNameSurname());
 		}
-		
+				
 	}
 	
+//	public void testDriver(){
+//		
+//         List<Driver> list = DBManager.getInstance().loadAllDriver();
+//         System.out.println("bitti");
+//         
+//         for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+//			Driver driver = (Driver) iterator.next();
+//			if(driver.getName().equals("sofor1name")){
+//				System.out.println(driver.getFirstDriverBusList().size());
+//				driver.getFirstDriverBusList().addAll(driver.getSecondDriverBusList());
+//				System.out.println(driver.getFirstDriverBusList().size());
+//			}
+//			
+//		}
+//		
+//	}
+//	
 	
 	/*
 	public void testSave(){
