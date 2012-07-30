@@ -87,7 +87,7 @@ public abstract class BasicTabItem extends CTabItem{
 		 });
 		
 		final Group grpDriverList = new Group(composite, SWT.NONE);
-		grpDriverList.setText(Util.getString("driver.list"));
+		grpDriverList.setText(getName());
 		grpDriverList.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	    GridLayout gridDriverList = new GridLayout(1, false);
 	    gridDriverList.verticalSpacing = 0;
@@ -139,7 +139,7 @@ public abstract class BasicTabItem extends CTabItem{
 	abstract void loadData();
 	abstract String getTableColumValues(Object object,int columnIndex);
 	abstract void saveData();
-	
+	abstract String getName();
 	
 	public void refresh(){
 		loadData();

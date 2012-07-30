@@ -99,4 +99,9 @@ public class UserTabItem extends BasicTabItem{
 		
 	}
 
+	@Override
+	String getName() {
+		return Util.getString("user.list");
+	}
+
 }

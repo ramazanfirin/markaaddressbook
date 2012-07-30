@@ -248,4 +248,30 @@ public class DBManager {
 		
 	 }
 	 
+	 public List<AbsractInterface> searchEntiy(Class clazz,String name,String surname,String phone){
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String queryString = "from "+clazz.getCanonicalName() +" p where 1=1";
+				if(name!=null && !name.equals(""))
+					queryString = queryString+ " and p.name like '%"+name+"%'";				
+				if(surname!=null && !surname.equals(""))
+					queryString = queryString+ " and p.surname like '%"+surname+"%'";		
+				if(phone!=null && !phone.equals(""))
+					queryString = queryString+ " and p.phone like '%"+phone+"%'";	
+				
+				Query query = session.createQuery(queryString);
+//		        query.setParameter("username", username);
+//		        query.setParameter("password", password);
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+	 }
+	 
 }
