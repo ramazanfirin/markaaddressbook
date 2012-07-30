@@ -22,6 +22,9 @@ public abstract class PersonTabItem extends BasicTabItem{
 		Util.getString("driver.phoneNumber"),
 		};
 	
+	Text textDriverName;
+	Text textDriverSurname;
+	Text textDriverPhone;
 			
 	public PersonTabItem(CTabFolder parent, String name) {
 		super(parent, name);
@@ -30,13 +33,10 @@ public abstract class PersonTabItem extends BasicTabItem{
 	
 	@Override
 	void search() {
-		try {
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		if(entity == null)
+			createNewEntity();
+		entityList = DBManager.getInstance().searchEntiy(entity.getClass(), textDriverName.getText(), textDriverSurname.getText(), textDriverPhone.getText());		
+		refresh();
 	}
 
 	@Override
@@ -46,21 +46,21 @@ public abstract class PersonTabItem extends BasicTabItem{
 		labelDriverName.setText(Util.getString("name"));
 		labelDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 		
-		Text textDriverName=new Text(grpLocation,SWT.BORDER);
+		textDriverName=new Text(grpLocation,SWT.BORDER);
 		textDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
 		Label labelDriverSurname=new Label(grpLocation,SWT.NONE);
 		labelDriverSurname.setText(Util.getString("surname"));
 		labelDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 		
-		Text textDriverSurname=new Text(grpLocation,SWT.BORDER);
+		textDriverSurname=new Text(grpLocation,SWT.BORDER);
 		textDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
 		Label labelDriverPhone=new Label(grpLocation,SWT.NONE);
 		labelDriverPhone.setText(Util.getString("phone"));
 		labelDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 		
-		Text textDriverPhone=new Text(grpLocation,SWT.BORDER);
+		textDriverPhone=new Text(grpLocation,SWT.BORDER);
 		textDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		textDriverPhone.setTextLimit(10);
 	}

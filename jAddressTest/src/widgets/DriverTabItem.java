@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Text;
 import util.Util;
 import wizards.DriverEntityWizard;
 
-public class DriverTabItem extends BasicTabItem{
+public class DriverTabItem extends PersonTabItem{
 
 	private static final String[] columnNames = {
 		Util.getString("driver.name"),
@@ -36,40 +36,35 @@ public class DriverTabItem extends BasicTabItem{
 	
 	@Override
 	void search() {
-		try {
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		super.search();
 		
 	}
 
-	@Override
-	void prepareComponents(Composite grpLocation) {
-			
-		Label labelDriverName=new Label(grpLocation,SWT.NONE);
-		labelDriverName.setText(Util.getString("driver.name"));
-		labelDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-		
-		Text textDriverName=new Text(grpLocation,SWT.BORDER);
-		textDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		
-		Label labelDriverSurname=new Label(grpLocation,SWT.NONE);
-		labelDriverSurname.setText(Util.getString("driver.surname"));
-		labelDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-		
-		Text textDriverSurname=new Text(grpLocation,SWT.BORDER);
-		textDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		
-		Label labelDriverPhone=new Label(grpLocation,SWT.NONE);
-		labelDriverPhone.setText(Util.getString("driver.phoneNumber"));
-		labelDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-		
-		Text textDriverPhone=new Text(grpLocation,SWT.BORDER);
-		textDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		
-	}
+//	@Override
+//	void prepareComponents(Composite grpLocation) {
+//			
+//		Label labelDriverName=new Label(grpLocation,SWT.NONE);
+//		labelDriverName.setText(Util.getString("driver.name"));
+//		labelDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+//		
+//		Text textDriverName=new Text(grpLocation,SWT.BORDER);
+//		textDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+//		
+//		Label labelDriverSurname=new Label(grpLocation,SWT.NONE);
+//		labelDriverSurname.setText(Util.getString("driver.surname"));
+//		labelDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+//		
+//		Text textDriverSurname=new Text(grpLocation,SWT.BORDER);
+//		textDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+//		
+//		Label labelDriverPhone=new Label(grpLocation,SWT.NONE);
+//		labelDriverPhone.setText(Util.getString("driver.phoneNumber"));
+//		labelDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+//		
+//		Text textDriverPhone=new Text(grpLocation,SWT.BORDER);
+//		textDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+//		
+//	}
 
 	@Override
 	String[] getColumNames() {

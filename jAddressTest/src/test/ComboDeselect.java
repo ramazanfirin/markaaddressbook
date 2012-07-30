@@ -7,10 +7,18 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import util.Util;
+
 public class ComboDeselect {
 
   public static void main(String[] args) {
-    Display display = new Display();
+    
+	  String a=Util.getString("saban");
+	  System.out.println(a);
+	  
+	  System.out.println(a.toUpperCase());
+	  
+	  Display display = new Display();
     Shell shell = new Shell(display);
     shell.setLayout(new FillLayout());
 

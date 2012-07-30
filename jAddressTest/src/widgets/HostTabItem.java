@@ -24,7 +24,7 @@ public class HostTabItem extends PersonTabItem{
 
 	@Override
 	void search() {
-		// TODO Auto-generated method stub
+		super.search();
 		
 	}
 

@@ -56,6 +56,8 @@ public abstract class BasicTabItem extends CTabItem{
 	
 	List<AbsractInterface> entityList=new ArrayList<AbsractInterface>();
 	
+	Group grpLocation=null;
+	
 	public BasicTabItem(CTabFolder parent,String name) {
 		super(parent, SWT.NONE);
 		
@@ -66,7 +68,7 @@ public abstract class BasicTabItem extends CTabItem{
 	    composite.setLayout(layout);
 	    setControl(composite);
 		
-	    final Group grpLocation = new Group(composite, SWT.NONE);
+	    grpLocation = new Group(composite, SWT.NONE);
 	    grpLocation.setText("arama");
 	    grpLocation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 	    GridLayout grpLayout = new GridLayout(2, false);
@@ -142,7 +144,7 @@ public abstract class BasicTabItem extends CTabItem{
 	abstract String getName();
 	
 	public void refresh(){
-		loadData();
+		//loadData();
 		tableViewer.setInput(entityList);
 		tableViewer.refresh();
 	}

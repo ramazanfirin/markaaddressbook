@@ -30,6 +30,16 @@ public class BusTabItem extends BasicTabItem{
 	     Util.getString("driver.third.phone")
 	};
 	
+	
+	Text textBusPlate;
+	Text textHostName;
+	Text textBusPhone;
+	Text textHostSurname;
+	Text textDriverName;
+	Text textOwnerName;
+	Text textDriverSurname;
+	Text textOwnerSurname;
+	
 			
 	public BusTabItem(CTabFolder parent, String name) {
 		super(parent, name);
@@ -38,31 +48,76 @@ public class BusTabItem extends BasicTabItem{
 	
 	@Override
 	void search() {
-		try {
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		entityList =DBManager.getInstance().searchBus(textBusPlate.getText(), textBusPhone.getText(), textDriverName.getText(), textDriverSurname.getText(), 
+				textHostName.getText(), textHostSurname.getText(), textOwnerName.getText(), textOwnerSurname.getText());
+		refresh();
 	}
 
 	@Override
 	void prepareComponents(Composite grpLocationBus) {
-			
-	    Label labelBusPlate=new Label(grpLocationBus,SWT.NONE);
+		
+
+		 GridLayout grpLayout = new GridLayout(4, false);
+		    grpLayout.verticalSpacing = 0;
+		    grpLocation.setLayout(grpLayout);
+		    
+		
+		Label labelBusPlate=new Label(grpLocationBus,SWT.NONE);
 	    labelBusPlate.setText(Util.getString("bus.plate"));
 	    labelBusPlate.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 		
-		Text textBusPlate=new Text(grpLocationBus,SWT.BORDER);
+		textBusPlate=new Text(grpLocationBus,SWT.BORDER);
 		textBusPlate.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+		Label labelHostName=new Label(grpLocationBus,SWT.NONE);
+		labelHostName.setText(Util.getString("host.name"));
+		labelHostName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		textHostName=new Text(grpLocationBus,SWT.BORDER);
+		textHostName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
 		Label labelBusPhone=new Label(grpLocationBus,SWT.NONE);
 		labelBusPhone.setText(Util.getString("bus.phone"));
 		labelBusPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 		
-		Text textBusPhone=new Text(grpLocationBus,SWT.BORDER);
+		textBusPhone=new Text(grpLocationBus,SWT.BORDER);
 		textBusPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+		Label labelHostSurname=new Label(grpLocationBus,SWT.NONE);
+		labelHostSurname.setText(Util.getString("host.surname"));
+		labelHostSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		textHostSurname=new Text(grpLocationBus,SWT.BORDER);
+		textHostSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+		
+		Label labelDriverName=new Label(grpLocationBus,SWT.NONE);
+		labelDriverName.setText(Util.getString("driver.name"));
+		labelDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		textDriverName=new Text(grpLocationBus,SWT.BORDER);
+		textDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+		Label labelOwnerName=new Label(grpLocationBus,SWT.NONE);
+		labelOwnerName.setText(Util.getString("busOwner.name"));
+		labelOwnerName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		textOwnerName=new Text(grpLocationBus,SWT.BORDER);
+		textOwnerName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+		Label labelDriverSurname=new Label(grpLocationBus,SWT.NONE);
+		labelDriverSurname.setText(Util.getString("driver.surname"));
+		labelDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		textDriverSurname=new Text(grpLocationBus,SWT.BORDER);
+		textDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		
+		Label labelOwnerSurname=new Label(grpLocationBus,SWT.NONE);
+		labelOwnerSurname.setText(Util.getString("busOwner.surname"));
+		labelOwnerSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		textOwnerSurname=new Text(grpLocationBus,SWT.BORDER);
+		textOwnerSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
 	}
 

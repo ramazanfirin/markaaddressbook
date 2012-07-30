@@ -24,12 +24,6 @@ public class BusOwnerTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void search() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	void prepareComponents(Composite grpLocation) {
 		super.prepareComponents(grpLocation);
 		

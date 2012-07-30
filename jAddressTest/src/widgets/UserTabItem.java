@@ -14,7 +14,7 @@ import org.eclipse.swt.widgets.Text;
 import util.Util;
 import wizards.UserEntityWizard;
 
-public class UserTabItem extends BasicTabItem{
+public class UserTabItem extends PersonTabItem{
 
 	private static final String[] columnNames = {
 		Util.getString("name"),
@@ -30,19 +30,8 @@ public class UserTabItem extends BasicTabItem{
 	}
 
 	@Override
-	void search() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	void prepareComponents(Composite grpLocation) {
-		Label labelUserName=new Label(grpLocation,SWT.NONE);
-		labelUserName.setText(Util.getString("user.name"));
-		labelUserName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-		
-		Text textUserName=new Text(grpLocation,SWT.BORDER);
-		textUserName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		super.prepareComponents(grpLocation);
 		
 		Label labelAuthority=new Label(grpLocation,SWT.NONE);
 		labelAuthority.setText(Util.getString("user.authority"));
