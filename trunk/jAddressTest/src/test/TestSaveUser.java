@@ -13,6 +13,7 @@ import model.model.User;
 
 import org.dom4j.tree.AbstractEntity;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -20,19 +21,71 @@ import util.HibernateUtil;
 
 public class TestSaveUser extends TestCase{
 
-	
-	public void testSearch(){
-		List<AbsractInterface>  list = DBManager.getInstance().searchEntiy(Driver.class,"Rama", "", "");
-		System.out.println(list.size());
-	    for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			Driver driver = (Driver) iterator
-					.next();
+	public void testUppercase(){
+		Session session=null;
+		Transaction tx=null;
+		
+		List list=null;
+		String aa= "şa";
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
 			
-			
-			System.out.println(driver.getNameSurname());
-		}
-				
+			String queryString = "select p from model.model.Driver p where 1=1 and upper(p.name) like '%"+aa.toUpperCase()+"%'";
+			Query query = session.createQuery(queryString);
+			list = query.list();
+			tx.commit();
+		} catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+		}finally {
 	}
+	
+	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+		Object object = (Object) iterator.next();
+		System.out.println(object);
+	}
+	}
+
+	public void testUppercase2(){
+		Session session=null;
+		Transaction tx=null;
+		
+		List list=null;
+		String aa= "şa";
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			
+			String queryString = "select p.name from model.model.Driver p where 1=1 and p.name like '%"+aa+"%'";
+			Query query = session.createQuery(queryString);
+			list = query.list();
+			tx.commit();
+		} catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+		}finally {
+	}
+	
+	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+		Object object = (Object) iterator.next();
+		System.out.println(object);
+	}
+	}
+	
+	
+//	public void testSearch(){
+//		List<AbsractInterface>  list = DBManager.getInstance().searchEntiy(Driver.class,"Rama", "", "");
+//		System.out.println(list.size());
+//	    for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+//			Driver driver = (Driver) iterator
+//					.next();
+//			
+//			
+//			System.out.println(driver.getNameSurname());
+//		}
+//				
+//	}
 	
 //	public void testDriver(){
 //		

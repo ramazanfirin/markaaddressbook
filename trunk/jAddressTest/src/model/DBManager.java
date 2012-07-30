@@ -255,15 +255,13 @@ public class DBManager {
 				session = HibernateUtil.getSessionFactory().openSession();
 				String queryString = "from "+clazz.getCanonicalName() +" p where 1=1";
 				if(name!=null && !name.equals(""))
-					queryString = queryString+ " and p.name like '%"+name+"%'";				
+					queryString = queryString+ " and upper(p.name) like '%"+name.toUpperCase()+"%'";				
 				if(surname!=null && !surname.equals(""))
 					queryString = queryString+ " and p.surname like '%"+surname+"%'";		
 				if(phone!=null && !phone.equals(""))
 					queryString = queryString+ " and p.phone like '%"+phone+"%'";	
 				
 				Query query = session.createQuery(queryString);
-//		        query.setParameter("username", username);
-//		        query.setParameter("password", password);
 				return  query.list();
 
 			} catch (HibernateException e) {
@@ -273,5 +271,41 @@ public class DBManager {
 				session.close();
 			}
 	 }
+
+	 public List<AbsractInterface> searchBus(String plate,String phone,String driverName,String driverSurname,
+			 String hostName,String hostSurname,String busOwnerName,String busOwnerSurname){
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String queryString = "from Bus p where 1=1";
+				if(plate!=null && !plate.equals(""))
+					queryString = queryString+ " and upper(p.plate) like '%"+plate.toUpperCase()+"%'";				
+				if(phone!=null && !phone.equals(""))
+					queryString = queryString+ " and p.phone like '%"+phone+"%'";		
+				if(driverName!=null && !driverName.equals(""))
+					queryString = queryString+ " and p.firstDriver.name like '%"+driverName+"%'";	
+				if(driverSurname!=null && !driverSurname.equals(""))
+					queryString = queryString+ " and p.firstDriver.surname like '%"+driverName+"%'";	
+				if(hostName!=null && !hostName.equals(""))
+					queryString = queryString+ " and p.host.name like '%"+hostName+"%'";	
+				if(hostSurname!=null && !hostSurname.equals(""))
+					queryString = queryString+ " and p.host.surname like '%"+hostSurname+"%'";	
+				if(busOwnerName!=null && !busOwnerName.equals(""))
+					queryString = queryString+ " and p.firstOwner.name like '%"+busOwnerName+"%'";	
+				if(busOwnerSurname!=null && !busOwnerSurname.equals(""))
+					queryString = queryString+ " and p.busfirstOwner.surname like '%"+busOwnerSurname+"%'";	
+				
+				Query query = session.createQuery(queryString);
+				return  query.list();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+	 }
+	 
 	 
 }
