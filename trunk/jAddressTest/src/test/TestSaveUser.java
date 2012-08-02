@@ -1,77 +1,78 @@
 package test;
 
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import junit.framework.TestCase;
 import model.DBManager;
-import model.interfaces.AbsractInterface;
-import model.model.Bus;
-import model.model.Driver;
-import model.model.User;
-
-import org.dom4j.tree.AbstractEntity;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import util.HibernateUtil;
+import model.model.Host;
 
 public class TestSaveUser extends TestCase{
-
-	public void testUppercase(){
-		Session session=null;
-		Transaction tx=null;
-		
-		List list=null;
-		String aa= "şa";
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			tx = session.beginTransaction();
-			
-			String queryString = "select p from model.model.Driver p where 1=1 and upper(p.name) like '%"+aa.toUpperCase()+"%'";
-			Query query = session.createQuery(queryString);
-			list = query.list();
-			tx.commit();
-		} catch (HibernateException e) {
-			tx.rollback();
-			e.printStackTrace();
-		}finally {
-	}
 	
-	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-		Object object = (Object) iterator.next();
-		System.out.println(object);
-	}
+	public void testHost(){
+		
+		List list  = DBManager.getInstance().loadHosts();
+		System.out.println("baslangic");
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Host host = (Host) iterator.next();
+			
+			System.out.println(host.getBusList().size());
+			
+		}
+		
 	}
 
-	public void testUppercase2(){
-		Session session=null;
-		Transaction tx=null;
-		
-		List list=null;
-		String aa= "şa";
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			tx = session.beginTransaction();
-			
-			String queryString = "select p.name from model.model.Driver p where 1=1 and p.name like '%"+aa+"%'";
-			Query query = session.createQuery(queryString);
-			list = query.list();
-			tx.commit();
-		} catch (HibernateException e) {
-			tx.rollback();
-			e.printStackTrace();
-		}finally {
-	}
-	
-	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-		Object object = (Object) iterator.next();
-		System.out.println(object);
-	}
-	}
+//	public void testUppercase(){
+//		Session session=null;
+//		Transaction tx=null;
+//		
+//		List list=null;
+//		String aa= "Şa";
+//		try {
+//			session = HibernateUtil.getSessionFactory().openSession();
+//			tx = session.beginTransaction();
+//			
+//			String queryString = "select p from model.model.Driver p where 1=1 and upper(p.name) like '%"+aa.toUpperCase()+"%'";
+//			Query query = session.createQuery(queryString);
+//			list = query.list();
+//			tx.commit();
+//		} catch (HibernateException e) {
+//			tx.rollback();
+//			e.printStackTrace();
+//		}finally {
+//	}
+//	
+//	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+//		Object object = (Object) iterator.next();
+//		System.out.println(object);
+//	}
+//	}
+//
+//	public void testUppercase2(){
+//		Session session=null;
+//		Transaction tx=null;
+//		
+//		List list=null;
+//		String aa= "şa";
+//		try {
+//			session = HibernateUtil.getSessionFactory().openSession();
+//			tx = session.beginTransaction();
+//			
+//			String queryString = "select p.name from model.model.Driver p where 1=1 and p.name like '%"+aa+"%'";
+//			Query query = session.createQuery(queryString);
+//			list = query.list();
+//			tx.commit();
+//		} catch (HibernateException e) {
+//			tx.rollback();
+//			e.printStackTrace();
+//		}finally {
+//	}
+//	
+//	for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+//		Object object = (Object) iterator.next();
+//		System.out.println(object);
+//	}
+//	}
 	
 	
 //	public void testSearch(){

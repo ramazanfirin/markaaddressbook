@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 
+
 import com.AddressBookNew;
 
 
@@ -16,13 +17,13 @@ public class DriverEntityWizard extends PersonEntityWizard {
 
   private ISelection selection;
   
-  public DriverEntityWizard(AbsractInterface entity) {
-    super(entity);
+  public DriverEntityWizard(AbsractInterface entity,String title) {
+    super(entity,title);
     setNeedsProgressMonitor(true);
   }
 
   public void addPages() {
-    page1 = new DriverPage(selection,getEntity());
+    page1 = new DriverPage(selection,getEntity(),title);
     addPage(page1);
   }
 

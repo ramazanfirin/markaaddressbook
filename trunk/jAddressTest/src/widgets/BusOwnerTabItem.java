@@ -40,10 +40,20 @@ public class BusOwnerTabItem extends PersonTabItem{
 		entityList = DBManager.getInstance().loadBusOwners();
 		
 	}
-
+	
 	@Override
 	String getName() {
 		return Util.getString("busOwner.list");
+	}
+
+	@Override
+	String getWizardTitle() {
+		return Util.getString("busOwner");
+	}
+
+	@Override
+	void deleteEntity(Object object) {
+		DBManager.getInstance().deleteBusOwner(object);
 	}
 
 	

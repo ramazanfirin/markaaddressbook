@@ -51,6 +51,18 @@ public class HostTabItem extends PersonTabItem{
 		return Util.getString("bus.list");
 	}
 
+	@Override
+	String getWizardTitle() {
+		return Util.getString("host");
+	}
+
+	@Override
+	void deleteEntity(Object object) {
+		DBManager.getInstance().deleteHost(object);
+		
+		
+	}
+
 	
 
 }

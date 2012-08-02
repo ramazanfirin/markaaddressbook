@@ -9,6 +9,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 
+
 import com.AddressBookNew;
 
 
@@ -19,14 +20,17 @@ public class BusEntityWizard extends Wizard {
   private ISelection selection;
   
   private Driver tempDriver;
+  
+  public String title;
 
-  public BusEntityWizard() {
+  public BusEntityWizard(String _title) {
     super();
+    title=_title;
     setNeedsProgressMonitor(true);
   }
 
   public void addPages() {
-    page1 = new BusPage(selection);
+    page1 = new BusPage(selection,title);
     //page2 = new AddressContactPage(selection);
     addPage(page1);
     //addPage(page2);

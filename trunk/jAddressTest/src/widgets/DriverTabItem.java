@@ -74,7 +74,7 @@ public class DriverTabItem extends PersonTabItem{
 
 	@Override
 	Wizard getNewWizard() {
-		return new DriverEntityWizard(entity);
+		return new DriverEntityWizard(entity,getWizardTitle());
 	}
 
 	@Override
@@ -142,6 +142,21 @@ public class DriverTabItem extends PersonTabItem{
 	@Override
 	String getName() {
 		return Util.getString("driver.list");
+	}
+
+
+
+	@Override
+	String getWizardTitle() {
+		return Util.getString("driver");
+	}
+
+
+
+	@Override
+	void deleteEntity(Object object) {
+		DBManager.getInstance().deleteDriver(object);
+		
 	}
 
 

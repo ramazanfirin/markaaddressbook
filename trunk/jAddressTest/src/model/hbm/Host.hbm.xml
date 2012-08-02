@@ -14,7 +14,7 @@
 	
 	<set name="busList" table="Driver" inverse="true" lazy="false"  cascade="save-update">
             <key>
-                <column name="Host" not-null="false" />
+                <column name="HOST" not-null="false" />
             </key>
             <one-to-many class="model.model.Bus" />
     </set>

@@ -46,11 +46,9 @@ class BusPage extends BasicPage{
    ComboViewer viewer6;
 
    
-  public BusPage(ISelection selection) {
-    super("wizardPage");
-    setTitle(Util.getString("bus"));
-    setDescription("This wizard creates a new bus.");
-    this.selection = selection;
+  public BusPage(ISelection selection,String title) {
+    super(selection,"wizardPage",title);
+    
   }
 
   public void createControl(Composite parent) {
@@ -68,6 +66,7 @@ class BusPage extends BasicPage{
     plate.setText(bus.getPlate());
     plate.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     plate.addModifyListener(textModifyListener);
+    plate.setEditable(Util.isAdmin());
 
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("bus.phoneNumber"));
@@ -75,6 +74,7 @@ class BusPage extends BasicPage{
     phone.setText(bus.getPhone());
     phone.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     phone.addModifyListener(textModifyListener);
+    phone.setEditable(Util.isAdmin());
 
     createLine(container, layout.numColumns);
     
@@ -85,6 +85,7 @@ class BusPage extends BasicPage{
     label.setText(Util.getString("driver.first"));
     viewer = new ComboViewer(container, SWT.READ_ONLY);
     viewer.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer.getCombo().setEnabled(Util.isAdmin());
     viewer.setContentProvider(new ArrayContentProvider());
     viewer.setLabelProvider(personLabelProvider);
     viewer.setInput(driverList);
@@ -98,6 +99,7 @@ class BusPage extends BasicPage{
     label.setText(Util.getString("driver.second"));
     viewer2 = new ComboViewer(container, SWT.READ_ONLY);
     viewer2.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer2.getCombo().setEnabled(Util.isAdmin());
     viewer2.setContentProvider(new ArrayContentProvider());
     viewer2.setLabelProvider(personLabelProvider);
     viewer2.setInput(driverList);
@@ -112,6 +114,7 @@ class BusPage extends BasicPage{
     
     viewer3 = new ComboViewer(container, SWT.READ_ONLY);
     viewer3.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer3.getCombo().setEnabled(Util.isAdmin());
     viewer3.setContentProvider(new ArrayContentProvider());
     viewer3.setLabelProvider(personLabelProvider);
     viewer3.setInput(driverList);
@@ -130,6 +133,7 @@ class BusPage extends BasicPage{
     label.setText(Util.getString("host"));
     viewer4 = new ComboViewer(container, SWT.READ_ONLY);
     viewer4.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer4.getCombo().setEnabled(Util.isAdmin());
     viewer4.setContentProvider(new ArrayContentProvider());
     viewer4.setLabelProvider(personLabelProvider);
     viewer4.setInput(hostList);
@@ -149,6 +153,7 @@ class BusPage extends BasicPage{
     label.setText(Util.getString("busOwner.first"));
     viewer5 = new ComboViewer(container, SWT.READ_ONLY);
     viewer5.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer5.getCombo().setEnabled(Util.isAdmin());
     viewer5.setContentProvider(new ArrayContentProvider());
     viewer5.setLabelProvider(personLabelProvider);
     viewer5.setInput(ownerList);
@@ -163,6 +168,7 @@ class BusPage extends BasicPage{
     label.setText(Util.getString("busOwner.second"));
     viewer6 = new ComboViewer(container, SWT.READ_ONLY);
     viewer6.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer6.getCombo().setEnabled(Util.isAdmin());
     viewer6.setContentProvider(new ArrayContentProvider());
     viewer6.setLabelProvider(personLabelProvider);
     viewer6.setInput(ownerList);

@@ -129,7 +129,7 @@ public class BusTabItem extends BasicTabItem{
 
 	@Override
 	Wizard getNewWizard() {
-		return new BusEntityWizard();
+		return new BusEntityWizard(getWizardTitle());
 	}
 
 	@Override
@@ -205,6 +205,19 @@ public class BusTabItem extends BasicTabItem{
 	@Override
 	String getName() {
 		return Util.getString("bus.list");
+	}
+
+
+	@Override
+	String getWizardTitle() {
+		return Util.getString("bus");
+	}
+
+
+	@Override
+	void deleteEntity(Object object) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -8,17 +8,17 @@
 		<property name="format_sql">true</property>
 		<property name="dialect">model.dialect.SQLiteDialect</property>
 		<property name="connection.driver_class">org.sqlite.JDBC</property>
-		<property name="connection.url">jdbc:sqlite:addressbook.db</property>
+		<property name="connection.url">jdbc:sqlite:config/addressbook.db</property>
 		<property name="connection.username"></property>
 		<property name="connection.password"></property>
-<!-- 	<property name="hibernate.hbm2ddl.auto">create</property> -->
+	<property name="hibernate.hbm2ddl.auto">create</property>
 	   
 
-		<mapping resource="Driver.hbm.xml"/>
-		<mapping resource="User.hbm.xml"/>
-		<mapping resource="Bus.hbm.xml"/>
-		<mapping resource="Authority.hbm.xml"/>
-		<mapping resource="Host.hbm.xml"/>
-		<mapping resource="BusOwner.hbm.xml"/>
+		<mapping resource="model/hbm/Driver.hbm.xml"/>
+		<mapping resource="model/hbm/User.hbm.xml"/>
+		<mapping resource="model/hbm/Bus.hbm.xml"/>
+		<mapping resource="model/hbm/Authority.hbm.xml"/>
+		<mapping resource="model/hbm/Host.hbm.xml"/>
+		<mapping resource="model/hbm/BusOwner.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

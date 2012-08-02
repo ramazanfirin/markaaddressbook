@@ -49,7 +49,7 @@ public class UserTabItem extends PersonTabItem{
 
 	@Override
 	Wizard getNewWizard() {
-		return new UserEntityWizard(entity);
+		return new UserEntityWizard(entity,getWizardTitle());
 	}
 
 	@Override
@@ -91,6 +91,17 @@ public class UserTabItem extends PersonTabItem{
 	@Override
 	String getName() {
 		return Util.getString("user.list");
+	}
+
+	@Override
+	String getWizardTitle() {
+		return Util.getString("user");
+	}
+
+	@Override
+	void deleteEntity(Object object) {
+		super.delete(object);
+		
 	}
 
 }

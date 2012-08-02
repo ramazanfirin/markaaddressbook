@@ -7,6 +7,7 @@ import model.model.Person;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.Wizard;
 
+
 import com.AddressBookNew;
 
 
@@ -17,14 +18,17 @@ public class PersonEntityWizard extends Wizard {
   
   private AbsractInterface entity;
   
-  public PersonEntityWizard(AbsractInterface _entity) {
+  protected String title;
+  
+  public PersonEntityWizard(AbsractInterface _entity,String _title) {
     super();
     entity = _entity;
     setNeedsProgressMonitor(true);
+    title=_title;
   }
 
   public void addPages() {
-    page1 = new PersonPage(selection,entity);
+    page1 = new PersonPage(selection,entity,title);
     addPage(page1);
   }
 

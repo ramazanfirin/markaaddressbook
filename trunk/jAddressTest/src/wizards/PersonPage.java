@@ -18,6 +18,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -37,12 +38,8 @@ class PersonPage extends BasicPersonPage {
   public AbsractInterface entity;
 
   
-  public PersonPage(ISelection selection,AbsractInterface _entity) {
-    super(selection);
-    setTitle(Util.getString("driver"));
-    setDescription("This wizard creates a new contact.");
-    this.selection = selection;
-    setPageComplete(false);
+  public PersonPage(ISelection selection,AbsractInterface _entity,String _title) {
+    super(selection,_title);
     entity =  _entity;
   }
 
@@ -58,6 +55,7 @@ class PersonPage extends BasicPersonPage {
       container.setLayout(layout);
       layout.numColumns = 2;
       layout.verticalSpacing = 9;
+     
 
       
       Person driver = (Person)entity;
@@ -68,6 +66,7 @@ class PersonPage extends BasicPersonPage {
       _name.setText(driver.getName());
       _name.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
       _name.addModifyListener(textModifyListener);
+      _name.setEditable(Util.isAdmin());	
 
       label = new Label(container, SWT.NULL);
       label.setText(Util.getString("surname"));
@@ -75,14 +74,15 @@ class PersonPage extends BasicPersonPage {
       surname.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
       surname.setText(driver.getSurname());
       surname.addModifyListener(textModifyListener);
-
+      surname.setEditable(Util.isAdmin());	
+      
       label = new Label(container, SWT.NULL);
       label.setText(Util.getString("phone"));
       phone = new Text(container, SWT.BORDER | SWT.SINGLE);
       phone.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
       phone.setText(driver.getPhone());
       phone.addModifyListener(textModifyListener);
-       
+      phone.setEditable(Util.isAdmin()); 
       createLine(container, layout.numColumns);
   	
   }

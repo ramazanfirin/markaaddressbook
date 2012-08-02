@@ -2,16 +2,12 @@ package wizards;
 
 import model.interfaces.AbsractInterface;
 import model.model.Authority;
-import model.model.Bus;
 import model.model.User;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.Wizard;
 
 import util.Util;
-
-import com.AddressBookNew;
 
 
 public class UserEntityWizard extends PersonEntityWizard {
@@ -21,13 +17,13 @@ public class UserEntityWizard extends PersonEntityWizard {
   
  
 
-  public UserEntityWizard(AbsractInterface entity) {
-    super(entity);
+  public UserEntityWizard(AbsractInterface entity,String title) {
+    super(entity,title);
     setNeedsProgressMonitor(true);
   }
 
   public void addPages() {
-    page1 = new UserPage(selection,getEntity());
+    page1 = new UserPage(selection,getEntity(),title);
     addPage(page1);
    }
 
