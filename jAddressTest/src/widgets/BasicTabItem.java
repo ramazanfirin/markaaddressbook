@@ -28,6 +28,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -67,7 +68,7 @@ public abstract class BasicTabItem extends CTabItem{
 	    GridLayout layout = new GridLayout(1, false);
 	    composite.setLayout(layout);
 	    setControl(composite);
-		
+	    
 	    grpLocation = new Group(composite, SWT.NONE);
 	    grpLocation.setText("arama");
 	    grpLocation.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
@@ -103,7 +104,8 @@ public abstract class BasicTabItem extends CTabItem{
 	   
 	    table.setHeaderVisible(true);	
 	    table.setLinesVisible(true);
-	    table.setMenu(createPopUpMenu());	
+	    if(Util.isAdmin())
+	    	table.setMenu(createPopUpMenu());	
 	    table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true));
 	    table.addSelectionListener(new SelectionAdapter() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -142,6 +144,8 @@ public abstract class BasicTabItem extends CTabItem{
 	abstract String getTableColumValues(Object object,int columnIndex);
 	abstract void saveData();
 	abstract String getName();
+	abstract String getWizardTitle();
+	abstract void deleteEntity(Object object);
 	
 	public void refresh(){
 		//loadData();
@@ -169,6 +173,8 @@ public abstract class BasicTabItem extends CTabItem{
 		wizardDialog = new WizardDialog(shell,getNewWizard());
 		if(wizardDialog.open()==Window.OK){
 			try {
+				if(!Util.isAdmin())
+					return;
 				DBManager.getInstance().saveOrUpdate(entity);
 				//saveData();
 				getParent().setSelection(this);
@@ -184,12 +190,8 @@ public abstract class BasicTabItem extends CTabItem{
 	
 	public void delete(Object object){
 		
-		try {
-			DBManager.getInstance().delete(object);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		deleteEntity(object);
+		entityList.remove(object);
 		notifyAllTabItems();
 	}
 	

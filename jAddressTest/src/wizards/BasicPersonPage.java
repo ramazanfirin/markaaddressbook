@@ -23,6 +23,7 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -41,21 +42,18 @@ abstract class  BasicPersonPage extends BasicPage {
 
 	  private ISelection selection;
  
-
+    protected String title;
   
   ComboViewer viewer;
 
   
 
   
-  public BasicPersonPage(ISelection selection) {
-    super("wizardPage");
-    setTitle(Util.getString("user.name"));
-    setDescription("This wizard creates a new user.");
-    this.selection = selection;
-    setPageComplete(false);
+  public BasicPersonPage(ISelection selection,String title) {
+    super(selection,"wizardPage",title);
   }
 
+  
   @Override
 	public void createControl(Composite parent) {
 		Composite main = new Composite(parent, SWT.NULL);
@@ -63,12 +61,13 @@ abstract class  BasicPersonPage extends BasicPage {
 	    fillLayout.type = SWT.VERTICAL;
 	  	main.setLayout(fillLayout);
   	
-	  	
-//	  	Composite main=new Composite(parent,SWT.NONE);
-//	    GridLayout layout = new GridLayout(1, false);
-//	    main.setLayout(layout);
-//	    setControl(main);
-		
+
+//	  	RowLayout layout2 = new RowLayout(SWT.VERTICAL);
+//		layout2.wrap = false;
+//		layout2.fill = true;
+//		layout2.justify = false;
+//		main.setLayout(layout2);
+//		
 	  	createMainComponent(main);
 		createTable(main);
 		createOtherComponent(main);

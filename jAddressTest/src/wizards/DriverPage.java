@@ -44,8 +44,8 @@ class DriverPage extends PersonPage {
   
   ComboViewer viewer;
 
-  public DriverPage(ISelection selection, AbsractInterface _entity) {
-	super(selection, _entity);
+  public DriverPage(ISelection selection, AbsractInterface _entity,String title) {
+	super(selection, _entity,title);
 	setTitle(Util.getString("driver"));
     setDescription("This wizard creates a new contact.");
     this.selection = selection;

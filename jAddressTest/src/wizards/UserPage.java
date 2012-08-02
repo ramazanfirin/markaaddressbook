@@ -40,12 +40,8 @@ class UserPage extends PersonPage {
 
   private Text passwordAgain;
 
-  public UserPage(ISelection selection, AbsractInterface _entity) {
-	super(selection, _entity);
-	setTitle(Util.getString("driver"));
-    setDescription("This wizard creates a new contact.");
-    this.selection = selection;
-    setPageComplete(false);
+  public UserPage(ISelection selection, AbsractInterface _entity,String title) {
+	super(selection, _entity,title);
 }
 
 

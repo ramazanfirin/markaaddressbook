@@ -20,11 +20,16 @@ import java.util.ResourceBundle;
 import model.model.User;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
 import org.mihalis.opal.login.LoginDialog;
 
 import util.MenuUtil;
@@ -43,7 +48,7 @@ import widgets.UserTabItem;
  */
 public class AddressBookNew {
 
-	public static ResourceBundle resAddressBook = ResourceBundle.getBundle("examples_addressbook",new Locale("tr", "TR"));
+	public static ResourceBundle resAddressBook = ResourceBundle.getBundle("addressbook",new Locale("tr", "TR"));
 	private Shell shell;
 	
 	 private BasicCTabFolder cTabFolder;
@@ -63,41 +68,59 @@ public class AddressBookNew {
 
 	 
 	 
-public static void main(String[] args) throws Exception{
-	Display display = new Display();
-	Shell shell = instance.open(display);
-	while(!shell.isDisposed()){
-		if(!display.readAndDispatch())
-			display.sleep();
+public static void main(String[] args){
+	System.out.println("basliyoruz");
+	try {
+		Display display = new Display();
+		Shell shell = instance.open(display);
+		while(!shell.isDisposed()){
+			if(!display.readAndDispatch())
+				display.sleep();
+		}
+		display.dispose();
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
-	display.dispose();
 }
 public Shell open(Display display) throws Exception{
 	shell = new Shell(display);
-	shell.setLayout(new FillLayout());
+	FillLayout layout = new FillLayout();
+	layout.type=SWT.VERTICAL;
+	shell.setLayout(layout);
 	 
-//    if(checkLogin())
-//    	shell.setText(loginUser.getUsername());
-//    else{
-//    	shell.dispose();
-//    	return shell;
-//    }
+    if(checkLogin())
+    	shell.setText(loginUser.getUsername());
+    else{
+    	shell.dispose();
+    	return shell;
+    }
+     
+    Composite cContent=new Composite(shell,SWT.NONE);
+    cContent.setLayout(new GridLayout(1,false));
+    
+    Composite cMenu=new Composite(cContent,SWT.NONE);
+    cMenu.setLayout(new FillLayout());
+    cMenu.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    createToolBar(cMenu);
+    cMenu.pack();
   
     createMenuBar();
- 	
-    cTabFolder = new BasicCTabFolder(shell, SWT.BORDER);
+    
+    cTabFolder = new BasicCTabFolder(cContent, SWT.BORDER);
     cTabFolder.setLayoutData(new GridData(GridData.FILL_BOTH));
     
     cTabFolder.setSimple(false);
     cTabFolder.setUnselectedImageVisible(false);
     cTabFolder.setUnselectedCloseVisible(false);
 	
-    tabItemDriver = new DriverTabItem(cTabFolder,Util.getString("driver.list"));
     tabItemBus = new BusTabItem(cTabFolder,Util.getString("bus.list"));
-    tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
+    tabItemDriver = new DriverTabItem(cTabFolder,Util.getString("driver.list"));
     tabItemHost = new HostTabItem(cTabFolder,Util.getString("host.list"));
     tabItemBusOwner = new BusOwnerTabItem(cTabFolder,Util.getString("busOwner.list"));
+    if(Util.isAdmin())
+    tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
     
+    cTabFolder.forceFocus();
     shell.open();
 	return shell;
 }
@@ -106,7 +129,11 @@ public Shell open(Display display) throws Exception{
 
 public boolean checkLogin(){
 	final LoginDialog dialog = new LoginDialog();
-    dialog.setVerifier(new LoginVerifier());
+	dialog.setDescription(Util.getString("login.message"));
+	dialog.setDisplayRememberPassword(false);
+	//Image icon = new Image(this.shell.getDisplay(), "./img/artwork/toolbar/user_list.png");
+	//dialog.setImage(icon);
+	dialog.setVerifier(new LoginVerifier());
     
     return dialog.open();
     
@@ -117,11 +144,17 @@ private Menu createMenuBar() {
 	shell.setMenuBar(menuBar);
 	
 	MenuUtil.createFileMenu(menuBar);
+	MenuUtil.createNewEntity(menuBar);
+	MenuUtil.createUserOperationMenu(menuBar);
 	MenuUtil.createHelpMenu(menuBar);
 	
 	return menuBar;
 }
 
+private ToolBar createToolBar(Composite parent){
+	return MenuUtil.createToolBar(parent);
+
+}
 
 public DriverTabItem getTabItemDriver() {
 	return tabItemDriver;
@@ -169,6 +202,18 @@ public HostTabItem getTabItemHost() {
 
 public void setTabItemHost(HostTabItem tabItemHost) {
 	this.tabItemHost = tabItemHost;
+}
+
+
+
+public BusOwnerTabItem getTabItemBusOwner() {
+	return tabItemBusOwner;
+}
+
+
+
+public void setTabItemBusOwner(BusOwnerTabItem tabItemBusOwner) {
+	this.tabItemBusOwner = tabItemBusOwner;
 }
 
 

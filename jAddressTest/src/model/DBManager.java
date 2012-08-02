@@ -1,10 +1,13 @@
 package model;
 
+import java.util.Iterator;
 import java.util.List;
 
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
+import model.model.BusOwner;
 import model.model.Driver;
+import model.model.Host;
 import model.model.User;
 
 import org.hibernate.HibernateException;
@@ -255,11 +258,11 @@ public class DBManager {
 				session = HibernateUtil.getSessionFactory().openSession();
 				String queryString = "from "+clazz.getCanonicalName() +" p where 1=1";
 				if(name!=null && !name.equals(""))
-					queryString = queryString+ " and upper(p.name) like '%"+name.toUpperCase()+"%'";				
+					queryString = queryString+ " and (p.name like '%"+name.toLowerCase()+"%' or p.name like '%"+name.toUpperCase()+"%')";				
 				if(surname!=null && !surname.equals(""))
-					queryString = queryString+ " and p.surname like '%"+surname+"%'";		
+					queryString = queryString+ " and (p.surname like '%"+surname.toLowerCase()+"%' or p.name like '%"+surname.toUpperCase()+"%')";	
 				if(phone!=null && !phone.equals(""))
-					queryString = queryString+ " and p.phone like '%"+phone+"%'";	
+					queryString = queryString+ " and (p.phone like '%"+phone.toLowerCase()+"%' or p.name like '%"+phone.toUpperCase()+"%')";
 				
 				Query query = session.createQuery(queryString);
 				return  query.list();
@@ -284,17 +287,17 @@ public class DBManager {
 				if(phone!=null && !phone.equals(""))
 					queryString = queryString+ " and p.phone like '%"+phone+"%'";		
 				if(driverName!=null && !driverName.equals(""))
-					queryString = queryString+ " and p.firstDriver.name like '%"+driverName+"%'";	
+					queryString = queryString+ " and (p.firstDriver.name like '%"+driverName+"%') or p.secondDriver.name like '%"+driverName+"%' or p.thirdDriver.name like '%"+driverName+"%')";	
 				if(driverSurname!=null && !driverSurname.equals(""))
-					queryString = queryString+ " and p.firstDriver.surname like '%"+driverName+"%'";	
+					queryString = queryString+ " and (p.firstDriver.surname like '%"+driverName+"%' or p.secondDriver.surname like '%"+driverName+"%' or p.thirdDriver.surname like '%"+driverName+"%')";	
 				if(hostName!=null && !hostName.equals(""))
 					queryString = queryString+ " and p.host.name like '%"+hostName+"%'";	
 				if(hostSurname!=null && !hostSurname.equals(""))
 					queryString = queryString+ " and p.host.surname like '%"+hostSurname+"%'";	
 				if(busOwnerName!=null && !busOwnerName.equals(""))
-					queryString = queryString+ " and p.firstOwner.name like '%"+busOwnerName+"%'";	
+					queryString = queryString+ " and (p.firstOwner.name like '%"+busOwnerName+"%' or p.secondOwner.name like '%"+busOwnerName+"%')";	
 				if(busOwnerSurname!=null && !busOwnerSurname.equals(""))
-					queryString = queryString+ " and p.busfirstOwner.surname like '%"+busOwnerSurname+"%'";	
+					queryString = queryString+ " and (p.bussecondOwner.surname like '%"+busOwnerSurname+"%' or p.bussecondOwner.surname like '%"+busOwnerSurname+"%')";	
 				
 				Query query = session.createQuery(queryString);
 				return  query.list();
@@ -307,5 +310,106 @@ public class DBManager {
 			}
 	 }
 	 
+	 public void deleteBusOwner(Object object){
+		BusOwner busOwner = (BusOwner)object;
+		Session session=null;
+		Transaction tx=null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			for (Iterator iterator = busOwner.getFirstBusOwnerList().iterator(); iterator.hasNext();) {
+				Bus bus = (Bus) iterator.next();
+				bus.setFirstOwner(null);
+				session.update(bus);
+			}
+			
+			for (Iterator iterator = busOwner.getSecondBusOwnerList().iterator(); iterator.hasNext();) {
+				Bus bus = (Bus) iterator.next();
+				bus.setSecondOwner(null);
+				session.update(bus);
+			}
+			
+			session.delete(busOwner);
+			tx.commit();
+		} catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+			throw e;
+		}finally {
+			session.close();
+		}
+	}
+	
 	 
+	 public void deleteHost(Object object){
+			Host obj = (Host)object;
+			Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				for (Iterator iterator = obj.getBusList().iterator(); iterator.hasNext();) {
+					Bus bus = (Bus) iterator.next();
+					bus.setHost(null);
+					session.update(bus);
+				}
+				
+				session.delete(object);
+				tx.commit();
+			} catch (HibernateException e) {
+				tx.rollback();
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+		}
+		 
+	 
+	 public void deleteDriver(Object object){
+			Driver driver = (Driver)object;
+			Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				for (Iterator iterator = driver.getFirstDriverBusList().iterator(); iterator.hasNext();) {
+					Bus bus = (Bus) iterator.next();
+					bus.setFirstDriver(null);
+					session.update(bus);
+				}
+				
+				for (Iterator iterator = driver.getSecondDriverBusList().iterator(); iterator.hasNext();) {
+					Bus bus = (Bus) iterator.next();
+					bus.setSecondDriver(null);
+					session.update(bus);
+				}
+				
+				for (Iterator iterator = driver.getThirdDriverBusList().iterator(); iterator.hasNext();) {
+					Bus bus = (Bus) iterator.next();
+					bus.setThirdDriver(null);
+					session.update(bus);
+				}
+				
+				session.delete(driver);
+				tx.commit();
+			} catch (HibernateException e) {
+				tx.rollback();
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+		}
+
+
+
+
+
+
+
 }
+
+
+
+	 

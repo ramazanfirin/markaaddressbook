@@ -4,6 +4,7 @@ import java.util.Set;
 
 import model.model.Person;
 
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -18,6 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public abstract class BasicPage extends WizardPage{
 	
+	private ISelection selection;
 	
 	abstract boolean dialogChanged();
 	
@@ -31,9 +33,12 @@ public abstract class BasicPage extends WizardPage{
 	
 	
 
-	protected BasicPage(String pageName) {
+	protected BasicPage(ISelection selection,String pageName,String title) {
 		super(pageName);
-		// TODO Auto-generated constructor stub
+		setTitle(title);
+		this.selection = selection;
+	    setPageComplete(false);
+		
 	}
 
 	@Override

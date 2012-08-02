@@ -73,7 +73,7 @@ public abstract class PersonTabItem extends BasicTabItem{
 
 	@Override
 	Wizard getNewWizard() {
-		return new PersonEntityWizard(entity);
+		return new PersonEntityWizard(entity,getWizardTitle());
 	}
 
 	

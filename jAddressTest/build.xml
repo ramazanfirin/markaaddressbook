@@ -1,0 +1,61 @@
+<!--
+     Areca's ant compilation script
+     Builds Areca's main jar file (areca.jar) and library file (libarecafs.so ... for unix-like operating systems)
+
+     Syntax : ant -buildfile compile.xml
+-->
+
+<project name="Areca compilation" default="compileall">
+    <description>Areca's compilation script</description>
+
+    <!-- Path to SWT libraries (download the SWT package if this file is missing on your system) -->
+    <property name="swtfile" value="./lib/swt.jar"/>
+
+    <property name="root" value="."/>
+
+    <!-- Test the OS -->
+    <condition property="isWindows">
+        <and>
+            <os family="windows"/>
+        </and>
+    </condition>
+
+
+    <target name="compilejava">
+        <description>Java compilation task (builds areca.jar)</description>
+
+        <delete dir="${root}/classes"/>
+        <mkdir dir="${root}/classes"/>
+
+        <javac srcdir="${root}/src"
+               destdir="${root}/classes"
+               debug="off"
+               source="1.6">
+		       
+        		<classpath>
+		                <fileset dir="${root}/lib">
+		                    <include name="**/*.jar"/>
+		                </fileset>
+		                <fileset file="${swtfile}"/>
+		            </classpath>
+		</javac>
+
+        <jar destfile="${root}/lib/addessbook.jar">
+            <fileset dir="${root}/classes"/>
+            <fileset dir="${root}">
+                <include name="icons/**"/>
+            </fileset>
+        	
+        	<fileset dir="${root}/src">
+        		            <include name="model/hbm/*.hbm.xml" />
+        	</fileset>
+        </jar>
+
+        <delete dir="${root}/classes"/>
+    </target>
+
+      <target name="compileall">
+        <description>Global compilation task (builds areca.jar and libarecafs.so)</description>
+        <antcall target="compilejava"/>
+    </target>
+</project>
