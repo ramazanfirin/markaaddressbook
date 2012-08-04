@@ -1,0 +1,91 @@
+
+File_menu_title=Dosya
+Exit=\u00c7\u0131k\u0131\u015f
+About= Hakk\u0131nda
+About_1=Hakk\u0131nda_1
+About_2=Hakk\u0131nda_2
+Help_menu_title=Yard\u0131m
+
+Pop_up_new= Yeni Kay\u0131t
+Pop_up_edit=D\u00fczenle
+Pop_up_delete=Sil
+
+newEntityMenu.title= Yeni Kay\u0131t
+newEntityMenu.newDriver = Yeni \u015e\u00f6f\u00f6r Tan\u0131mla
+newEntityMenu.newBus = Yeni Otob\u00fcs Tan\u0131mla
+newEntityMenu.newHost = Yeni Host Tan\u0131mla
+newEntityMenu.newBusOwner = Yeni Otob\u00fcs Sahibi Tan\u0131mla,
+
+toolbar.new.driver= Yeni \u015eof\u00f6r
+toolbar.new.bus= Yeni Otob\u00fcs
+toolbar.new.host= Yeni Host
+toolbar.new.busOwner= Yeni Otob\u00fcs Sahibi
+toolbar.new.user = Yeni Kullan\u0131c\u0131
+
+userOperationMenu.title= Kullan\u0131c\u0131 \u0130\u015flemleri
+userOperationMenu.update = Bilgi G\u00fcncelle
+
+login.message = L\u00fctfen giri\u015f yap\u0131n\u0131z
+
+bus.plate = Otob\u00fcs Plaka
+bus.phoneNumber = Otob\u00fcs Telefon Numaras\u0131
+bus = Otob\u00fcs
+
+driver = Sof\u00f6r
+driver.name = Sof\u00f6r \u0130smi
+driver.surname = S\u00f6for Soyismi
+driver.phoneNumber = S\u00f6for Telefon Numaras\u0131
+driver.list = Sof\u00f6r Listesi
+
+driver.first= \u0130lk Kaptan
+driver.second= \u0130kinci Kaptan
+driver.third= \u00dc\u00e7\u00fcnc\u00fc Kaptan
+
+driver.first.nameSurname = 1. Kaptan \u0130sim-Soyisim
+driver.first.phone = 1. Kaptan Telefon
+
+driver.second.nameSurname = 2. Kaptan \u0130sim-Soyisim
+driver.second.phone = 2. Kaptan Telefon
+
+driver.third.nameSurname = 3. Kaptan \u0130sim-Soyisim
+driver.third.phone = 3. Kaptan Telefon
+
+bus.list = Otob\u00fcs Listesi
+bus.phone = Otob\u00fcs Telefonu
+
+search = Ara
+
+select = select
+
+host.list = Host Listesi
+host = Host
+host.name=Host \u0130sim
+host.surname=Host Soyisim
+
+name = \u0130sim
+surname = Soyisim
+phone = Telefon
+
+user.name= Kullan\u0131c\u0131 Ad\u0131
+user.password= \u015eifre
+user.passwordAgain= \u015eifre Tekrar
+user.currentAgain= Mevcut \u015eifre
+user.authority = Yetki
+user.list = Kullan\u0131c\u0131 Listesi
+password.change = \u015eifre de\u011fi\u015ftirme
+checkPasswordUpdate = \u015eifre Bilgilerini G\u00fcncelle
+
+busOwner = Otob\u00fcs Sahibi
+busOwner.list = Otob\u00fcs Sahipleri 
+busOwner.first =1.Otob\u00fcs SahiBi
+busOwner.second =2.Otob\u00fcs SahiBi
+
+busOwner.name =Otob\u00fcs Sahibi isim
+busOwner.surname =Otob\u00fcs Sahibi soyisim
+
+saban = \u015faban
+
+authority.admin= Admin
+authority.user = User
+
+user = user

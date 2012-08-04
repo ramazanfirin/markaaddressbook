@@ -86,7 +86,7 @@ abstract class  BasicPersonPage extends BasicPage {
 
   
 	public boolean dialogChanged() {
-
+		
 		 
 		if (this._name.getText().length() == 0) {
       updateStatus("Isim alani zorunludur");
@@ -103,6 +103,12 @@ abstract class  BasicPersonPage extends BasicPage {
     	
     if (this.phone.getText().length() == 0) {
         updateStatus("Telefon alani zorunludur.");
+        return false;
+      } else 
+      	updateStatus(null);	
+    
+    if (this.phone.getText().length() < 10) {
+        updateStatus("Telefon alani 10 hane olmalidir.Ornek : 5551234567");
         return false;
       } else 
       	updateStatus(null);	
@@ -136,7 +142,7 @@ abstract class  BasicPersonPage extends BasicPage {
 	  }
   public void updateStatus(String message) {
 	    setErrorMessage(message);
-	    //setPageComplete(message == null);
+	    setPageComplete(message == null);
 	  }
 
 

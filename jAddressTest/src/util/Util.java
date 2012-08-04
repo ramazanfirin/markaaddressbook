@@ -1,5 +1,8 @@
 package util;
 
+import java.text.MessageFormat;
+import java.util.MissingResourceException;
+
 import org.apache.commons.codec.binary.Base64;
 
 
@@ -19,6 +22,7 @@ public class Util {
 
 	public static void main(String[] args) {
 		System.out.println(encrypt("ramazan"));
+		System.out.println(getFormattedPhone("5551234578"));
 	}
 
 	
@@ -29,4 +33,19 @@ public class Util {
 			return false;
 	}
 
+	 public static String getString(String key, Object... params  ) {
+	        try {
+	            return MessageFormat.format(getString(key), params);
+	        } catch (MissingResourceException e) {
+	            return '!' + key + '!';
+	        }
+	    }
+	 
+	 public static String getFormattedPhone(String phone ) {
+		 String value="";
+			if(phone!=null && phone.length()==10){
+				value = phone.substring(0,3)+" "+phone.substring(3,6)+"-"+phone.substring(6,8)+"-"+phone.substring(8,10);
+			}
+			return value;
+	    }
 }

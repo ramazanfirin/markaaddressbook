@@ -3,6 +3,8 @@ package model.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import util.Util;
+
 import model.interfaces.AbsractInterface;
 
 public class Bus implements AbsractInterface{
@@ -83,5 +85,7 @@ public class Bus implements AbsractInterface{
 		this.secondOwner = secondOwner;
 	}
 
-	
+	public String getFormattedPhone(){
+		return Util.getFormattedPhone(phone);
+	}
 }

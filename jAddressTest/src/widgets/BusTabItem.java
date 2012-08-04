@@ -156,7 +156,7 @@ public class BusTabItem extends BasicTabItem{
 	    case 0:
 	      return ae.getPlate();
 	    case 1:
-	      return ae.getPhone();
+	      return ae.getFormattedPhone();
 	    case 2:
 	       if(ae.getFirstDriver()!=null)
 	    	   return ae.getFirstDriver().getNameSurname();
@@ -164,7 +164,7 @@ public class BusTabItem extends BasicTabItem{
 	    	   return "";
 	    case 3:
 		       if(ae.getFirstDriver()!=null)
-		    	   return ae.getFirstDriver().getPhone();
+		    	   return ae.getFirstDriver().getFormattedPhone();
 		       else
 		    	   return "";
 	    case 4:
@@ -174,7 +174,7 @@ public class BusTabItem extends BasicTabItem{
 		    	   return "";
 		case 5:
 		       if(ae.getSecondDriver()!=null)
-		    	   return ae.getSecondDriver().getPhone();
+		    	   return ae.getSecondDriver().getFormattedPhone();
 			   else
 			  	   return "";
 		case 6:
@@ -184,7 +184,7 @@ public class BusTabItem extends BasicTabItem{
 		    	   return "";
 		case 7:
 		       if(ae.getThirdDriver()!=null)
-		    	   return ae.getThirdDriver().getPhone();
+		    	   return ae.getThirdDriver().getFormattedPhone();
 			   else
 			  	   return "";           
 	    

@@ -10,6 +10,7 @@
 
     <!-- Path to SWT libraries (download the SWT package if this file is missing on your system) -->
     <property name="swtfile" value="./lib/swt.jar"/>
+	<property name="jsmooth.dir" value="C:/Program Files (x86)/JSmooth 0.9.9-7"/>
 
     <property name="root" value="."/>
 
@@ -19,7 +20,32 @@
             <os family="windows"/>
         </and>
     </condition>
+	
 
+	<target name="zip2">
+				<zip destfile="${root}/installer/OtobusFihrist2.zip" basedir="${root}" 
+					excludes="src/**,installer/**,jsmooth/**,bin/**,.settings/**,build.xml,.project,.classpath"  update="true">
+				
+					
+				</zip>
+			</target>
+	
+	<target name="zip3">
+					<zip destfile="${root}/installer/OtobusFihrist2.zip" basedir="${root}" 
+						includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihrist.exe"  update="true">
+					
+						
+					</zip>
+				</target>
+	
+	
+
+	<target name="build-exe" depends="compilejava"> 
+		<exec executable="${jsmooth.dir}/jsmoothcmd.exe"> 
+		<arg value="${root}/jsmooth/otobusFihrist_gui.jsmooth"/> 
+		</exec> 
+	</target> 
+	
 
     <target name="compilejava">
         <description>Java compilation task (builds areca.jar)</description>
@@ -40,15 +66,25 @@
 		            </classpath>
 		</javac>
 
-        <jar destfile="${root}/lib/addessbook.jar">
+        <jar destfile="${root}/lib/otobusFihrist.jar">
             <fileset dir="${root}/classes"/>
             <fileset dir="${root}">
                 <include name="icons/**"/>
+            
             </fileset>
         	
         	<fileset dir="${root}/src">
         		            <include name="model/hbm/*.hbm.xml" />
+        					
         	</fileset>
+        	
+        	<fileset dir="${root}/src">
+        	        <include name="**/*.properties"/>
+        		    <include name="resources/*.properties"/>    
+        			<include name="**/*.gif"/>
+        	        <include name="**/*.jpg"/>
+        	        <include name="**/*.png"/>
+        	 </fileset>
         </jar>
 
         <delete dir="${root}/classes"/>
@@ -57,5 +93,9 @@
       <target name="compileall">
         <description>Global compilation task (builds areca.jar and libarecafs.so)</description>
         <antcall target="compilejava"/>
+      	<antcall target="build-exe"/>
+      	<antcall target="zip3"/>
     </target>
+	
+	
 </project>

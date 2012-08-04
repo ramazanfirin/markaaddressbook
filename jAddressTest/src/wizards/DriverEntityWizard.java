@@ -15,7 +15,7 @@ import com.AddressBookNew;
 public class DriverEntityWizard extends PersonEntityWizard {
   //private DriverPage page1;
 
-  private ISelection selection;
+  public ISelection selection;
   
   public DriverEntityWizard(AbsractInterface entity,String title) {
     super(entity,title);

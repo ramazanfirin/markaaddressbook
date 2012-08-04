@@ -24,6 +24,7 @@ public class UserUpdateWizard extends PersonEntityWizard {
   public void addPages() {
     page1 = new UserUpdatePage(selection,getEntity(),title);
     addPage(page1);
+   
    }
 
   public boolean performFinish() {

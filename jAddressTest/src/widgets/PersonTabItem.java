@@ -94,7 +94,7 @@ public abstract class PersonTabItem extends BasicTabItem{
 	    case 1:
 	      return ae.getSurname();
 	    case 2:
-	      return ae.getPhone();
+	      return ae.getFormattedPhone();
 	    
 			
 	    }

@@ -17,6 +17,7 @@ package com;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import model.DBManager;
 import model.model.User;
 
 import org.eclipse.swt.SWT;
@@ -59,6 +60,7 @@ public class AddressBookNew {
 	 private BusOwnerTabItem tabItemBusOwner;
 	 private User loginUser;
 	
+	 public static Display display;
 	
 	 
 	 private static AddressBookNew instance = new AddressBookNew();
@@ -71,7 +73,7 @@ public class AddressBookNew {
 public static void main(String[] args){
 	System.out.println("basliyoruz");
 	try {
-		Display display = new Display();
+		display = new Display();
 		Shell shell = instance.open(display);
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
@@ -89,7 +91,7 @@ public Shell open(Display display) throws Exception{
 	shell.setLayout(layout);
 	 
     if(checkLogin())
-    	shell.setText(loginUser.getUsername());
+    	shell.setText(Util.getString("firm.name")+"-"+Util.getString("welcome.message",loginUser.getNameSurname()));
     else{
     	shell.dispose();
     	return shell;
@@ -125,14 +127,15 @@ public Shell open(Display display) throws Exception{
 	return shell;
 }
 
-
+public User login(String login,String password){
+loginUser =DBManager.getInstance().checkPassword(login, Util.encrypt(password));
+return loginUser;
+}
 
 public boolean checkLogin(){
 	final LoginDialog dialog = new LoginDialog();
 	dialog.setDescription(Util.getString("login.message"));
 	dialog.setDisplayRememberPassword(false);
-	//Image icon = new Image(this.shell.getDisplay(), "./img/artwork/toolbar/user_list.png");
-	//dialog.setImage(icon);
 	dialog.setVerifier(new LoginVerifier());
     
     return dialog.open();

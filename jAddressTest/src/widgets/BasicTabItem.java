@@ -7,8 +7,8 @@ import java.util.List;
 
 import model.DBManager;
 import model.interfaces.AbsractInterface;
-import model.model.Driver;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -28,7 +28,6 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -51,7 +50,8 @@ public abstract class BasicTabItem extends CTabItem{
 	private int lastSortColumn= -1;
 	Menu popUpMenu;
 	
-	WizardDialog wizardDialog;
+	//WizardDialog wizardDialog;
+	CustomWizardDialog wizardDialog;
 
 	AbsractInterface entity;
 	
@@ -61,6 +61,8 @@ public abstract class BasicTabItem extends CTabItem{
 	
 	public BasicTabItem(CTabFolder parent,String name) {
 		super(parent, SWT.NONE);
+		
+		
 		
 		shell = parent.getShell();
 		setText(name);
@@ -148,7 +150,7 @@ public abstract class BasicTabItem extends CTabItem{
 	abstract void deleteEntity(Object object);
 	
 	public void refresh(){
-		//loadData();
+		
 		tableViewer.setInput(entityList);
 		tableViewer.refresh();
 	}
@@ -170,7 +172,11 @@ public abstract class BasicTabItem extends CTabItem{
 	
 	
 	public void showEditWindow(){
-		wizardDialog = new WizardDialog(shell,getNewWizard());
+		wizardDialog = new CustomWizardDialog(shell,getNewWizard());
+		//wizardDialog.getButton(IDialogConstants.).setText("Kaydet");
+		
+		wizardDialog.getButtonBar();
+		
 		if(wizardDialog.open()==Window.OK){
 			try {
 				if(!Util.isAdmin())
@@ -178,6 +184,7 @@ public abstract class BasicTabItem extends CTabItem{
 				DBManager.getInstance().saveOrUpdate(entity);
 				//saveData();
 				getParent().setSelection(this);
+				loadData();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -193,12 +200,14 @@ public abstract class BasicTabItem extends CTabItem{
 		deleteEntity(object);
 		entityList.remove(object);
 		notifyAllTabItems();
+		loadData();
 	}
 	
 	public void save(Object object){
 		
 		try {
 			DBManager.getInstance().saveOrUpdate(object);
+			loadData();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

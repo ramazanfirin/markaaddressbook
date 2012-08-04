@@ -14,7 +14,7 @@ import com.AddressBookNew;
 public class PersonEntityWizard extends Wizard {
   public PersonPage page1;
 
-  private ISelection selection;
+  public ISelection selection;
   
   private AbsractInterface entity;
   

@@ -58,6 +58,8 @@ public abstract class BasicPage extends WizardPage{
 			
 		}
 	}
+	
+	
 
 	class PersonLabelProvider extends LabelProvider{
 		@Override
