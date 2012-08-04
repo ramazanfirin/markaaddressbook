@@ -21,6 +21,7 @@ import model.DBManager;
 import model.model.User;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -125,11 +126,6 @@ public Shell open(Display display) throws Exception{
     cTabFolder.forceFocus();
     shell.open();
 	return shell;
-}
-
-public User login(String login,String password){
-loginUser =DBManager.getInstance().checkPassword(login, Util.encrypt(password));
-return loginUser;
 }
 
 public boolean checkLogin(){

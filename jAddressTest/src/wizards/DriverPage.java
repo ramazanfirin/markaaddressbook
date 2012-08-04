@@ -53,39 +53,39 @@ class DriverPage extends PersonPage {
 }
 
 
-  @Override
-  public void createTable(Composite main) {
-  	final Group grpDriverList = new Group(main, SWT.NONE);
-  	grpDriverList.setText(Util.getString("bus.list"));
-  	GridLayout gridDriverList = new GridLayout(1, false);
-  	gridDriverList.verticalSpacing = 0;
-  	grpDriverList.setLayout(gridDriverList);
-  	
-  	TableViewer tableViewer=null;
-      tableViewer = new TableViewer(grpDriverList,SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
-      tableViewer.setContentProvider(new ArrayContentProvider());
-      tableViewer.setLabelProvider(new BusTableLabelProvider());
-      Table table = tableViewer.getTable();
-      table.setHeaderVisible(true);	
-      table.setLinesVisible(true);
-        
-     String[] columnNames2 = {
-  		 Util.getString("bus.plate"),
-  		 Util.getString("bus.phoneNumber"),
-  	     Util.getString("driver.first.nameSurname"),
-  	     Util.getString("driver.second.nameSurname"),
-  	};
-      
-      for(int i = 0; i < columnNames2.length; i++) {
-  		TableColumn column = new TableColumn(table, SWT.NONE);
-  		column.setText(columnNames2[i]);
-  		column.setWidth(150);
-  		
-  	}
-      Person person = (Person)entity;
-      tableViewer.setInput(person.getBusList());
-  	
-  }
+//  @Override
+//  public void createTable(Composite main) {
+//  	final Group grpDriverList = new Group(main, SWT.NONE);
+//  	grpDriverList.setText(Util.getString("bus.list"));
+//  	GridLayout gridDriverList = new GridLayout(1, false);
+//  	gridDriverList.verticalSpacing = 0;
+//  	grpDriverList.setLayout(gridDriverList);
+//  	
+//  	TableViewer tableViewer=null;
+//      tableViewer = new TableViewer(grpDriverList,SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
+//      tableViewer.setContentProvider(new ArrayContentProvider());
+//      tableViewer.setLabelProvider(new BusTableLabelProvider());
+//      Table table = tableViewer.getTable();
+//      table.setHeaderVisible(true);	
+//      table.setLinesVisible(true);
+//        
+//     String[] columnNames2 = {
+//  		 Util.getString("bus.plate"),
+//  		 Util.getString("bus.phoneNumber"),
+//  	     Util.getString("driver.first.nameSurname"),
+//  	     Util.getString("driver.second.nameSurname"),
+//  	};
+//      
+//      for(int i = 0; i < columnNames2.length; i++) {
+//  		TableColumn column = new TableColumn(table, SWT.NONE);
+//  		column.setText(columnNames2[i]);
+//  		column.setWidth(150);
+//  		
+//  	}
+//      Person person = (Person)entity;
+//      tableViewer.setInput(person.getBusList());
+//  	
+//  }
   
   
 

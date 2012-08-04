@@ -2,6 +2,7 @@ package wizards;
 
 import javax.swing.JFormattedTextField;
 
+import model.DBManager;
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.Person;
@@ -12,7 +13,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -21,6 +26,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 import util.Util;
@@ -34,6 +40,7 @@ class PersonPage extends BasicPersonPage {
 
   public AbsractInterface entity;
 
+  public Table table;
   
   public PersonPage(ISelection selection,AbsractInterface _entity,String _title) {
     super(selection,_title);
@@ -101,10 +108,24 @@ class PersonPage extends BasicPersonPage {
       tableViewer = new TableViewer(grpDriverList,SWT.SINGLE | SWT.BORDER | SWT.FULL_SELECTION);
       tableViewer.setContentProvider(new ArrayContentProvider());
       tableViewer.setLabelProvider(new BusTableLabelProvider());
-      Table table = tableViewer.getTable();
+      table = tableViewer.getTable();
       table.setHeaderVisible(true);	
       table.setLinesVisible(true);
       table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true));  
+      table.addSelectionListener(new SelectionAdapter() {
+			public void widgetDefaultSelected(SelectionEvent e) {
+				TableItem[] items = table.getSelection();
+				if (items.length > 0){
+					Bus bus = (Bus)items[0].getData();
+					BusEntityWizard busWizard = new BusEntityWizard(bus,Util.getString("bus")); 
+					WizardDialog wizardDialog = new WizardDialog(getShell(), busWizard);
+					if(wizardDialog.open()==Window.OK){
+						if(Util.isAdmin())
+							DBManager.getInstance().saveOrUpdate(bus);
+					}
+				}
+			}
+		});
       
      String[] columnNames2 = {
   		 Util.getString("bus.plate"),

@@ -13,11 +13,11 @@ public class LoginVerifier implements LoginDialogVerifier{
 	@Override
     public void authenticate(final String login, final String password) throws Exception {
             if ("".equals(login)) {
-                    throw new Exception("Please enter a login.");
+                    throw new Exception("Kullanici ismini giriniz");
             }
 
             if ("".equals(password)) {
-                    throw new Exception("Please enter a password.");
+                    throw new Exception("Sifrenizi giriniz");
             }
 
 //            if (!login.equalsIgnoreCase("laurent")) {
