@@ -61,11 +61,15 @@ public class Person implements AbsractInterface{
 	}
 	
 	public String getNameSurname() {
-		return getName()+" "+getSurname();
+		return getName()+" "+getSurname()+"   "+getFormattedPhone();
 	}
 	
 	public String getFormattedPhone(){
 		return Util.getFormattedPhone(phone);
+	}
+	
+	public String getNameSurnamePhone() {
+		return getName()+" "+getSurname()+" "+getFormattedPhone() ;
 	}
 	
 }

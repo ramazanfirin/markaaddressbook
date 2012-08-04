@@ -21,7 +21,8 @@ public class Util {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(encrypt("ramazan"));
+		System.out.println(encrypt("admin"));
+		System.out.println(encrypt("user"));
 		System.out.println(getFormattedPhone("5551234578"));
 	}
 

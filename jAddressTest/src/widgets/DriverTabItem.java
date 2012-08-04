@@ -20,13 +20,13 @@ import wizards.DriverEntityWizard;
 
 public class DriverTabItem extends PersonTabItem{
 
-	private static final String[] columnNames = {
-		Util.getString("driver.name"),
-		Util.getString("driver.surname"),
-		Util.getString("driver.phoneNumber"),
-		Util.getString("bus.plate"),
-		Util.getString("bus.phoneNumber")};
-	
+//	private static final String[] columnNames = {
+//		Util.getString("driver.name"),
+//		Util.getString("driver.surname"),
+//		Util.getString("driver.phoneNumber"),
+//		Util.getString("bus.plate"),
+//		Util.getString("bus.phoneNumber")};
+//	
 			
 	public DriverTabItem(CTabFolder parent, String name) {
 		super(parent, name);
@@ -68,7 +68,7 @@ public class DriverTabItem extends PersonTabItem{
 
 	@Override
 	String[] getColumNames() {
-		return columnNames;
+		return super.getColumNames();
 	}
 
 
@@ -99,43 +99,43 @@ public class DriverTabItem extends PersonTabItem{
 		DBManager.getInstance().saveOrUpdate(entity);
 		
 	}
-	
-	@Override
-	String getTableColumValues(Object object, int columnIndex) {
-		Driver ae = (Driver) object;
-	    switch (columnIndex) {
-	    case 0:
-	      return ae.getName();
-	    case 1:
-	      return ae.getSurname();
-	    case 2:
-	      return ae.getFormattedPhone();
-	    case 3:
-	      String result="";	
-		  Set list = ae.getBusList();
-		  if(list!=null && list.size()>0){
-			  for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-				Bus object2 = (Bus) iterator.next();
-				result=result+"-"+object2.getPlate();
-			}
-		  }
-	    	
-	    	return  result;
-	    case 4:
-	    	String result2="";	
-			  Set list2 = ae.getBusList();
-			  if(list2!=null && list2.size()>0){
-				  for (Iterator iterator = list2.iterator(); iterator.hasNext();) {
-					Bus object2 = (Bus) iterator.next();
-					result2=result2+"-"+object2.getPhone();
-				}
-			  }
-		    	
-		    	return  result2;
-	    }
-	    return "";
-		
-	}
+//	
+//	@Override
+//	String getTableColumValues(Object object, int columnIndex) {
+//		Driver ae = (Driver) object;
+//	    switch (columnIndex) {
+//	    case 0:
+//	      return ae.getName();
+//	    case 1:
+//	      return ae.getSurname();
+//	    case 2:
+//	      return ae.getFormattedPhone();
+//	    case 3:
+//	      String result="";	
+//		  Set list = ae.getBusList();
+//		  if(list!=null && list.size()>0){
+//			  for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+//				Bus object2 = (Bus) iterator.next();
+//				result=result+"-"+object2.getPlate();
+//			}
+//		  }
+//	    	
+//	    	return  result;
+//	    case 4:
+//	    	String result2="";	
+//			  Set list2 = ae.getBusList();
+//			  if(list2!=null && list2.size()>0){
+//				  for (Iterator iterator = list2.iterator(); iterator.hasNext();) {
+//					Bus object2 = (Bus) iterator.next();
+//					result2=result2+"-"+object2.getPhone();
+//				}
+//			  }
+//		    	
+//		    	return  result2;
+//	    }
+//	    return "";
+//		
+//	}
 
 
 
