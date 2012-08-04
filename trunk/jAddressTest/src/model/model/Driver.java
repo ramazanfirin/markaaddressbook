@@ -40,9 +40,6 @@ public class Driver  extends Person implements AbsractInterface {
 		this.bus = bus;
 	}
 	
-	public String getNameSurname(){
-		return getName()+" "+getSurname();
-	}
 	public Set<Bus> getFirstDriverBusList() {
 		return firstDriverBusList;
 	}

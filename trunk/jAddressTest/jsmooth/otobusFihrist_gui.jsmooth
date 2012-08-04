@@ -6,7 +6,6 @@
 <JVMSearchPath>jdkpath</JVMSearchPath>
 <JVMSearchPath>exepath</JVMSearchPath>
 <JVMSearchPath>jview</JVMSearchPath>
-<arguments></arguments>
 <classPath>..\lib\otobusFihrist.jar</classPath>
 <classPath>..\lib\antlr.jar</classPath>
 <classPath>..\lib\asm-attrs.jar</classPath>
@@ -34,6 +33,7 @@
 <currentDirectory>${EXECUTABLEPATH}</currentDirectory>
 <embeddedJar>false</embeddedJar>
 <executableName>..\OtobusFihrist.exe</executableName>
+<iconLocation>..\img\bus-icon.png</iconLocation>
 <initialMemoryHeap>67108864</initialMemoryHeap>
 <mainClassName>com.AddressBookNew</mainClassName>
 <maximumMemoryHeap>268435456</maximumMemoryHeap>
