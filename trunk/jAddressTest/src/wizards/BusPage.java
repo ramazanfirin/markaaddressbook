@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import model.DBManager;
+import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.Driver;
 import model.model.Person;
@@ -44,11 +45,12 @@ class BusPage extends BasicPage{
    ComboViewer viewer4;
    ComboViewer viewer5;
    ComboViewer viewer6;
-
    
-  public BusPage(ISelection selection,String title) {
+   AbsractInterface entity;
+   
+  public BusPage(ISelection selection,AbsractInterface _entity,String title) {
     super(selection,"wizardPage",title);
-    
+    entity = _entity;
   }
 
   public void createControl(Composite parent) {
@@ -58,7 +60,7 @@ class BusPage extends BasicPage{
     layout.numColumns = 2;
     layout.verticalSpacing = 9;
 
-    Bus bus = (Bus)AddressBookNew.getInstance().getTabItemBus().getEntity();
+    Bus bus = (Bus)entity;
     
     Label label = new Label(container, SWT.NULL);
     label.setText(Util.getString("bus.plate"));

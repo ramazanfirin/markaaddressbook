@@ -199,10 +199,21 @@ public class MenuUtil {
 		});
 	    
 	    ToolItem itemUser = new ToolItem(toolBar, SWT.PUSH);
-	    itemUser.setText(Util.getString("userOperationMenu.update"));
+	    itemUser.setEnabled(Util.isAdmin());
+	    itemUser.setText(Util.getString("toolbar.new.user"));
 	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
 	    itemUser.setImage(icon);
 	    itemUser.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				AddressBookNew.getInstance().getTabItemUser().newEntity();
+			}
+		});
+	    
+	    ToolItem itemUserUpdate = new ToolItem(toolBar, SWT.PUSH);
+	    itemUserUpdate.setText(Util.getString("userOperationMenu.update"));
+	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemUserUpdate.setImage(icon);
+	    itemUserUpdate.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				User user = AddressBookNew.getInstance().getLoginUser();
 				UserUpdateWizard updateWizard = new UserUpdateWizard(user,"Kullanici Bilgileri"); 

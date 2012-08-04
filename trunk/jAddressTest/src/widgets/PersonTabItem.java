@@ -17,9 +17,9 @@ import wizards.PersonEntityWizard;
 public abstract class PersonTabItem extends BasicTabItem{
 
 	private static final String[] columnNames = {
-		Util.getString("driver.name"),
-		Util.getString("driver.surname"),
-		Util.getString("driver.phoneNumber"),
+		Util.getString("name"),
+		Util.getString("surname"),
+		Util.getString("phone"),
 		};
 	
 	Text textDriverName;

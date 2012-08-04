@@ -1,5 +1,6 @@
 package wizards;
 
+import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.BusOwner;
 import model.model.Driver;
@@ -25,20 +26,20 @@ public class BusEntityWizard extends Wizard {
   private Driver tempDriver;
   
   public String title;
+  
+  AbsractInterface entity;
 
-  public BusEntityWizard(String _title) {
+  public BusEntityWizard(AbsractInterface _entity,String _title) {
     super();
     title=_title;
     setNeedsProgressMonitor(true);
-//    WizardDialog dialog;
-//    dialog.getButton(IDialogConstants.CANCEL_ID) ;
+    entity = _entity;
+    
   }
 
   public void addPages() {
-    page1 = new BusPage(selection,title);
-    //page2 = new AddressContactPage(selection);
+    page1 = new BusPage(selection,entity,title);
     addPage(page1);
-    //addPage(page2);
     
   
     

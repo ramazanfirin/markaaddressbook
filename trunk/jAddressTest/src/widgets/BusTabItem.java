@@ -129,7 +129,7 @@ public class BusTabItem extends BasicTabItem{
 
 	@Override
 	Wizard getNewWizard() {
-		return new BusEntityWizard(getWizardTitle());
+		return new BusEntityWizard(entity,getWizardTitle());
 	}
 
 	@Override
