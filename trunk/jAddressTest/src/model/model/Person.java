@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import util.Util;
+
 import model.interfaces.AbsractInterface;
 
 public class Person implements AbsractInterface{
@@ -60,6 +62,10 @@ public class Person implements AbsractInterface{
 	
 	public String getNameSurname() {
 		return getName()+" "+getSurname();
+	}
+	
+	public String getFormattedPhone(){
+		return Util.getFormattedPhone(phone);
 	}
 	
 }

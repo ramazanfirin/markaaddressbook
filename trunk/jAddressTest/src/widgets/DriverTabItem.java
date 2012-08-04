@@ -109,7 +109,7 @@ public class DriverTabItem extends PersonTabItem{
 	    case 1:
 	      return ae.getSurname();
 	    case 2:
-	      return ae.getPhone();
+	      return ae.getFormattedPhone();
 	    case 3:
 	      String result="";	
 		  Set list = ae.getBusList();

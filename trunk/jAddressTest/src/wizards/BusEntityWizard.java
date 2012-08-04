@@ -5,10 +5,13 @@ import model.model.BusOwner;
 import model.model.Driver;
 import model.model.Host;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.Wizard;
-
+import org.eclipse.jface.wizard.WizardDialog;
 
 import com.AddressBookNew;
 
@@ -27,6 +30,8 @@ public class BusEntityWizard extends Wizard {
     super();
     title=_title;
     setNeedsProgressMonitor(true);
+//    WizardDialog dialog;
+//    dialog.getButton(IDialogConstants.CANCEL_ID) ;
   }
 
   public void addPages() {
@@ -35,9 +40,22 @@ public class BusEntityWizard extends Wizard {
     addPage(page1);
     //addPage(page2);
     
+  
+    
     System.out.println("test");
   }
 
+  
+  class DriverSelectionChangeProvider implements ISelectionChangedListener{
+
+		@Override
+		public void selectionChanged(SelectionChangedEvent arg0) {
+			IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
+			Driver driver = (Driver)selection.getFirstElement();
+		}
+	}
+  
+  
   public boolean performFinish() {
 
 	  Bus bus = (Bus)AddressBookNew.getInstance().getTabItemBus().getEntity();
@@ -96,7 +114,8 @@ public class BusEntityWizard extends Wizard {
     
 	  return true;
   }
-
+  
+ 
 public Driver getTempDriver() {
 	return tempDriver;
 }

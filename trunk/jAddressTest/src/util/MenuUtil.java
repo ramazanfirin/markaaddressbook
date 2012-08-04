@@ -158,8 +158,7 @@ public class MenuUtil {
 	    ToolItem itemDriver = new ToolItem(toolBar, SWT.PUSH);
 	    itemDriver.setEnabled(Util.isAdmin());
 	    itemDriver.setText(Util.getString("toolbar.new.driver"));
-//	    Image icon = new Image(parent.getShell().getDisplay(), "./icons/artwork/toolbar/user_list.png");
-//	    itemDriver.setImage(icon);
+	    Image icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");    itemDriver.setImage(icon);
 	    itemDriver.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				AddressBookNew.getInstance().getTabItemDriver().newEntity();
@@ -169,8 +168,8 @@ public class MenuUtil {
 	    ToolItem itemBus = new ToolItem(toolBar, SWT.PUSH);
 	    itemBus.setEnabled(Util.isAdmin());
 	    itemBus.setText(Util.getString("toolbar.new.bus"));
-//	    icon = new Image(parent.getShell().getDisplay(), "./icons/artwork/toolbar/user_list.png");
-//	    itemBus.setImage(icon);
+	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemBus.setImage(icon);
 	    itemBus.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				AddressBookNew.getInstance().getTabItemBus().newEntity();
@@ -180,8 +179,8 @@ public class MenuUtil {
 	    ToolItem itemHost = new ToolItem(toolBar, SWT.PUSH);
 	    itemHost.setEnabled(Util.isAdmin());
 	    itemHost.setText(Util.getString("toolbar.new.host"));
-//	    icon = new Image(parent.getShell().getDisplay(), "./icons/artwork/toolbar/user_list.png");
-//	    itemHost.setImage(icon);
+	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemHost.setImage(icon);
 	    itemHost.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				AddressBookNew.getInstance().getTabItemHost().newEntity();
@@ -191,8 +190,8 @@ public class MenuUtil {
 	    ToolItem itemBusOwner = new ToolItem(toolBar, SWT.PUSH);
 	    itemBusOwner.setEnabled(Util.isAdmin());
 	    itemBusOwner.setText(Util.getString("toolbar.new.busOwner"));
-//	    icon = new Image(parent.getShell().getDisplay(), "./icons/artwork/toolbar/user_list.png");
-//	    itemBusOwner.setImage(icon);
+	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemBusOwner.setImage(icon);
 	    itemBusOwner.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				AddressBookNew.getInstance().getTabItemBusOwner().newEntity();
@@ -201,8 +200,8 @@ public class MenuUtil {
 	    
 	    ToolItem itemUser = new ToolItem(toolBar, SWT.PUSH);
 	    itemUser.setText(Util.getString("userOperationMenu.update"));
-//	    icon = new Image(parent.getShell().getDisplay(), "./icons/artwork/toolbar/user_list.png");
-//	    itemUser.setImage(icon);
+	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemUser.setImage(icon);
 	    itemUser.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				User user = AddressBookNew.getInstance().getLoginUser();

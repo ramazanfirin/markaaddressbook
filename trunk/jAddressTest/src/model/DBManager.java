@@ -42,7 +42,7 @@ public class DBManager {
 			}
 	 }
 	 
-	 public void delete(Object o) throws Exception{
+	 public void delete(Object o){
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -231,7 +231,7 @@ public class DBManager {
 			
 	 }
 	 
-	 public User checkPassword(String username,String password) throws Exception{
+	 public User checkPassword(String username,String password){
 		 Session session=null;
 			Transaction tx=null;
 			try {

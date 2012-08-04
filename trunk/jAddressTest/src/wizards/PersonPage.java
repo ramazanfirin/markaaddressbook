@@ -1,7 +1,6 @@
 package wizards;
 
-import java.util.List;
-import java.util.Set;
+import javax.swing.JFormattedTextField;
 
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
@@ -15,10 +14,8 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -83,7 +80,11 @@ class PersonPage extends BasicPersonPage {
       phone.setText(driver.getPhone());
       phone.addModifyListener(textModifyListener);
       phone.setEditable(Util.isAdmin()); 
+      phone.addVerifyListener(digitVerifyListener);
+      phone.setTextLimit(10);
       createLine(container, layout.numColumns);
+      
+    
   	
   }
 
@@ -152,10 +153,7 @@ class PersonPage extends BasicPersonPage {
 	    gridData.horizontalSpan = ncol;
 	    line.setLayoutData(gridData);
 	  }
-  public void updateStatus(String message) {
-	    setErrorMessage(message);
-	    //setPageComplete(message == null);
-	  }
+ 
 
 public Text getNameVariable() {
 	return _name;

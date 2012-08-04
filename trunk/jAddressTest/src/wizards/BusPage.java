@@ -75,6 +75,8 @@ class BusPage extends BasicPage{
     phone.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     phone.addModifyListener(textModifyListener);
     phone.setEditable(Util.isAdmin());
+    phone.addVerifyListener(digitVerifyListener);
+    phone.setTextLimit(10);
 
     createLine(container, layout.numColumns);
     
