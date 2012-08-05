@@ -37,7 +37,7 @@ public class UserUpdateWizard extends PersonEntityWizard {
 	 
 	 if(page1.updatePassword.getSelection()){
 		 if(!Util.encrypt(page1.getCurrentPassword().getText()).equals(user.getPassword())){	
-			 MessageDialog.openError(this.getShell(), "Hata", "Sifre yanlis");
+			 MessageDialog.openError(this.getShell(), "Hata", "Mevcut Sifre yanlis");
 			 return false;
 		 }else{
 			 user.setUsername(page1.getUsername().getText());

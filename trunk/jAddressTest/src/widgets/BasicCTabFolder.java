@@ -14,7 +14,7 @@ public class BasicCTabFolder extends CTabFolder{
 		
 		for (int i = 0; i < getItemCount(); i++) {
 			if(getItem(i) instanceof BasicTabItem)
-				((BasicTabItem)getItem(i)).refresh();
+				((BasicTabItem)getItem(i)).loadData();
 		}
 	}
 }

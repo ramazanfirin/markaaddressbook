@@ -76,15 +76,6 @@ public abstract class PersonTabItem extends BasicTabItem{
 		return new PersonEntityWizard(entity,getWizardTitle());
 	}
 
-	
-	
-
-	@Override
-	void saveData() {
-		DBManager.getInstance().saveOrUpdate(entity);
-		
-	}
-	
 	@Override
 	String getTableColumValues(Object object, int columnIndex) {
 		Person ae = (Person) object;
@@ -110,11 +101,11 @@ public abstract class PersonTabItem extends BasicTabItem{
 	}
 
 
-	@Override
-	void loadData() {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	void loadData() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 
 

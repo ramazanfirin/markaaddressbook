@@ -283,11 +283,11 @@ public class DBManager {
 				session = HibernateUtil.getSessionFactory().openSession();
 				String queryString = "from Bus p where 1=1";
 				if(plate!=null && !plate.equals(""))
-					queryString = queryString+ " and upper(p.plate) like '%"+plate.toUpperCase()+"%'";				
+					queryString = queryString+ " and p.plate like '%"+plate+"%'";				
 				if(phone!=null && !phone.equals(""))
 					queryString = queryString+ " and p.phone like '%"+phone+"%'";		
 				if(driverName!=null && !driverName.equals(""))
-					queryString = queryString+ " and (p.firstDriver.name like '%"+driverName+"%') or p.secondDriver.name like '%"+driverName+"%' or p.thirdDriver.name like '%"+driverName+"%')";	
+					queryString = queryString+ " and ( (p.firstDriver.name like '%"+driverName.toLowerCase()+"%' or p.firstDriver.name like '%"+driverName.toUpperCase()+"%') or (p.secondDriver.name like '%"+driverName.toLowerCase()+"%' or p.secondDriver.name like '%"+driverName.toUpperCase()+"%')or (p.thirdDriver.name like '%"+driverName.toLowerCase()+"%' or p.thirdDriver.name like '%"+driverName.toUpperCase()+"%' ))";	
 				if(driverSurname!=null && !driverSurname.equals(""))
 					queryString = queryString+ " and (p.firstDriver.surname like '%"+driverName+"%' or p.secondDriver.surname like '%"+driverName+"%' or p.thirdDriver.surname like '%"+driverName+"%')";	
 				if(hostName!=null && !hostName.equals(""))

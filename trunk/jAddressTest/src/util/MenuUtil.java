@@ -220,6 +220,7 @@ public class MenuUtil {
 				WizardDialog wizardDialog = new WizardDialog(_parent.getShell(), updateWizard);
 				if(wizardDialog.open()==Window.OK){
 					DBManager.getInstance().saveOrUpdate(user);
+					
 				}
 			}
 		});
