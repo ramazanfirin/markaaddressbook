@@ -20,14 +20,6 @@ import wizards.DriverEntityWizard;
 
 public class DriverTabItem extends PersonTabItem{
 
-//	private static final String[] columnNames = {
-//		Util.getString("driver.name"),
-//		Util.getString("driver.surname"),
-//		Util.getString("driver.phoneNumber"),
-//		Util.getString("bus.plate"),
-//		Util.getString("bus.phoneNumber")};
-//	
-			
 	public DriverTabItem(CTabFolder parent, String name) {
 		super(parent, name);
 	}
@@ -39,32 +31,6 @@ public class DriverTabItem extends PersonTabItem{
 		super.search();
 		
 	}
-
-//	@Override
-//	void prepareComponents(Composite grpLocation) {
-//			
-//		Label labelDriverName=new Label(grpLocation,SWT.NONE);
-//		labelDriverName.setText(Util.getString("driver.name"));
-//		labelDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-//		
-//		Text textDriverName=new Text(grpLocation,SWT.BORDER);
-//		textDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-//		
-//		Label labelDriverSurname=new Label(grpLocation,SWT.NONE);
-//		labelDriverSurname.setText(Util.getString("driver.surname"));
-//		labelDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-//		
-//		Text textDriverSurname=new Text(grpLocation,SWT.BORDER);
-//		textDriverSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-//		
-//		Label labelDriverPhone=new Label(grpLocation,SWT.NONE);
-//		labelDriverPhone.setText(Util.getString("driver.phoneNumber"));
-//		labelDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-//		
-//		Text textDriverPhone=new Text(grpLocation,SWT.BORDER);
-//		textDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-//		
-//	}
 
 	@Override
 	String[] getColumNames() {
@@ -84,60 +50,15 @@ public class DriverTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void loadData() {
-		try {
+	void loadAllItems() {
 			entityList = DBManager.getInstance().loadAllDriver2();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
-
-	@Override
-	void saveData() {
-		DBManager.getInstance().saveOrUpdate(entity);
-		
-	}
-//	
 //	@Override
-//	String getTableColumValues(Object object, int columnIndex) {
-//		Driver ae = (Driver) object;
-//	    switch (columnIndex) {
-//	    case 0:
-//	      return ae.getName();
-//	    case 1:
-//	      return ae.getSurname();
-//	    case 2:
-//	      return ae.getFormattedPhone();
-//	    case 3:
-//	      String result="";	
-//		  Set list = ae.getBusList();
-//		  if(list!=null && list.size()>0){
-//			  for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-//				Bus object2 = (Bus) iterator.next();
-//				result=result+"-"+object2.getPlate();
-//			}
-//		  }
-//	    	
-//	    	return  result;
-//	    case 4:
-//	    	String result2="";	
-//			  Set list2 = ae.getBusList();
-//			  if(list2!=null && list2.size()>0){
-//				  for (Iterator iterator = list2.iterator(); iterator.hasNext();) {
-//					Bus object2 = (Bus) iterator.next();
-//					result2=result2+"-"+object2.getPhone();
-//				}
-//			  }
-//		    	
-//		    	return  result2;
-//	    }
-//	    return "";
+//	void saveData(){
+//		DBManager.getInstance().saveOrUpdate(entity);
 //		
 //	}
-
-
 
 	@Override
 	String getName() {
@@ -151,15 +72,11 @@ public class DriverTabItem extends PersonTabItem{
 		return Util.getString("driver");
 	}
 
-
-
 	@Override
 	void deleteEntity(Object object) {
 		DBManager.getInstance().deleteDriver(object);
 		
 	}
-
-
 
 }
 

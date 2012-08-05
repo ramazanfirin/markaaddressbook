@@ -41,9 +41,9 @@ public class HostTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void loadData() {
+	void loadAllItems() {
 		entityList = DBManager.getInstance().loadHosts();
-		
+       	
 	}
 
 	@Override

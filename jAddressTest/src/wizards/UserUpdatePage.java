@@ -51,6 +51,10 @@ class UserUpdatePage extends PersonPage {
   
   public void createOtherComponent(Composite main) {
 	 
+	  _name.setEditable(true);
+	  surname.setEditable(true);
+	  phone.setEditable(true);
+	  
 	  Composite container = new Composite(main, SWT.NULL);
       GridLayout layout = new GridLayout();
       container.setLayout(layout);

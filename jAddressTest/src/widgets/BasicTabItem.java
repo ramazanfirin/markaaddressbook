@@ -130,7 +130,7 @@ public abstract class BasicTabItem extends CTabItem{
 			});
 		}
 	    
-	    notifyAllTabItems();
+	    //notifyAllTabItems();
 	}
 
 	
@@ -142,17 +142,20 @@ public abstract class BasicTabItem extends CTabItem{
 	abstract Wizard getNewWizard();
 	abstract void createNewEntity();
 	//abstract ITableLabelProvider getTableLabelProvider();
-	abstract void loadData();
+	abstract void loadAllItems();
 	abstract String getTableColumValues(Object object,int columnIndex);
-	abstract void saveData();
 	abstract String getName();
 	abstract String getWizardTitle();
 	abstract void deleteEntity(Object object);
 	
 	public void refresh(){
-		
 		tableViewer.setInput(entityList);
 		tableViewer.refresh();
+	}
+	
+	public void loadData(){
+      loadAllItems();
+      refresh();
 	}
 	
 	public void notifyAllTabItems(){
@@ -172,18 +175,23 @@ public abstract class BasicTabItem extends CTabItem{
 	
 	
 	public void showEditWindow(){
-		wizardDialog = new CustomWizardDialog(shell,getNewWizard());
+		Wizard wizard = getNewWizard();
+		
+		wizardDialog = new CustomWizardDialog(shell,wizard);
 		//wizardDialog.getButton(IDialogConstants.).setText("Kaydet");
 		
 		wizardDialog.getButtonBar();
 		
 		if(wizardDialog.open()==Window.OK){
 			try {
-				if(!Util.isAdmin())
+				//wizard.getWindowTitle();
+				if(!Util.isAdmin() )
 					return;
 				DBManager.getInstance().saveOrUpdate(entity);
 				//saveData();
-				getParent().setSelection(this);
+				//loadAllItems();
+				//refresh();
+				//getParent().setSelection(this);
 				loadData();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -191,6 +199,7 @@ public abstract class BasicTabItem extends CTabItem{
 			}
 			
 			notifyAllTabItems();
+			refresh();
 		}
 	}
 	
@@ -200,14 +209,15 @@ public abstract class BasicTabItem extends CTabItem{
 		deleteEntity(object);
 		entityList.remove(object);
 		notifyAllTabItems();
-		loadData();
+		//loadData();
 	}
 	
 	public void save(Object object){
 		
 		try {
 			DBManager.getInstance().saveOrUpdate(object);
-			loadData();
+			loadAllItems();
+			refresh();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

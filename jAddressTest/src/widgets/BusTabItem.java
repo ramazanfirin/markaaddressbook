@@ -23,12 +23,9 @@ public class BusTabItem extends BasicTabItem{
 		 Util.getString("bus.plate"),
 		 Util.getString("bus.phoneNumber"),
  	     Util.getString("driver.first.nameSurname"),
- 	     Util.getString("driver.first.phone"),
  	     Util.getString("driver.second.nameSurname"),
-	     Util.getString("driver.second.phone"),
-	     Util.getString("driver.third.nameSurname"),
-	     Util.getString("driver.third.phone")
-	};
+	     Util.getString("driver.third.nameSurname")
+	   	};
 	
 	
 	Text textBusPlate;
@@ -139,14 +136,8 @@ public class BusTabItem extends BasicTabItem{
 	}
 
 	@Override
-	void loadData() {
-		try {
-			entityList = DBManager.getInstance().loadAllBus2();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	void loadAllItems() {
+		entityList = DBManager.getInstance().loadAllBus2();
 	}
 	
 	@Override
@@ -162,45 +153,23 @@ public class BusTabItem extends BasicTabItem{
 	    	   return ae.getFirstDriver().getNameSurname();
 	       else
 	    	   return "";
+	    
 	    case 3:
-		       if(ae.getFirstDriver()!=null)
-		    	   return ae.getFirstDriver().getFormattedPhone();
-		       else
-		    	   return "";
-	    case 4:
 		       if(ae.getSecondDriver()!=null)
 		    	   return ae.getSecondDriver().getNameSurname();
 		       else
 		    	   return "";
-		case 5:
-		       if(ae.getSecondDriver()!=null)
-		    	   return ae.getSecondDriver().getFormattedPhone();
-			   else
-			  	   return "";
-		case 6:
+		
+		case 4:
 		       if(ae.getThirdDriver()!=null)
 		    	   return ae.getThirdDriver().getNameSurname();
 		       else
 		    	   return "";
-		case 7:
-		       if(ae.getThirdDriver()!=null)
-		    	   return ae.getThirdDriver().getFormattedPhone();
-			   else
-			  	   return "";           
-	    
-	    
+		
 	    }
 	    return "";
 		
 	}
-
-
-	@Override
-	void saveData() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	String getName() {
@@ -216,7 +185,7 @@ public class BusTabItem extends BasicTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		// TODO Auto-generated method stub
+		DBManager.getInstance().delete(object);
 		
 	}
 

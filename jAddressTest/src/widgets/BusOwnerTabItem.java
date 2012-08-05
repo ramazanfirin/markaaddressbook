@@ -36,7 +36,7 @@ public class BusOwnerTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void loadData() {
+	void loadAllItems() {
 		entityList = DBManager.getInstance().loadBusOwners();
 		
 	}

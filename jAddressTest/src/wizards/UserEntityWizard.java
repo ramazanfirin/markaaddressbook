@@ -35,7 +35,8 @@ public class UserEntityWizard extends PersonEntityWizard {
 	 user.setPhone(page1.getPhone().getText());
 	 
 	 user.setUsername(page1.getUsername().getText());
-	 user.setPassword(Util.encrypt(page1.getPassword().getText()));
+	 if(!user.getPassword().equals(page1.getPassword().getText()))
+	 	user.setPassword(Util.encrypt(page1.getPassword().getText()));
 	 
 	  
 	 IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();

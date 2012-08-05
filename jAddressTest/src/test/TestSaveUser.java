@@ -3,6 +3,13 @@ package test;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import util.HibernateUtil;
+
 import junit.framework.TestCase;
 import model.DBManager;
 import model.model.Host;
@@ -10,16 +17,21 @@ import model.model.Host;
 public class TestSaveUser extends TestCase{
 	
 	public void testHost(){
-		
-		List list  = DBManager.getInstance().loadHosts();
-		System.out.println("baslangic");
-		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			Host host = (Host) iterator.next();
-			
-			System.out.println(host.getBusList().size());
-			
+		Session session=null;
+		Transaction tx=null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String queryString = "from Bus p where 1=1 and ( (p.firstDriver.name like '%ömer%' or p.firstDriver.name like '%ÖMER%') or (p.secondDriver.name like '%ömer%' or p.secondDriver.name like '%ÖMER%')or (p.thirdDriver.name like '%ömer%' or p.thirdDriver.name like '%ÖMER%' ))";
+			queryString = "from Bus p where p.firstDriver.name like '%Ömer%' or p.secondDriver.name like '%Ömer%'";
+			Query query = session.createQuery(queryString);
+			List list = query.list();
+			System.out.println(list.size());
+		}catch (HibernateException e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			session.close();
 		}
-		
 	}
 
 //	public void testUppercase(){

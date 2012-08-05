@@ -59,7 +59,7 @@ public class UserTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void loadData() {
+	void loadAllItems() {
 		entityList = DBManager.getInstance().loadUsers();
 		
 	}
@@ -82,11 +82,11 @@ public class UserTabItem extends PersonTabItem{
 	    return "";
 	}
 
-	@Override
-	void saveData() {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	void saveData() {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	@Override
 	String getName() {
@@ -100,8 +100,7 @@ public class UserTabItem extends PersonTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		super.delete(object);
-		
+		DBManager.getInstance().delete(object);
 	}
 
 }
