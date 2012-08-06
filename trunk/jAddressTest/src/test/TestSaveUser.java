@@ -16,23 +16,30 @@ import model.model.Host;
 
 public class TestSaveUser extends TestCase{
 	
-	public void testHost(){
-		Session session=null;
-		Transaction tx=null;
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			String queryString = "from Bus p where 1=1 and ( (p.firstDriver.name like '%ömer%' or p.firstDriver.name like '%ÖMER%') or (p.secondDriver.name like '%ömer%' or p.secondDriver.name like '%ÖMER%')or (p.thirdDriver.name like '%ömer%' or p.thirdDriver.name like '%ÖMER%' ))";
-			queryString = "from Bus p where p.firstDriver.name like '%Ömer%' or p.secondDriver.name like '%Ömer%'";
-			Query query = session.createQuery(queryString);
-			List list = query.list();
-			System.out.println(list.size());
-		}catch (HibernateException e) {
-			e.printStackTrace();
-			throw e;
-		}finally {
-			session.close();
-		}
+	public void testSearchBus(){
+       List list = DBManager.getInstance().searchBus("","", "ömer","", "", "", "", "");
+       System.out.println(list.size());
+       System.out.println("bitti");
 	}
+	
+	
+//	public void testHost(){
+//		Session session=null;
+//		Transaction tx=null;
+//		try {
+//			session = HibernateUtil.getSessionFactory().openSession();
+//			String queryString = "from Bus p where 1=1 and ( (p.firstDriver.name like '%ömer%' or p.firstDriver.name like '%ÖMER%') or (p.secondDriver.name like '%ömer%' or p.secondDriver.name like '%ÖMER%')or (p.thirdDriver.name like '%ömer%' or p.thirdDriver.name like '%ÖMER%' ))";
+//			queryString = "from Bus p where p.firstDriver.name like '%ömer%' or p.secondDriver.name like '%ömer%'";
+//			Query query = session.createQuery(queryString);
+//			List list = query.list();
+//			System.out.println(list.size());
+//		}catch (HibernateException e) {
+//			e.printStackTrace();
+//			throw e;
+//		}finally {
+//			session.close();
+//		}
+//	}
 
 //	public void testUppercase(){
 //		Session session=null;
