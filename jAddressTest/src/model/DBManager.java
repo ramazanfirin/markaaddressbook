@@ -1,7 +1,10 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
@@ -279,29 +282,74 @@ public class DBManager {
 			 String hostName,String hostSurname,String busOwnerName,String busOwnerSurname){
 		 Session session=null;
 			Transaction tx=null;
+			boolean driverNameExist=false;
+			boolean busOwnerExist=false;
 			try {
 				session = HibernateUtil.getSessionFactory().openSession();
-				String queryString = "from Bus p where 1=1";
-				if(plate!=null && !plate.equals(""))
-					queryString = queryString+ " and p.plate like '%"+plate+"%'";				
-				if(phone!=null && !phone.equals(""))
-					queryString = queryString+ " and p.phone like '%"+phone+"%'";		
-				if(driverName!=null && !driverName.equals(""))
-					queryString = queryString+ " and ( (p.firstDriver.name like '%"+driverName.toLowerCase()+"%' or p.firstDriver.name like '%"+driverName.toUpperCase()+"%') or (p.secondDriver.name like '%"+driverName.toLowerCase()+"%' or p.secondDriver.name like '%"+driverName.toUpperCase()+"%')or (p.thirdDriver.name like '%"+driverName.toLowerCase()+"%' or p.thirdDriver.name like '%"+driverName.toUpperCase()+"%' ))";	
-				if(driverSurname!=null && !driverSurname.equals(""))
-					queryString = queryString+ " and (p.firstDriver.surname like '%"+driverName+"%' or p.secondDriver.surname like '%"+driverName+"%' or p.thirdDriver.surname like '%"+driverName+"%')";	
-				if(hostName!=null && !hostName.equals(""))
-					queryString = queryString+ " and p.host.name like '%"+hostName+"%'";	
-				if(hostSurname!=null && !hostSurname.equals(""))
-					queryString = queryString+ " and p.host.surname like '%"+hostSurname+"%'";	
-				if(busOwnerName!=null && !busOwnerName.equals(""))
-					queryString = queryString+ " and (p.firstOwner.name like '%"+busOwnerName+"%' or p.secondOwner.name like '%"+busOwnerName+"%')";	
-				if(busOwnerSurname!=null && !busOwnerSurname.equals(""))
-					queryString = queryString+ " and (p.bussecondOwner.surname like '%"+busOwnerSurname+"%' or p.bussecondOwner.surname like '%"+busOwnerSurname+"%')";	
+								
+				String queryString1="from Bus p where 1=1 ";
+				String queryString2="from Bus p where 1=1 ";
+				String queryString3="from Bus p where 1=1 ";
+				//String queryString4;
+				if(driverName!=null && !driverName.equals("")){
+					driverNameExist= true;
+					queryString1 = queryString1+" and  (p.firstDriver.name like '%"+driverName.toLowerCase()+"%' or p.firstDriver.name like '%"+driverName.toUpperCase()+"%')"; 
+					queryString2 = queryString2+" and  (p.secondDriver.name like '%"+driverName.toLowerCase()+"%' or p.secondDriver.name like '%"+driverName.toUpperCase()+"%')"; 
+					queryString3 = queryString3+" and  (p.thirdDriver.name like '%"+driverName.toLowerCase()+"%' or p.thirdDriver.name like '%"+driverName.toUpperCase()+"%')";
+				}
 				
-				Query query = session.createQuery(queryString);
-				return  query.list();
+				if(driverSurname!=null && !driverSurname.equals("")){
+					driverNameExist= true;
+					queryString1 = queryString1+" and  (p.firstDriver.surname like '%"+driverSurname.toLowerCase()+"%' or p.firstDriver.surname like '%"+driverSurname.toUpperCase()+"%')"; 
+					queryString2 = queryString2+" and  (p.secondDriver.surname like '%"+driverSurname.toLowerCase()+"%' or p.secondDriver.surname like '%"+driverSurname.toUpperCase()+"%')"; 
+					queryString3 = queryString3+" and  (p.thirdDriver.surname like '%"+driverSurname.toLowerCase()+"%' or p.thirdDriver.surname like '%"+driverSurname.toUpperCase()+"%')";
+				}
+				
+//				if(busOwnerName!=null && !busOwnerName.equals("")){
+//					busOwnerExist= true;
+//					queryString4 = queryString1+" and  (p.firstDriver.surname like '%"+driverSurname.toLowerCase()+"%' or p.firstDriver.surname like '%"+driverSurname.toUpperCase()+"%')"; 
+//					queryString4 = queryString2+" and  (p.secondDriver.surname like '%"+driverSurname.toLowerCase()+"%' or p.secondDriver.surname like '%"+driverSurname.toUpperCase()+"%')"; 
+//					queryString3 = queryString3+" and  (p.thirdDriver.surname like '%"+driverSurname.toLowerCase()+"%' or p.thirdDriver.surname like '%"+driverSurname.toUpperCase()+"%')";
+//				}
+				
+				if(plate!=null && !plate.equals("")){
+					queryString1 = queryString1+ " and p.plate like '%"+plate+"%'";	
+					if(driverNameExist){
+						queryString2 = queryString2+ " and p.plate like '%"+plate+"%'";	
+						queryString3 = queryString3+ " and p.plate like '%"+plate+"%'";	
+					}	
+				}
+				
+				if(phone!=null && !phone.equals("")){
+					queryString1 = queryString1+ " and p.phone like '%"+phone+"%'";	
+					if(driverNameExist){
+						queryString2 = queryString2+ " and p.phone like '%"+phone+"%'";	
+						queryString3 = queryString3+ " and p.phone like '%"+phone+"%'";	
+					}	
+				}
+				
+				Query query1 = session.createQuery(queryString1);
+				Query query2 = session.createQuery(queryString2);
+				Query query3 = session.createQuery(queryString3);
+				
+				
+				Set<AbsractInterface> result= new HashSet<AbsractInterface>();
+				Set<AbsractInterface> set1= new HashSet(query1.list());;
+				
+				result.addAll(set1);
+				
+				
+				if(driverNameExist){
+					Set<AbsractInterface> set2= new HashSet(query2.list());;
+					result.addAll(set2);
+					Set<AbsractInterface> set3= new HashSet(query3.list());;
+					result.addAll(set3);
+				}
+	
+				List<AbsractInterface> list = new ArrayList<AbsractInterface>(); 
+				list.addAll(result);
 
+				return  list;
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				throw e;
