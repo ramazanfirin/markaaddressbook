@@ -193,7 +193,22 @@ public class DBManager {
 			}finally {
 				session.close();
 			}
-			
+	 }
+	 
+	 public List<AbsractInterface> loadAllMuavin(){
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from Muavin p where 1=1";
+		        Query query = session.createQuery(hql);
+		        return  query.list();
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
 	 }
 	 
 	 public List<AbsractInterface> loadBusOwners(){
@@ -401,7 +416,29 @@ public class DBManager {
 					bus.setHost(null);
 					session.update(bus);
 				}
-				
+				session.delete(object);
+				tx.commit();
+			} catch (HibernateException e) {
+				tx.rollback();
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+		}
+	 
+	 public void deleteMuavin(Object object){
+			Host obj = (Host)object;
+			Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
+				for (Iterator iterator = obj.getBusList().iterator(); iterator.hasNext();) {
+					Bus bus = (Bus) iterator.next();
+					bus.setHost(null);
+					session.update(bus);
+				}
 				session.delete(object);
 				tx.commit();
 			} catch (HibernateException e) {

@@ -24,6 +24,8 @@ public class Bus implements AbsractInterface{
 	private BusOwner firstOwner;
 	private BusOwner secondOwner;
 	
+	private Muavin muavin;
+	
 	public String getPlate() {
 		return plate;
 	}
@@ -87,5 +89,11 @@ public class Bus implements AbsractInterface{
 
 	public String getFormattedPhone(){
 		return Util.getFormattedPhone(phone);
+	}
+	public Muavin getMuavin() {
+		return muavin;
+	}
+	public void setMuavin(Muavin muavin) {
+		this.muavin = muavin;
 	}
 }

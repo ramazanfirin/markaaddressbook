@@ -20,5 +20,6 @@
 		<mapping resource="model/hbm/Authority.hbm.xml"/>
 		<mapping resource="model/hbm/Host.hbm.xml"/>
 		<mapping resource="model/hbm/BusOwner.hbm.xml"/>
+		<mapping resource="model/hbm/Muavin.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>
