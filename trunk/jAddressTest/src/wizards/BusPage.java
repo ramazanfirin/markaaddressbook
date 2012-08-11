@@ -45,6 +45,7 @@ class BusPage extends BasicPage{
    ComboViewer viewer4;
    ComboViewer viewer5;
    ComboViewer viewer6;
+   ComboViewer viewer7;
    
    AbsractInterface entity;
    
@@ -147,6 +148,25 @@ class BusPage extends BasicPage{
     else
     	viewer4.getCombo().setText(Util.getString("select")); 
     
+    
+    List muavinList=DBManager.getInstance().loadAllMuavin();
+    muavinList.add(0,Util.getString("select"));
+    
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("muavin"));
+    viewer7 = new ComboViewer(container, SWT.READ_ONLY);
+    viewer7.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    viewer7.getCombo().setEnabled(Util.isAdmin());
+    viewer7.setContentProvider(new ArrayContentProvider());
+    viewer7.setLabelProvider(personLabelProvider);
+    viewer7.setInput(muavinList);
+    viewer7.addSelectionChangedListener(comboSelectionChangeProvider); 
+    if(bus.getMuavin()!=null)
+    	viewer7.getCombo().setText(bus.getMuavin().getNameSurname());
+    else
+    	viewer7.getCombo().setText(Util.getString("select")); 
+    
+    
   
     createLine(container, layout.numColumns);
     
@@ -181,6 +201,8 @@ class BusPage extends BasicPage{
     	viewer6.getCombo().setText(bus.getSecondOwner().getNameSurname());
     else
     	viewer6.getCombo().setText(Util.getString("select")); 
+    
+    
     
     
     setControl(container);
@@ -308,6 +330,14 @@ public ComboViewer getViewer6() {
 
 public void setViewer6(ComboViewer viewer6) {
 	this.viewer6 = viewer6;
+}
+
+public ComboViewer getViewer7() {
+	return viewer7;
+}
+
+public void setViewer7(ComboViewer viewer7) {
+	this.viewer7 = viewer7;
 }
 
 

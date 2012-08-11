@@ -5,14 +5,13 @@ import model.model.Bus;
 import model.model.BusOwner;
 import model.model.Driver;
 import model.model.Host;
+import model.model.Muavin;
 
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardDialog;
 
 import com.AddressBookNew;
 
@@ -113,7 +112,16 @@ public class BusEntityWizard extends Wizard {
 		  bus.setSecondOwner(busOwner);
 	  }
     
-	  return true;
+      selection = (IStructuredSelection)page1.getViewer7().getSelection();
+      if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  bus.setMuavin(null);
+	  }else{
+		  Muavin muavin = (Muavin)selection.getFirstElement();
+		  bus.setMuavin(muavin);
+	  }
+    
+      
+      return true;
   }
   
  

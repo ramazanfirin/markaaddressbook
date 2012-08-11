@@ -17,12 +17,9 @@ package com;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import model.DBManager;
 import model.model.User;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.BusyIndicator;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -31,7 +28,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
 import org.mihalis.opal.login.LoginDialog;
 
 import util.MenuUtil;
@@ -41,6 +37,7 @@ import widgets.BusOwnerTabItem;
 import widgets.BusTabItem;
 import widgets.DriverTabItem;
 import widgets.HostTabItem;
+import widgets.MuavinTabItem;
 import widgets.UserTabItem;
 /**
  * AddressBookExample is an example that uses <code>org.eclipse.swt 
@@ -59,6 +56,8 @@ public class AddressBookNew {
 	 private UserTabItem tabItemUser;
 	 private HostTabItem tabItemHost;
 	 private BusOwnerTabItem tabItemBusOwner;
+	 private MuavinTabItem tabItemMuavin;
+	 
 	 private User loginUser;
 	
 	 public static Display display;
@@ -120,6 +119,7 @@ public Shell open(Display display) throws Exception{
     tabItemDriver = new DriverTabItem(cTabFolder,Util.getString("driver.list"));
     tabItemHost = new HostTabItem(cTabFolder,Util.getString("host.list"));
     tabItemBusOwner = new BusOwnerTabItem(cTabFolder,Util.getString("busOwner.list"));
+    tabItemMuavin = new MuavinTabItem(cTabFolder,Util.getString("muavin.list"));
     if(Util.isAdmin())
     tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
     
@@ -213,6 +213,18 @@ public BusOwnerTabItem getTabItemBusOwner() {
 
 public void setTabItemBusOwner(BusOwnerTabItem tabItemBusOwner) {
 	this.tabItemBusOwner = tabItemBusOwner;
+}
+
+
+
+public MuavinTabItem getTabItemMuavin() {
+	return tabItemMuavin;
+}
+
+
+
+public void setTabItemMuavin(MuavinTabItem tabItemMuavin) {
+	this.tabItemMuavin = tabItemMuavin;
 }
 
 

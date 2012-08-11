@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="model.model.Muavin" table="MUAVIN">
+	<id name="id" column="id" type="long">
+		<generator class="native"></generator>
+	</id>
+	
+	<property name="name" column="name" type="string"></property>
+	<property name="surname" column="surname" type="string"></property>
+	<property name="phone" column="phone" type="string"></property>
+	<property name="insertDate" column="insertDate" type="timestamp"></property>
+	
+	<set name="busList" table="Driver" inverse="true" lazy="false"  cascade="save-update">
+            <key>
+                <column name="MUAVIN" not-null="false" />
+            </key>
+            <one-to-many class="model.model.Bus" />
+     </set>
+     
+     	
+</class>
+</hibernate-mapping>
