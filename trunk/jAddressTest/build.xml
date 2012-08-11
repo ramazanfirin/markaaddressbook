@@ -31,7 +31,7 @@
 			</target>
 	
 	<target name="zip3">
-					<zip destfile="${root}/installer/SuhaTurizm_OtobusFihrist_v1_beta.zip" basedir="${root}" 
+					<zip destfile="${root}/installer/SuhaTurizm_OtobusFihrist_v.0.9.0.0_beta.zip" basedir="${root}" 
 						includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihrist.exe"  update="true">
 					
 						
