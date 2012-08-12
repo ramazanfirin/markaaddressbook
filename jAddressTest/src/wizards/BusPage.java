@@ -239,14 +239,8 @@ class BusPage extends BasicPage{
     return true;
   }  
   
-  private void createLine(Composite parent, int ncol) {
-	    Label line = new Label(parent, SWT.SEPARATOR | SWT.HORIZONTAL
-	        | SWT.BOLD);
-	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-	    gridData.horizontalSpan = ncol;
-	    line.setLayoutData(gridData);
-	  }
-  private void updateStatus(String message) {
+  
+  public void updateStatus(String message) {
 	    setErrorMessage(message);
 	    //setPageComplete(message == null);
 	  }

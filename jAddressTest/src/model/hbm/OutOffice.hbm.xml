@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="model.model.OutOffice" table="OutOffice">
+	<id name="id" column="id" type="long">
+		<generator class="native"></generator>
+	</id>
+	<many-to-one name="firstAuthorizedPerson"  class="model.model.AuthorizedPerson" column="AUTHORIZED_PERSON_1"   lazy="false" cascade="all"/>
+	<many-to-one name="secondAuthorizedPerson"  class="model.model.AuthorizedPerson" column="AUTHORIZED_PERSON_2"   lazy="false" cascade="all"/>
+	
+	<property name="firstPhone" column="firstPhone" type="string"></property>
+	<property name="secondPhone" column="secondPhone" type="string"></property>
+	<property name="thirdPhone" column="thirdPhone" type="string"></property>
+	
+	<property name="shortCode" column="shortCode" type="string"></property>
+	<property name="note" column="note" type="string"></property>
+	
+</class>
+</hibernate-mapping>

@@ -17,6 +17,7 @@ package com;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import model.DBManager;
 import model.model.User;
 
 import org.eclipse.swt.SWT;
@@ -38,6 +39,7 @@ import widgets.BusTabItem;
 import widgets.DriverTabItem;
 import widgets.HostTabItem;
 import widgets.MuavinTabItem;
+import widgets.OutOfficeTabItem;
 import widgets.UserTabItem;
 /**
  * AddressBookExample is an example that uses <code>org.eclipse.swt 
@@ -47,6 +49,7 @@ import widgets.UserTabItem;
  */
 public class AddressBookNew {
 
+	boolean checkLogin=false;
 	public static ResourceBundle resAddressBook = ResourceBundle.getBundle("addressbook",new Locale("tr", "TR"));
 	private Shell shell;
 	
@@ -57,6 +60,7 @@ public class AddressBookNew {
 	 private HostTabItem tabItemHost;
 	 private BusOwnerTabItem tabItemBusOwner;
 	 private MuavinTabItem tabItemMuavin;
+	 private OutOfficeTabItem tabItemOutOffice;
 	 
 	 private User loginUser;
 	
@@ -120,6 +124,7 @@ public Shell open(Display display) throws Exception{
     tabItemHost = new HostTabItem(cTabFolder,Util.getString("host.list"));
     tabItemBusOwner = new BusOwnerTabItem(cTabFolder,Util.getString("busOwner.list"));
     tabItemMuavin = new MuavinTabItem(cTabFolder,Util.getString("muavin.list"));
+    tabItemOutOffice = new OutOfficeTabItem(cTabFolder,Util.getString("outOffice.list"));
     if(Util.isAdmin())
     tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
     
@@ -134,8 +139,12 @@ public boolean checkLogin(){
 	dialog.setDisplayRememberPassword(false);
 	dialog.setVerifier(new LoginVerifier());
     
-    return dialog.open();
-    
+	if(checkLogin)
+		return dialog.open();
+	else{
+		loginUser = DBManager.getInstance().getUser(new Long(1));
+		return true;
+	}
 }
 
 private Menu createMenuBar() {
@@ -225,6 +234,18 @@ public MuavinTabItem getTabItemMuavin() {
 
 public void setTabItemMuavin(MuavinTabItem tabItemMuavin) {
 	this.tabItemMuavin = tabItemMuavin;
+}
+
+
+
+public OutOfficeTabItem getTabItemOutOffice() {
+	return tabItemOutOffice;
+}
+
+
+
+public void setTabItemOutOffice(OutOfficeTabItem tabItemOutOffice) {
+	this.tabItemOutOffice = tabItemOutOffice;
 }
 
 

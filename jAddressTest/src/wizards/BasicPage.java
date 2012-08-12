@@ -15,18 +15,20 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 public abstract class BasicPage extends WizardPage{
 	
 	private ISelection selection;
 	
-	abstract boolean dialogChanged();
+	abstract protected boolean dialogChanged();
 	
-	   ComboSelectionChangeProvider comboSelectionChangeProvider = new ComboSelectionChangeProvider();
-	   PersonLabelProvider personLabelProvider = new PersonLabelProvider();
-	   TextModifyListener textModifyListener = new TextModifyListener();
-	   DigitVerifyListener digitVerifyListener = new DigitVerifyListener();
+	protected   ComboSelectionChangeProvider comboSelectionChangeProvider = new ComboSelectionChangeProvider();
+	protected   PersonLabelProvider personLabelProvider = new PersonLabelProvider();
+	protected   TextModifyListener textModifyListener = new TextModifyListener();
+	protected   DigitVerifyListener digitVerifyListener = new DigitVerifyListener();
 	
 	
 	
@@ -40,6 +42,14 @@ public abstract class BasicPage extends WizardPage{
 	    setPageComplete(false);
 		
 	}
+	
+	protected BasicPage(String title) {
+		super(title);
+		setTitle(title);
+		    setPageComplete(false);
+		
+	}
+	
 
 	@Override
 	public void createControl(Composite parent) {
@@ -104,4 +114,18 @@ public abstract class BasicPage extends WizardPage{
 		}
 		
 	}
+	
+	protected void createLine(Composite parent, int ncol) {
+	    Label line = new Label(parent, SWT.SEPARATOR | SWT.HORIZONTAL
+	        | SWT.BOLD);
+	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+	    gridData.horizontalSpan = ncol;
+	    line.setLayoutData(gridData);
+	  }
+	
+	 public void updateStatus(String message) {
+		    setErrorMessage(message);
+		    setPageComplete(message == null);
+		  }
+
 }
