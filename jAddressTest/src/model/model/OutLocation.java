@@ -8,14 +8,16 @@ public class OutLocation implements AbsractInterface{
 	private AuthorizedPerson firstAuthorizedPerson=new AuthorizedPerson();
 	private AuthorizedPerson secondAuthorizedPerson = new AuthorizedPerson() ;
 	
-	private String firstPhone;
-	private String secondPhone;
-	private String thirdPhone;
+	private String firstPhone="";
+	private String secondPhone="";
+	private String thirdPhone="";
 	
-	private String shortCode;
-	private String note;
+	private String ipPhone="";
 	
-	private String adress;
+	private String shortCode="";
+	private String note="";
+	
+	private String adress="";
 	
 	
 	
@@ -90,6 +92,14 @@ public class OutLocation implements AbsractInterface{
 
 	public void setSecondAuthorizedPerson(AuthorizedPerson secondAuthorizedPerson) {
 		this.secondAuthorizedPerson = secondAuthorizedPerson;
+	}
+
+	public String getIpPhone() {
+		return ipPhone;
+	}
+
+	public void setIpPhone(String ipPhone) {
+		this.ipPhone = ipPhone;
 	}
 
 	
