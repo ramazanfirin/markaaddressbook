@@ -80,7 +80,7 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 	      
 	      Group grpLocation2=null;
 	      grpLocation2 = new Group(container, SWT.NONE);
-		    grpLocation2.setText(Util.getString("outOffice.firstAuthorization.person"));
+		    grpLocation2.setText(Util.getString("outOffice.secondAuthorization.person"));
 		    grpLocation2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		    GridLayout grpLayout2 = new GridLayout(2, false);
 		    grpLayout2.verticalSpacing = 9;
@@ -93,7 +93,7 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 	      label = new Label(grpLocation2, SWT.NULL);
 	      label.setText(Util.getString("name"));
 	      _name2 = new Text(grpLocation2, SWT.BORDER | SWT.SINGLE);
-	      _name2.setText(firstAuthorizedPerson.getName());
+	      _name2.setText(secondAuthorizedPerson.getName());
 	      _name2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 	      _name2.addModifyListener(textModifyListener);
 	      _name2.setEditable(Util.isAdmin());	
@@ -102,7 +102,7 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 	      label.setText(Util.getString("surname"));
 	      surname2 = new Text(grpLocation2, SWT.BORDER | SWT.SINGLE);
 	      surname2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-	      surname2.setText(firstAuthorizedPerson.getSurname());
+	      surname2.setText(secondAuthorizedPerson.getSurname());
 	      surname2.addModifyListener(textModifyListener);
 	      surname2.setEditable(Util.isAdmin());	
 	      
@@ -110,7 +110,7 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 	      label.setText(Util.getString("phone"));
 	      phone2 = new Text(grpLocation2, SWT.BORDER | SWT.SINGLE);
 	      phone2.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-	      phone2.setText(firstAuthorizedPerson.getPhone());
+	      phone2.setText(secondAuthorizedPerson.getPhone());
 	      phone2.addModifyListener(textModifyListener);
 	      phone2.setEditable(Util.isAdmin()); 
 	      phone2.addVerifyListener(digitVerifyListener);

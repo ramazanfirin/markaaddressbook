@@ -2,7 +2,9 @@ package widgets;
 
 import model.DBManager;
 import model.model.Muavin;
+import model.model.OutLocation;
 import model.model.OutOffice;
+import model.model.Person;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.custom.CTabFolder;
@@ -61,6 +63,23 @@ public class OutOfficeTabItem extends PersonTabItem{
 	@Override
 	void deleteEntity(Object object) {
 		//DBManager.getInstance().deleteHost(object);
+		
+	}
+	
+	@Override
+	String getTableColumValues(Object object, int columnIndex) {
+		OutLocation ae = (OutLocation) object;
+	    switch (columnIndex) {
+	    case 0:
+	      return ae.getFirstAuthorizedPerson().getNameSurnamePhone();
+	    case 1:
+	      return ae.getSecondAuthorizedPerson().getNameSurnamePhone();
+	    case 2:
+	      return ae.getNote();
+	    
+			
+	    }
+	    return "";
 		
 	}
 }

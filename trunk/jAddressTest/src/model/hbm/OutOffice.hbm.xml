@@ -12,6 +12,7 @@
 	<property name="firstPhone" column="firstPhone" type="string"></property>
 	<property name="secondPhone" column="secondPhone" type="string"></property>
 	<property name="thirdPhone" column="thirdPhone" type="string"></property>
+	<property name="ipPhone" column="ipPhone" type="string"></property>
 	
 	<property name="shortCode" column="shortCode" type="string"></property>
 	<property name="note" column="note" type="string"></property>
