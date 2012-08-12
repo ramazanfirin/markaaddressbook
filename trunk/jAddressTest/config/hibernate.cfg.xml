@@ -21,5 +21,8 @@
 		<mapping resource="model/hbm/Host.hbm.xml"/>
 		<mapping resource="model/hbm/BusOwner.hbm.xml"/>
 		<mapping resource="model/hbm/Muavin.hbm.xml"/>
+		<mapping resource="model/hbm/OutOffice.hbm.xml"/>
+		<mapping resource="model/hbm/AuthorizedPerson.hbm.xml"/>
+		
 	</session-factory>
 </hibernate-configuration>

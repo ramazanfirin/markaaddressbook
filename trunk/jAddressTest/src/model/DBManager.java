@@ -138,6 +138,25 @@ public class DBManager {
 			
 	 }
 	 
+	 public User getUser(Long id) {
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from User p where id="+id;
+		        Query query = session.createQuery(hql);
+
+				return  (User)query.uniqueResult();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+			
+	 }
+	 
 	 public List<AbsractInterface> loadAllBus2(){
 		 Session session=null;
 			Transaction tx=null;
@@ -489,6 +508,22 @@ public class DBManager {
 
 
 
+	 public List<AbsractInterface> loadAllOutOffice(){
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from OutOffice p where 1=1";
+		        Query query = session.createQuery(hql);
+		        return  query.list();
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+	 }
+	 
 
 
 

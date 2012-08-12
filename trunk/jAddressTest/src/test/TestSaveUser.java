@@ -1,7 +1,10 @@
 package test;
 
-import java.util.Iterator;
 import java.util.List;
+
+import junit.framework.TestCase;
+import model.model.AuthorizedPerson;
+import model.model.OutOffice;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -10,17 +13,62 @@ import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 
-import junit.framework.TestCase;
-import model.DBManager;
-import model.model.Host;
-
 public class TestSaveUser extends TestCase{
+
+	public void testOutLocation(){
+		Session session=null;
+		Transaction tx=null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			
+			OutOffice outOffice = new OutOffice();
+			outOffice.getFirstAuthorizedPerson().setName("ramazan");
+			outOffice.getFirstAuthorizedPerson().setSurname("firin");
+			outOffice.getFirstAuthorizedPerson().setPhone("5555555555555");
+			outOffice.getFirstAuthorizedPerson().setLocationType(AuthorizedPerson.EnumLocationType.OutOffice.toString());
+			
+			
+			session.save(outOffice);
+			tx.commit();
+		}catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+			throw e;
+		}finally {
+			session.close();
+		}
+   }
+
+	public void testOutLocationPerson(){
+		Session session=null;
+		Transaction tx=null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			
+			String queryString = "from OutOffice p where 1=1";
+			Query query = session.createQuery(queryString);
+			List list = query.list();
+			System.out.println(list.size()+"bitti");
+			
+			tx.commit();
+		}catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+			throw e;
+		}finally {
+			session.close();
+		}
+   }
 	
-	public void testSearchBus(){
-       List list = DBManager.getInstance().searchBus("","", "ömer","", "", "", "", "");
-       System.out.println(list.size());
-       System.out.println("bitti");
-	}
+	
+	
+//	public void testSearchBus(){
+//       List list = DBManager.getInstance().searchBus("","", "ömer","", "", "", "", "");
+//       System.out.println(list.size());
+//       System.out.println("bitti");
+//	}
 	
 	
 //	public void testHost(){
