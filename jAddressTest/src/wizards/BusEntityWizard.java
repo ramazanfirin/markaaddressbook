@@ -62,7 +62,9 @@ public class BusEntityWizard extends Wizard {
 	  Bus bus = (Bus)AddressBookNew.getInstance().getTabItemBus().getEntity();
 	  bus.setPlate(page1.getPlate().getText());
 	  bus.setPhone(page1.getPhone().getText());
+	  bus.setShortCode(page1.getShortCode().getText());
 
+	  
 	  IStructuredSelection selection = (IStructuredSelection)page1.getViewer().getSelection();
       if(selection.isEmpty() || selection.getFirstElement() instanceof String){
 		  bus.setFirstDriver(null);

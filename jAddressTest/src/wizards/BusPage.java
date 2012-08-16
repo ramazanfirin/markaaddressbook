@@ -36,6 +36,8 @@ class BusPage extends BasicPage{
   private Text plate;
 
    private Text phone;
+   
+   private Text shortCode;
 
    private ISelection selection;
 
@@ -81,6 +83,14 @@ class BusPage extends BasicPage{
     phone.addVerifyListener(digitVerifyListener);
     phone.setTextLimit(10);
 
+    label = new Label(container, SWT.NULL);
+    label.setText(Util.getString("bus.shortCode"));
+    shortCode = new Text(container, SWT.BORDER | SWT.SINGLE);
+    shortCode.setText(bus.getShortCode());
+    shortCode.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+    shortCode.addModifyListener(textModifyListener);
+    shortCode.setEditable(Util.isAdmin());
+      
     createLine(container, layout.numColumns);
     
     List driverList=DBManager.getInstance().loadAllDriver2();
@@ -332,6 +342,14 @@ public ComboViewer getViewer7() {
 
 public void setViewer7(ComboViewer viewer7) {
 	this.viewer7 = viewer7;
+}
+
+public Text getShortCode() {
+	return shortCode;
+}
+
+public void setShortCode(Text shortCode) {
+	this.shortCode = shortCode;
 }
 
 

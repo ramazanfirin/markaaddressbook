@@ -26,6 +26,8 @@ public class Bus implements AbsractInterface{
 	
 	private Muavin muavin;
 	
+	private String shortCode="";
+	
 	public String getPlate() {
 		return plate;
 	}
@@ -95,5 +97,11 @@ public class Bus implements AbsractInterface{
 	}
 	public void setMuavin(Muavin muavin) {
 		this.muavin = muavin;
+	}
+	public String getShortCode() {
+		return shortCode;
+	}
+	public void setShortCode(String shortCode) {
+		this.shortCode = shortCode;
 	}
 }

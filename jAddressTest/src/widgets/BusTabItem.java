@@ -22,7 +22,8 @@ public class BusTabItem extends BasicTabItem{
 	private static final String[] columnNames = {
 		 Util.getString("bus.plate"),
 		 Util.getString("bus.phoneNumber"),
- 	     Util.getString("driver.first.nameSurname"),
+		 Util.getString("bus.shortCode"),
+		 Util.getString("driver.first.nameSurname"),
  	     Util.getString("driver.second.nameSurname"),
 	     Util.getString("driver.third.nameSurname")
 	   	};
@@ -31,6 +32,7 @@ public class BusTabItem extends BasicTabItem{
 	Text textBusPlate;
 	Text textHostName;
 	Text textBusPhone;
+	Text textBusShortCode;
 	Text textHostSurname;
 	Text textDriverName;
 	Text textOwnerName;
@@ -90,6 +92,12 @@ public class BusTabItem extends BasicTabItem{
 //		textHostSurname=new Text(grpLocationBus,SWT.BORDER);
 //		textHostSurname.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
+		Label labelShortCode=new Label(grpLocationBus,SWT.NONE);
+		labelShortCode.setText(Util.getString("bus.shortCode"));
+		labelShortCode.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		textBusShortCode=new Text(grpLocationBus,SWT.BORDER);
+		textBusShortCode.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
 		Label labelDriverName=new Label(grpLocationBus,SWT.NONE);
 		labelDriverName.setText(Util.getString("driver.name"));
@@ -152,18 +160,21 @@ public class BusTabItem extends BasicTabItem{
 	    case 1:
 	      return ae.getFormattedPhone();
 	    case 2:
+		      return ae.getShortCode();
+		    
+	    case 3:
 	       if(ae.getFirstDriver()!=null)
 	    	   return ae.getFirstDriver().getNameSurname();
 	       else
 	    	   return "";
 	    
-	    case 3:
+	    case 4:
 		       if(ae.getSecondDriver()!=null)
 		    	   return ae.getSecondDriver().getNameSurname();
 		       else
 		    	   return "";
 		
-		case 4:
+		case 5:
 		       if(ae.getThirdDriver()!=null)
 		    	   return ae.getThirdDriver().getNameSurname();
 		       else
