@@ -262,5 +262,12 @@ public Button getUpdatePassword() {
 public void setUpdatePassword(Button updatePassword) {
 	this.updatePassword = updatePassword;
 }
+
+
+@Override
+public void createCustomPersonComponent(Composite container) {
+	// TODO Auto-generated method stub
+	
+}
   
 }

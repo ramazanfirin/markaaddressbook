@@ -25,6 +25,8 @@
             </key>
             <one-to-many class="model.model.Bus" />
      </set>
+     
+     <property name="shortCode" column="shortCode" type="string"></property>
 	
 	
 </class>

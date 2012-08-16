@@ -8,6 +8,8 @@ public class BusOwner extends Person{
 	private Set<Bus> firstBusOwnerList = new HashSet<Bus>(0);
 	private Set<Bus> secondBusOwnerList = new HashSet<Bus>(0);
 	
+	private String shortCode="";
+	
 	public Set<Bus> getBusList() {
 		HashSet<Bus> set = new HashSet<Bus>();
         set.addAll(getFirstBusOwnerList());
@@ -30,6 +32,14 @@ public class BusOwner extends Person{
 
 	public void setSecondBusOwnerList(Set<Bus> secondBusOwnerList) {
 		this.secondBusOwnerList = secondBusOwnerList;
+	}
+
+	public String getShortCode() {
+		return shortCode;
+	}
+
+	public void setShortCode(String shortCode) {
+		this.shortCode = shortCode;
 	}
 
 	

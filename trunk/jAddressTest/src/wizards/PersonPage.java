@@ -1,5 +1,7 @@
 package wizards;
 
+import java.awt.Container;
+
 import javax.swing.JFormattedTextField;
 
 import model.DBManager;
@@ -31,7 +33,7 @@ import org.eclipse.swt.widgets.Text;
 
 import util.Util;
 
-class PersonPage extends BasicPersonPage {
+abstract class  PersonPage extends BasicPersonPage {
   
  
   private ISelection selection;
@@ -89,11 +91,15 @@ class PersonPage extends BasicPersonPage {
       phone.setEditable(Util.isAdmin()); 
       phone.addVerifyListener(digitVerifyListener);
       phone.setTextLimit(10);
+      
+      createCustomPersonComponent(container);
       createLine(container, layout.numColumns);
       
     
   	
   }
+  
+  public abstract void createCustomPersonComponent(Composite container);
 
   @Override
   public void createTable(Composite main) {

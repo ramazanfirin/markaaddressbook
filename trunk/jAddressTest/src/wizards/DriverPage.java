@@ -138,5 +138,11 @@ public class BusTableLabelProvider extends LabelProvider implements ITableLabelP
 		return result;
 	}
 }
+
+@Override
+public void createCustomPersonComponent(Composite container) {
+	// TODO Auto-generated method stub
+	
+}
   
 }
