@@ -25,6 +25,8 @@
     <many-to-one name="secondOwner"   class="model.model.BusOwner"   column="SECOND_OWNER"           lazy="false"/>
 	<many-to-one name="muavin"         class="model.model.Muavin"   column="MUAVIN"           lazy="false"/>
 
+	<property name="shortCode" column="shortCode" type="string"></property>
+
 
 <!-- <one-to-one name="firstDriver" class="model.model.Driver"  cascade="save-update"></one-to-one> -->
 <!-- <one-to-one name="secondDriver" class="model.model.Driver"  cascade="save-update"></one-to-one> -->
