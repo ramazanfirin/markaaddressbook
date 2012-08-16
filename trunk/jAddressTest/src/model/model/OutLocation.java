@@ -1,5 +1,6 @@
 package model.model;
 
+import util.Util;
 import model.interfaces.AbsractInterface;
 
 public class OutLocation implements AbsractInterface{
@@ -102,5 +103,17 @@ public class OutLocation implements AbsractInterface{
 		this.ipPhone = ipPhone;
 	}
 
+	
+	public String getAllPhone(){
+		String result ="";
+		if(!Util.isEmpty(firstPhone))
+			result = result + " " +Util.getFormattedPhone(firstPhone);
+		if(!Util.isEmpty(secondPhone))
+			result = result + " " +Util.getFormattedPhone(firstPhone);
+		if(!Util.isEmpty(thirdPhone))
+			result = result + " " +Util.getFormattedPhone(firstPhone);
+		
+		return result;
+	}
 	
 }

@@ -18,7 +18,7 @@ import util.Util;
 import wizards.OutLocationWizard;
 import wizards.PersonEntityWizard;
 
-public class OutOfficeTabItem extends BasicTabItem{
+public class ServiceAreaTabItem extends BasicTabItem{
 
 	private static final String[] columnNames = {
 		Util.getString("outOffice.firstAuthorization.person"),
@@ -31,7 +31,7 @@ public class OutOfficeTabItem extends BasicTabItem{
 	Text textDriverPhone;
 			
 	
-	public OutOfficeTabItem(CTabFolder parent, String name) {
+	public ServiceAreaTabItem(CTabFolder parent, String name) {
 		super(parent, name);
 		// TODO Auto-generated constructor stub
 	}
@@ -87,12 +87,12 @@ public class OutOfficeTabItem extends BasicTabItem{
 
 	@Override
 	String getName() {
-		return Util.getString("outOffice.list");
+		return Util.getString("serviceArea.list");
 	}
 
 	@Override
 	String getWizardTitle() {
-		return Util.getString("outOffice");
+		return Util.getString("serviceArea");
 	}
 
 	@Override

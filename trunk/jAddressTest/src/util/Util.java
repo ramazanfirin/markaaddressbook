@@ -49,4 +49,11 @@ public class Util {
 			}
 			return value;
 	    }
+
+	 public static boolean isEmpty(String s){
+		 if(s==null | s.equals("") | s.length()==0)
+			return  true;
+		 else
+			return false;     
+	 }
 }
