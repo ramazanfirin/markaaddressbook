@@ -29,7 +29,7 @@ public abstract class BasicPage extends WizardPage{
 	protected   PersonLabelProvider personLabelProvider = new PersonLabelProvider();
 	protected   TextModifyListener textModifyListener = new TextModifyListener();
 	protected   DigitVerifyListener digitVerifyListener = new DigitVerifyListener();
-	
+	protected   WhiteSpaceVerifyListener whiteSpaceVerifyListener = new WhiteSpaceVerifyListener();	
 	
 	
 	
@@ -108,6 +108,20 @@ public abstract class BasicPage extends WizardPage{
         }  
   
         if (!Character.isDigit(event.character)) {  
+            event.doit = false;  // disallow the action  
+        }  
+			
+		}
+		
+	}
+	
+	class WhiteSpaceVerifyListener implements VerifyListener{
+
+		@Override
+		public void verifyText(VerifyEvent event) {
+			 
+  
+        if (event.keyCode==32) {  
             event.doit = false;  // disallow the action  
         }  
 			

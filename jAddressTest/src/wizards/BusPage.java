@@ -72,6 +72,8 @@ class BusPage extends BasicPage{
     plate.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     plate.addModifyListener(textModifyListener);
     plate.setEditable(Util.isAdmin());
+    plate.addVerifyListener(whiteSpaceVerifyListener);
+    
 
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("bus.phoneNumber"));
