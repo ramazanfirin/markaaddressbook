@@ -230,5 +230,12 @@ public Text getPasswordAgain() {
 public void setPasswordAgain(Text passwordAgain) {
 	this.passwordAgain = passwordAgain;
 }
+
+
+@Override
+public void createCustomPersonComponent(Composite container) {
+	// TODO Auto-generated method stub
+	
+}
   
 }

@@ -14,10 +14,14 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import util.Util;
+import wizards.BusOwnerEntityWizard;
+import wizards.PersonEntityWizard;
 import wizards.UserEntityWizard;
 
 public class BusOwnerTabItem extends PersonTabItem{
 
+	Text shortCode;
+	
 	public BusOwnerTabItem(CTabFolder parent, String name) {
 		super(parent, name);
 		// TODO Auto-generated constructor stub
@@ -27,6 +31,13 @@ public class BusOwnerTabItem extends PersonTabItem{
 	void prepareComponents(Composite grpLocation) {
 		super.prepareComponents(grpLocation);
 		
+		Label labelDriverPhone=new Label(grpLocation,SWT.NONE);
+		labelDriverPhone.setText(Util.getString("busOwner.shortCode"));
+		labelDriverPhone.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
+		
+		shortCode=new Text(grpLocation,SWT.BORDER);
+		shortCode.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		shortCode.setTextLimit(10);
 	}
 
 	@Override
@@ -35,6 +46,11 @@ public class BusOwnerTabItem extends PersonTabItem{
 		
 	}
 
+	@Override
+	Wizard getNewWizard() {
+		return new BusOwnerEntityWizard(entity,getWizardTitle());
+	}
+	
 	@Override
 	void loadAllItems() {
 		entityList = DBManager.getInstance().loadBusOwners();

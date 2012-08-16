@@ -6,6 +6,7 @@ import model.model.Person;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.widgets.Composite;
 
 
 import com.AddressBookNew;
@@ -16,7 +17,7 @@ public class PersonEntityWizard extends Wizard {
 
   public ISelection selection;
   
-  private AbsractInterface entity;
+  protected AbsractInterface entity;
   
   protected String title;
   
@@ -28,7 +29,15 @@ public class PersonEntityWizard extends Wizard {
   }
 
   public void addPages() {
-    page1 = new PersonPage(selection,entity,title);
+    //page1 = new PersonPage(selection,entity,title);
+   page1 = new PersonPage(selection,entity,title) {
+	
+	@Override
+	public void createCustomPersonComponent(Composite container) {
+		// TODO Auto-generated method stub
+		
+	}
+};
     addPage(page1);
   }
 
