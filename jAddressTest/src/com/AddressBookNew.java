@@ -40,6 +40,7 @@ import widgets.DriverTabItem;
 import widgets.HostTabItem;
 import widgets.MuavinTabItem;
 import widgets.OutOfficeTabItem;
+import widgets.ServiceAreaTabItem;
 import widgets.UserTabItem;
 /**
  * AddressBookExample is an example that uses <code>org.eclipse.swt 
@@ -61,6 +62,7 @@ public class AddressBookNew {
 	 private BusOwnerTabItem tabItemBusOwner;
 	 private MuavinTabItem tabItemMuavin;
 	 private OutOfficeTabItem tabItemOutOffice;
+	 private ServiceAreaTabItem tabItemServiceArea;
 	 
 	 private User loginUser;
 	
@@ -125,6 +127,7 @@ public Shell open(Display display) throws Exception{
     tabItemBusOwner = new BusOwnerTabItem(cTabFolder,Util.getString("busOwner.list"));
     tabItemMuavin = new MuavinTabItem(cTabFolder,Util.getString("muavin.list"));
     tabItemOutOffice = new OutOfficeTabItem(cTabFolder,Util.getString("outOffice.list"));
+    tabItemServiceArea = new ServiceAreaTabItem(cTabFolder,Util.getString("serviceArea.list"));
     if(Util.isAdmin())
     tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
     
