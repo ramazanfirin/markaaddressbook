@@ -1,6 +1,5 @@
 package widgets;
 
-import model.DBManager;
 import model.model.User;
 
 import org.eclipse.jface.wizard.Wizard;
@@ -60,7 +59,7 @@ public class UserTabItem extends PersonTabItem{
 
 	@Override
 	void loadAllItems() {
-		entityList = DBManager.getInstance().loadUsers();
+		entityList =Util.getApplicationInstance().getDataProvider().loadUsers();
 		
 	}
 
@@ -100,7 +99,7 @@ public class UserTabItem extends PersonTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		DBManager.getInstance().delete(object);
+		Util.getApplicationInstance().getDataProvider().delete(object);
 	}
 
 }

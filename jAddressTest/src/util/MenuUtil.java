@@ -1,6 +1,5 @@
 package util;
 
-import model.DBManager;
 import model.model.User;
 
 import org.eclipse.jface.window.Window;
@@ -18,8 +17,6 @@ import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 
 import wizards.UserUpdateWizard;
-
-import com.AddressBookNew;
 
 public class MenuUtil {
 
@@ -41,7 +38,7 @@ public class MenuUtil {
 		});
 }
 	
-	public static void createUserOperationMenu(Menu menuBar) {
+	public static void createUserOperationMenu(Menu menuBar){
 		final Shell shell = menuBar.getShell();
 		MenuItem item = new MenuItem(menuBar, SWT.CASCADE);
 		item.setText(Util.getString("userOperationMenu.title"));
@@ -55,11 +52,16 @@ public class MenuUtil {
 		subItem.setAccelerator(SWT.MOD1 + 'N');
 		subItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				User user = AddressBookNew.getInstance().getLoginUser();
+				User user = Util.getApplicationInstance().getLoginUser();
 				UserUpdateWizard updateWizard = new UserUpdateWizard(user,"Kullanici Bilgileri"); 
 				WizardDialog wizardDialog = new WizardDialog(shell.getShell(), updateWizard);
 				if(wizardDialog.open()==Window.OK){
-					DBManager.getInstance().saveOrUpdate(user);
+					try {
+						Util.getApplicationInstance().getDataProvider().saveOrUpdate(user);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -81,7 +83,7 @@ public class MenuUtil {
 		subItem.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					AddressBookNew.getInstance().getTabItemDriver().newEntity();
+					Util.getApplicationInstance().getTabItemDriver().newEntity();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -96,7 +98,7 @@ public class MenuUtil {
 		subItemBus.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					AddressBookNew.getInstance().getTabItemBus().newEntity();
+					Util.getApplicationInstance().getTabItemBus().newEntity();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -110,7 +112,7 @@ public class MenuUtil {
 		subItemHost.setAccelerator(SWT.MOD1 + 'N');
 		subItemHost.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				AddressBookNew.getInstance().getTabItemHost().newEntity();
+				Util.getApplicationInstance().getTabItemHost().newEntity();
 			}
 		});
 		
@@ -120,7 +122,7 @@ public class MenuUtil {
 		subItemBusOwner.setAccelerator(SWT.MOD1 + 'N');
 		subItemBusOwner.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				AddressBookNew.getInstance().getTabItemBusOwner().newEntity();
+				Util.getApplicationInstance().getTabItemBusOwner().newEntity();
 			}
 		});
 }
@@ -161,7 +163,7 @@ public class MenuUtil {
 	    Image icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");    itemDriver.setImage(icon);
 	    itemDriver.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				AddressBookNew.getInstance().getTabItemDriver().newEntity();
+				Util.getApplicationInstance().getTabItemDriver().newEntity();
 			}
 		});
 	    
@@ -172,7 +174,7 @@ public class MenuUtil {
 	    itemBus.setImage(icon);
 	    itemBus.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				AddressBookNew.getInstance().getTabItemBus().newEntity();
+				Util.getApplicationInstance().getTabItemBus().newEntity();
 			}
 		});
 	    
@@ -183,7 +185,7 @@ public class MenuUtil {
 	    itemHost.setImage(icon);
 	    itemHost.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				AddressBookNew.getInstance().getTabItemHost().newEntity();
+				Util.getApplicationInstance().getTabItemHost().newEntity();
 			}
 		});
 
@@ -194,7 +196,7 @@ public class MenuUtil {
 	    itemBusOwner.setImage(icon);
 	    itemBusOwner.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				AddressBookNew.getInstance().getTabItemBusOwner().newEntity();
+				Util.getApplicationInstance().getTabItemBusOwner().newEntity();
 			}
 		});
 	    
@@ -205,7 +207,7 @@ public class MenuUtil {
 	    itemUser.setImage(icon);
 	    itemUser.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				AddressBookNew.getInstance().getTabItemUser().newEntity();
+				Util.getApplicationInstance().getTabItemUser().newEntity();
 			}
 		});
 	    
@@ -215,11 +217,16 @@ public class MenuUtil {
 	    itemUserUpdate.setImage(icon);
 	    itemUserUpdate.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				User user = AddressBookNew.getInstance().getLoginUser();
+				User user = Util.getApplicationInstance().getLoginUser();
 				UserUpdateWizard updateWizard = new UserUpdateWizard(user,"Kullanici Bilgileri"); 
 				WizardDialog wizardDialog = new WizardDialog(_parent.getShell(), updateWizard);
 				if(wizardDialog.open()==Window.OK){
-					DBManager.getInstance().saveOrUpdate(user);
+					try {
+						Util.getApplicationInstance().getDataProvider().saveOrUpdate(user);
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 				}
 			}

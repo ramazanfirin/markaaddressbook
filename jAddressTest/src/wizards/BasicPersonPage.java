@@ -2,7 +2,6 @@ package wizards;
 
 import java.util.List;
 
-import model.DBManager;
 import model.model.Authority;
 import model.model.Bus;
 import model.model.User;

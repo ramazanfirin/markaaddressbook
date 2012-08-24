@@ -1,16 +1,14 @@
 package widgets;
 
-import model.DBManager;
 import model.model.Bus;
-import model.model.Driver;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
@@ -50,8 +48,14 @@ public class BusTabItem extends BasicTabItem{
 //		entityList =DBManager.getInstance().searchBus(textBusPlate.getText(), textBusPhone.getText(), textDriverName.getText(), textDriverSurname.getText(), 
 //				textHostName.getText(), textHostSurname.getText(), textOwnerName.getText(), textOwnerSurname.getText());
 	
-		entityList =DBManager.getInstance().searchBus(textBusPlate.getText(), textBusPhone.getText(), textDriverName.getText(), textDriverSurname.getText(), 
-				"", "", "", "");
+		try {
+			entityList =Util.getApplicationInstance().getDataProvider().searchBus(textBusPlate.getText(), textBusPhone.getText(), textDriverName.getText(), textDriverSurname.getText(), 
+					"", "", "", "");
+		} catch (Exception e) {
+			 
+			e.printStackTrace();
+			MessageDialog.openError(this.shell, "Hata", e.getMessage());
+		}
 		refresh();
 	}
 
@@ -148,7 +152,7 @@ public class BusTabItem extends BasicTabItem{
 
 	@Override
 	void loadAllItems() {
-		entityList = DBManager.getInstance().loadAllBus2();
+		entityList = Util.getApplicationInstance().getDataProvider().loadAllBus2();
 	}
 	
 	@Override
@@ -199,7 +203,7 @@ public class BusTabItem extends BasicTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		DBManager.getInstance().delete(object);
+		Util.getApplicationInstance().getDataProvider().delete(object);
 		
 	}
 

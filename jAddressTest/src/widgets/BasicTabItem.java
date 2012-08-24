@@ -5,10 +5,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import model.DBManager;
 import model.interfaces.AbsractInterface;
 
-import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -16,7 +14,6 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -187,7 +184,7 @@ public abstract class BasicTabItem extends CTabItem{
 				//wizard.getWindowTitle();
 				if(!Util.isAdmin() )
 					return;
-				DBManager.getInstance().saveOrUpdate(entity);
+				Util.getApplicationInstance().getDataProvider().saveOrUpdate(entity);
 				//saveData();
 				//loadAllItems();
 				//refresh();
@@ -215,7 +212,7 @@ public abstract class BasicTabItem extends CTabItem{
 	public void save(Object object){
 		
 		try {
-			DBManager.getInstance().saveOrUpdate(object);
+			Util.getApplicationInstance().getDataProvider().saveOrUpdate(object);
 			loadAllItems();
 			refresh();
 		} catch (Exception e) {

@@ -1,26 +1,16 @@
 package wizards;
 
-import java.awt.peer.LabelPeer;
 import java.util.List;
 import java.util.Set;
 
-import model.DBManager;
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.Driver;
-import model.model.Person;
 
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -28,8 +18,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import util.Util;
-
-import com.AddressBookNew;
 
 class BusPage extends BasicPage{
   
@@ -95,7 +83,7 @@ class BusPage extends BasicPage{
       
     createLine(container, layout.numColumns);
     
-    List driverList=DBManager.getInstance().loadAllDriver2();
+    List driverList=Util.getApplicationInstance().getDataProvider().loadAllDriver2();
     driverList.add(0,Util.getString("select"));
     
     label = new Label(container, SWT.NULL);
@@ -143,7 +131,7 @@ class BusPage extends BasicPage{
     
     createLine(container, layout.numColumns);
     
-    List hostList=DBManager.getInstance().loadHosts();
+    List hostList=Util.getApplicationInstance().getDataProvider().loadHosts();
     hostList.add(0,Util.getString("select"));
     
     label = new Label(container, SWT.NULL);
@@ -161,7 +149,7 @@ class BusPage extends BasicPage{
     	viewer4.getCombo().setText(Util.getString("select")); 
     
     
-    List muavinList=DBManager.getInstance().loadAllMuavin();
+    List muavinList=Util.getApplicationInstance().getDataProvider().loadAllMuavin();
     muavinList.add(0,Util.getString("select"));
     
     label = new Label(container, SWT.NULL);
@@ -182,7 +170,7 @@ class BusPage extends BasicPage{
   
     createLine(container, layout.numColumns);
     
-    List ownerList=DBManager.getInstance().loadBusOwners();
+    List ownerList=Util.getApplicationInstance().getDataProvider().loadBusOwners();
     ownerList.add(0,Util.getString("select"));
     
     label = new Label(container, SWT.NULL);

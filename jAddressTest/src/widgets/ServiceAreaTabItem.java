@@ -1,10 +1,7 @@
 package widgets;
 
-import model.DBManager;
-import model.model.Muavin;
 import model.model.OutLocation;
 import model.model.OutOffice;
-import model.model.Person;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
@@ -16,7 +13,6 @@ import org.eclipse.swt.widgets.Text;
 
 import util.Util;
 import wizards.OutLocationWizard;
-import wizards.PersonEntityWizard;
 
 public class ServiceAreaTabItem extends BasicTabItem{
 
@@ -81,7 +77,7 @@ public class ServiceAreaTabItem extends BasicTabItem{
 
 	@Override
 	void loadAllItems() {
-		entityList = DBManager.getInstance().loadAllOutOffice();
+		entityList = Util.getApplicationInstance().getDataProvider().loadAllOutOffice();
        	
 	}
 

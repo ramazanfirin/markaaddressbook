@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.jws.WebMethod;
+
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.BusOwner;
@@ -20,13 +22,12 @@ import org.hibernate.Transaction;
 
 import util.HibernateUtil;
 
-public class DBManager {
+public class DBDataProvider implements DataProvider{
 
-	 private static DBManager instance = new DBManager();
-	 public static DBManager getInstance() {
+	 private static DBDataProvider instance = new DBDataProvider();
+	 public static DBDataProvider getInstance() {
 			return instance;
 		}
-	 
 	 
 	 public void saveOrUpdate(Object o) {
 		 Session session=null;
@@ -62,24 +63,24 @@ public class DBManager {
 			}
 	 }
 	 
-	 public List<Driver> loadAllDriver(){
-		 Session session=null;
-			Transaction tx=null;
-			try {
-				session = HibernateUtil.getSessionFactory().openSession();
-				String hql = "from Driver p where 1=1 order by p.name";
-		        Query query = session.createQuery(hql);
-
-				return  query.list();
-
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				throw e;
-			}finally {
-				session.close();
-			}
-			
-	 }
+//	 public List<Driver> loadAllDriver(){
+//		 Session session=null;
+//			Transaction tx=null;
+//			try {
+//				session = HibernateUtil.getSessionFactory().openSession();
+//				String hql = "from Driver p where 1=1 order by p.name";
+//		        Query query = session.createQuery(hql);
+//
+//				return  query.list();
+//
+//			} catch (HibernateException e) {
+//				e.printStackTrace();
+//				throw e;
+//			}finally {
+//				session.close();
+//			}
+//			
+//	 }
 	 
 	 public List<AbsractInterface> loadAllDriver2(){
 		 Session session=null;
@@ -100,55 +101,58 @@ public class DBManager {
 			
 	 }
 	 
-	 public List<Bus> loadAllBus() {
-		 Session session=null;
-			Transaction tx=null;
-			try {
-				session = HibernateUtil.getSessionFactory().openSession();
-				String hql = "from Bus p where 1=1 order by p.plate";
-		        Query query = session.createQuery(hql);
-
-				return  query.list();
-
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				throw e;
-			}finally {
-				session.close();
-			}
-			
-	 }
+//	 public List<Bus> loadAllBus() {
+//		 Session session=null;
+//			Transaction tx=null;
+//			try {
+//				session = HibernateUtil.getSessionFactory().openSession();
+//				String hql = "from Bus p where 1=1 order by p.plate";
+//		        Query query = session.createQuery(hql);
+//
+//				return  query.list();
+//
+//			} catch (HibernateException e) {
+//				e.printStackTrace();
+//				throw e;
+//			}finally {
+//				session.close();
+//			}
+//			
+//	 }
 	 
-	 public Bus getBus(Long id) {
-		 Session session=null;
-			Transaction tx=null;
-			try {
-				session = HibernateUtil.getSessionFactory().openSession();
-				String hql = "from Bus p where id="+id;
-		        Query query = session.createQuery(hql);
-
-				return  (Bus)query.uniqueResult();
-
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				throw e;
-			}finally {
-				session.close();
-			}
-			
-	 }
+//	 public Bus getBus(Long id) {
+//		 Session session=null;
+//			Transaction tx=null;
+//			try {
+//				session = HibernateUtil.getSessionFactory().openSession();
+//				String hql = "from Bus p where id="+id;
+//		        Query query = session.createQuery(hql);
+//
+//				return  (Bus)query.uniqueResult();
+//
+//			} catch (HibernateException e) {
+//				e.printStackTrace();
+//				throw e;
+//			}finally {
+//				session.close();
+//			}
+//			
+//	 }
 	 
 	 public User getUser(Long id) {
 		 Session session=null;
 			Transaction tx=null;
 			try {
 				session = HibernateUtil.getSessionFactory().openSession();
+				tx = session.beginTransaction();
 				String hql = "from User p where id="+id;
 		        Query query = session.createQuery(hql);
-
+		        if (!tx.wasCommitted())
+		            tx.commit();
 				return  (User)query.uniqueResult();
 
 			} catch (HibernateException e) {
+				tx.rollback();
 				e.printStackTrace();
 				throw e;
 			}finally {

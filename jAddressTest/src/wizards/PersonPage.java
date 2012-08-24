@@ -1,10 +1,5 @@
 package wizards;
 
-import java.awt.Container;
-
-import javax.swing.JFormattedTextField;
-
-import model.DBManager;
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.Person;
@@ -127,7 +122,12 @@ abstract class  PersonPage extends BasicPersonPage {
 					WizardDialog wizardDialog = new WizardDialog(getShell(), busWizard);
 					if(wizardDialog.open()==Window.OK){
 						if(Util.isAdmin())
-							DBManager.getInstance().saveOrUpdate(bus);
+							try {
+								Util.getApplicationInstance().getDataProvider().saveOrUpdate(bus);
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 					}
 				}
 			}
