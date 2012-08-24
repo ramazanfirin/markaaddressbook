@@ -1,19 +1,9 @@
 package widgets;
 
-import java.util.Iterator;
-import java.util.Set;
-
-import model.DBManager;
-import model.model.Bus;
 import model.model.Driver;
 
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 
 import util.Util;
 import wizards.DriverEntityWizard;
@@ -51,7 +41,7 @@ public class DriverTabItem extends PersonTabItem{
 
 	@Override
 	void loadAllItems() {
-			entityList = DBManager.getInstance().loadAllDriver2();
+			entityList = Util.getApplicationInstance().getDataProvider().loadAllDriver2();
 	}
 	
 //	@Override
@@ -74,7 +64,7 @@ public class DriverTabItem extends PersonTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		DBManager.getInstance().deleteDriver(object);
+		Util.getApplicationInstance().getDataProvider().deleteDriver(object);
 		
 	}
 

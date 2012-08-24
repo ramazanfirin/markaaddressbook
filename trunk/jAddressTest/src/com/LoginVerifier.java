@@ -1,9 +1,7 @@
 package com;
 
-import model.DBManager;
 import model.model.User;
 
-import org.eclipse.swt.custom.BusyIndicator;
 import org.mihalis.opal.login.LoginDialogVerifier;
 
 import util.Util;
@@ -28,14 +26,10 @@ public class LoginVerifier implements LoginDialogVerifier{
 //                    throw new Exception("Authentication failed, please check your password.");
 //            }
             
-           	 User user=DBManager.getInstance().checkPassword(login, Util.encrypt(password));
+           	 User user=Util.getApplicationInstance().getDataProvider().checkPassword(login, Util.encrypt(password));
 		            if(user==null)
 		            	 throw new Exception("Sifre yanlis");
 		            
-		           AddressBookNew.getInstance().setLoginUser(user); 
-
-				
-			
-           
-    }
+		           Util.getApplicationInstance().setLoginUser(user); 
+ }
 }

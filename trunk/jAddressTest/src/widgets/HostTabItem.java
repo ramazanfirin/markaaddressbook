@@ -1,19 +1,11 @@
 package widgets;
 
-import model.DBManager;
 import model.model.Host;
-import model.model.User;
 
-import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 
 import util.Util;
-import wizards.UserEntityWizard;
 
 public class HostTabItem extends PersonTabItem{
 
@@ -42,7 +34,7 @@ public class HostTabItem extends PersonTabItem{
 
 	@Override
 	void loadAllItems() {
-		entityList = DBManager.getInstance().loadHosts();
+		entityList = Util.getApplicationInstance().getDataProvider().loadHosts();
        	
 	}
 
@@ -58,7 +50,7 @@ public class HostTabItem extends PersonTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		DBManager.getInstance().deleteHost(object);
+		Util.getApplicationInstance().getDataProvider().deleteHost(object);
 		
 		
 	}

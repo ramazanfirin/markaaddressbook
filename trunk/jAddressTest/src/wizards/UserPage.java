@@ -2,7 +2,6 @@ package wizards;
 
 import java.util.List;
 
-import model.DBManager;
 import model.interfaces.AbsractInterface;
 import model.model.Authority;
 import model.model.Bus;
@@ -11,14 +10,9 @@ import model.model.User;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -104,7 +98,7 @@ class UserPage extends PersonPage {
 	    		return super.getText(element);
 	    	}
 	    });
-	    List busList=DBManager.getInstance().loadAuthorith();
+	    List busList=Util.getApplicationInstance().getDataProvider().loadAuthorith();
 	    viewer.setInput(busList);
 	    viewer.addSelectionChangedListener(comboSelectionChangeProvider);
 	    

@@ -1,6 +1,5 @@
 package widgets;
 
-import model.DBManager;
 import model.model.Person;
 
 import org.eclipse.jface.wizard.Wizard;
@@ -35,7 +34,7 @@ public abstract class PersonTabItem extends BasicTabItem{
 	void search() {
 		if(entity == null)
 			createNewEntity();
-		entityList = DBManager.getInstance().searchEntiy(entity.getClass(), textDriverName.getText(), textDriverSurname.getText(), textDriverPhone.getText());		
+		entityList = Util.getApplicationInstance().getDataProvider().searchEntiy(entity.getClass(), textDriverName.getText(), textDriverSurname.getText(), textDriverPhone.getText());		
 		refresh();
 	}
 

@@ -17,7 +17,9 @@ package com;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import model.DBManager;
+import model.DBDataProvider;
+import model.DataProvider;
+import model.HttpDataProvider;
 import model.model.User;
 
 import org.eclipse.swt.SWT;
@@ -31,6 +33,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.mihalis.opal.login.LoginDialog;
 
+import server.Server;
 import util.MenuUtil;
 import util.Util;
 import widgets.BasicCTabFolder;
@@ -50,7 +53,7 @@ import widgets.UserTabItem;
  */
 public class AddressBookNew {
 
-	boolean checkLogin=false;
+	boolean checkLogin=true;
 	public static ResourceBundle resAddressBook = ResourceBundle.getBundle("addressbook",new Locale("tr", "TR"));
 	private Shell shell;
 	
@@ -68,36 +71,47 @@ public class AddressBookNew {
 	
 	 public static Display display;
 	
+	 DataProvider dataProvider;
 	 
-	 private static AddressBookNew instance = new AddressBookNew();
+	 public Boolean userLocalDB=true;
+	 public Boolean isRunning=false;
+	 
+	 protected static AddressBookNew instance = new AddressBookNew();
 	 public static AddressBookNew getInstance() {
 			return instance;
-		}
+	 }
 
 	 
 	 
 public static void main(String[] args){
 	System.out.println("basliyoruz");
 	try {
+		Server server = new Server();
+		instance.userLocalDB=true;
+		instance.isRunning=true;
 		display = new Display();
 		Shell shell = instance.open(display);
+		
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
 		}
 		display.dispose();
+		System.exit(0);
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
 }
 public Shell open(Display display) throws Exception{
+	prepareDataProvider();
+	
 	shell = new Shell(display);
 	FillLayout layout = new FillLayout();
 	layout.type=SWT.VERTICAL;
 	shell.setLayout(layout);
 	 
     if(checkLogin())
-    	shell.setText(Util.getString("firm.name")+"-"+Util.getString("welcome.message",loginUser.getNameSurname()));
+    	shell.setText(Util.getString("firm.name")+"-"+Util.getString("welcome.message",loginUser.getNameSurname())+" useLocalDB="+userLocalDB);
     else{
     	shell.dispose();
     	return shell;
@@ -111,7 +125,7 @@ public Shell open(Display display) throws Exception{
     cMenu.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     createToolBar(cMenu);
     cMenu.pack();
-  
+    this.getLoginUser();
     createMenuBar();
     
     cTabFolder = new BasicCTabFolder(cContent, SWT.BORDER);
@@ -136,6 +150,13 @@ public Shell open(Display display) throws Exception{
 	return shell;
 }
 
+public void prepareDataProvider(){
+	if(userLocalDB)
+		dataProvider = new DBDataProvider();
+	else
+		dataProvider = new HttpDataProvider();
+}
+
 public boolean checkLogin(){
 	final LoginDialog dialog = new LoginDialog();
 	dialog.setDescription(Util.getString("login.message"));
@@ -145,7 +166,10 @@ public boolean checkLogin(){
 	if(checkLogin)
 		return dialog.open();
 	else{
-		loginUser = DBManager.getInstance().getUser(new Long(1));
+		if(userLocalDB)
+			loginUser = getDataProvider().getUser(new Long(1));
+		else
+			loginUser = getDataProvider().getUser(new Long(2));
 		return true;
 	}
 }
@@ -249,6 +273,18 @@ public OutOfficeTabItem getTabItemOutOffice() {
 
 public void setTabItemOutOffice(OutOfficeTabItem tabItemOutOffice) {
 	this.tabItemOutOffice = tabItemOutOffice;
+}
+
+
+
+public DataProvider getDataProvider() {
+	return dataProvider;
+}
+
+
+
+public void setDataProvider(DataProvider dataProvider) {
+	this.dataProvider = dataProvider;
 }
 
 

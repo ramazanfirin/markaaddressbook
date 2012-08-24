@@ -1,9 +1,6 @@
 package widgets;
 
-import model.DBManager;
 import model.model.BusOwner;
-import model.model.Host;
-import model.model.User;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
@@ -15,8 +12,6 @@ import org.eclipse.swt.widgets.Text;
 
 import util.Util;
 import wizards.BusOwnerEntityWizard;
-import wizards.PersonEntityWizard;
-import wizards.UserEntityWizard;
 
 public class BusOwnerTabItem extends PersonTabItem{
 
@@ -53,7 +48,7 @@ public class BusOwnerTabItem extends PersonTabItem{
 	
 	@Override
 	void loadAllItems() {
-		entityList = DBManager.getInstance().loadBusOwners();
+		entityList = Util.getApplicationInstance().getDataProvider().loadBusOwners();
 		
 	}
 	
@@ -69,7 +64,7 @@ public class BusOwnerTabItem extends PersonTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		DBManager.getInstance().deleteBusOwner(object);
+		Util.getApplicationInstance().getDataProvider().deleteBusOwner(object);
 	}
 
 	

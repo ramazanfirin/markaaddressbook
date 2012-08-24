@@ -7,6 +7,7 @@ import org.apache.commons.codec.binary.Base64;
 
 
 import com.AddressBookNew;
+import com.AddressBookNewClient;
 
 public class Util {
 
@@ -28,7 +29,7 @@ public class Util {
 
 	
 	public static boolean isAdmin(){
-		if(AddressBookNew.getInstance().getLoginUser().getAuthority().getAuthority().equals(Util.getString("authority.admin")))
+		if(Util.getApplicationInstance().getLoginUser().getAuthority().getAuthority().equals(Util.getString("authority.admin")))
 			return true;
 		else
 			return false;
@@ -55,5 +56,12 @@ public class Util {
 			return  true;
 		 else
 			return false;     
+	 }
+
+	 public static AddressBookNew getApplicationInstance(){
+		 if(AddressBookNew.getInstance().isRunning)
+			 return AddressBookNew.getInstance();
+		 else
+			 return AddressBookNewClient.getInstance();
 	 }
 }

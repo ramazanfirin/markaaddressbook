@@ -2,19 +2,53 @@ package test;
 
 import java.util.List;
 
+import model.HttpDataProvider;
+import model.interfaces.AbsractInterface;
 import junit.framework.TestCase;
-import model.model.AuthorizedPerson;
-import model.model.OutOffice;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
-import util.HibernateUtil;
+import server.Server;
 
 public class TestSaveUser extends TestCase{
 
+	
+	public void testDriverall2(){
+		
+		new Server();
+		List<AbsractInterface> list=HttpDataProvider.getInstance().loadAllDriver2();
+		System.out.println("bitti");
+	}
+
+	/*
+	public void testDriverall2(){
+		
+			
+		Session session=null;
+		Transaction tx=null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			tx = session.beginTransaction();
+			List<AbsractInterface> list=DBDataProvider.getInstance().loadAllDriver2();
+			Driver driver=(Driver)list.get(0);
+			System.out.println(driver.getName());
+			//System.out.println(driver.get);
+			
+			
+			XStream xstream = new XStream();
+			String xml = xstream.toXML(list);
+			
+			System.out.println(xml);
+			
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+	}
+	
+	/*
+	
+	
 	public void testOutLocation(){
 		Session session=null;
 		Transaction tx=null;

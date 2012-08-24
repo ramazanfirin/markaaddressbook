@@ -1,6 +1,5 @@
 package widgets;
 
-import model.DBManager;
 import model.model.Muavin;
 
 import org.eclipse.swt.custom.CTabFolder;
@@ -35,7 +34,7 @@ public class MuavinTabItem extends PersonTabItem{
 
 	@Override
 	void loadAllItems() {
-		entityList = DBManager.getInstance().loadAllMuavin();
+		entityList = Util.getApplicationInstance().getDataProvider().loadAllMuavin();
        	
 	}
 
@@ -51,7 +50,7 @@ public class MuavinTabItem extends PersonTabItem{
 
 	@Override
 	void deleteEntity(Object object) {
-		DBManager.getInstance().deleteHost(object);
+		Util.getApplicationInstance().getDataProvider().deleteHost(object);
 		
 	}
 }
