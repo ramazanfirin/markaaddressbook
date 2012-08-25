@@ -27,4 +27,6 @@ public interface IHelloWorld {
 	 String loadUsers();
 	 
 	 String saveOrUpdate(String string)  throws Exception;
+	 
+	 String loadCities();
 }

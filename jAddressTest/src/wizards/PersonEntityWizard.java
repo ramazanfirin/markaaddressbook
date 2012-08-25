@@ -1,15 +1,13 @@
 package wizards;
 
 import model.interfaces.AbsractInterface;
-import model.model.Driver;
+import model.model.City;
 import model.model.Person;
 
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
-
-
-import com.AddressBookNew;
 
 
 public class PersonEntityWizard extends Wizard {
@@ -47,7 +45,18 @@ public class PersonEntityWizard extends Wizard {
 	 person.setName(page1.getNameVariable().getText());
 	 person.setSurname(page1.getSurname().getText());
 	 person.setPhone(page1.getPhone().getText());
+	 person.setPhoneSecond(page1.getPhoneSecond().getText());
 	  
+	 IStructuredSelection selection = (IStructuredSelection)page1.getCity().getSelection();
+     if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+		  person.getAddress().setCity(null);
+	  }else{
+		  City city = (City)selection.getFirstElement();
+		  person.getAddress().setCity(city);
+	  }
+     
+     person.getAddress().setDescription(page1.getAddress().getText());
+	 
 	 return true;
 
   }

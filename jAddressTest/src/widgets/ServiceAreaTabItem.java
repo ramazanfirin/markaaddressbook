@@ -2,6 +2,7 @@ package widgets;
 
 import model.model.OutLocation;
 import model.model.OutOffice;
+import model.model.ServiceArea;
 
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
@@ -71,13 +72,13 @@ public class ServiceAreaTabItem extends BasicTabItem{
 
 	@Override
 	void createNewEntity() {
-		entity = new OutOffice();
+		entity = new ServiceArea();
 		
 	}
 
 	@Override
 	void loadAllItems() {
-		entityList = Util.getApplicationInstance().getDataProvider().loadAllOutOffice();
+		entityList = Util.getApplicationInstance().getDataProvider().loadAllServiceArea();
        	
 	}
 

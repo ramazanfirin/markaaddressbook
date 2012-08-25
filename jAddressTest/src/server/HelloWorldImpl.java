@@ -159,5 +159,14 @@ public class HelloWorldImpl implements IHelloWorld {
 		return "success";
 	}
 
+
+	@Override
+	public String loadCities() {
+		List<AbsractInterface> list=DBDataProvider.getInstance().loadCities();
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(list);
+		return xml;
+	}
+
 	
 }

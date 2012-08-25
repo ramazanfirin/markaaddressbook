@@ -1,7 +1,11 @@
 package wizards;
 
+import java.util.List;
+
 import model.model.OutLocation;
 
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -20,7 +24,10 @@ public class OutLocationLocationPage extends BasicPage{
 	Text ipPhone;
 	Text note;
 	
-	protected OutLocationLocationPage(String pageName) {
+	ComboViewer city;
+    Text address;
+
+   protected OutLocationLocationPage(String pageName) {
 		super(pageName);
 		// TODO Auto-generated constructor stub
 	}
@@ -84,6 +91,34 @@ public class OutLocationLocationPage extends BasicPage{
 	      note.addModifyListener(textModifyListener);
 	      note.setEditable(Util.isAdmin());	
 	      
+	      createLine(container, layout.numColumns);
+	      
+	      List cityList=Util.getApplicationInstance().getDataProvider().loadCities();
+	      cityList.add(0,Util.getString("select"));
+	      
+	      label = new Label(container, SWT.NULL);
+	      label.setText(Util.getString("city"));
+	      city = new ComboViewer(container, SWT.READ_ONLY );
+	      city.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+	      city.getCombo().setEnabled(Util.isAdmin());
+	      city.setContentProvider(new ArrayContentProvider());
+	      city.setLabelProvider(cityLabelProvider);
+	      city.setInput(cityList);
+	      city.addSelectionChangedListener(comboSelectionChangeProvider); 
+	      if(outLocation.getAddress().getCity()!=null)
+	    	  city.getCombo().setText(outLocation.getAddress().getCity().getName());
+	      else
+	    	  city.getCombo().setText(Util.getString("select")); 
+	      
+	      label = new Label(container, SWT.NULL);
+	      label.setText(Util.getString("address"));
+	      address = new Text(container, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
+	      GridData ad= new GridData(GridData.FILL_BOTH);
+	      ad.heightHint=75;	
+	      address.setLayoutData(ad);
+	      address.setText(outLocation.getAddress().getDescription());
+	      address.addModifyListener(textModifyListener);
+	      address.setEditable(Util.isAdmin()); 
 	      
 	      setControl(container);
 	      setPageComplete(false);
@@ -143,6 +178,22 @@ public class OutLocationLocationPage extends BasicPage{
 
 	public void setNote(Text note) {
 		this.note = note;
+	}
+
+	public ComboViewer getCity() {
+		return city;
+	}
+
+	public void setCity(ComboViewer city) {
+		this.city = city;
+	}
+
+	public Text getAddress() {
+		return address;
+	}
+
+	public void setAddress(Text address) {
+		this.address = address;
 	}
 
 }

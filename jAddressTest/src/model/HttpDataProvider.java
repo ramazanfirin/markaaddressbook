@@ -207,4 +207,14 @@ public class HttpDataProvider implements DataProvider{
 		
 	}
 
+
+	@Override
+	public List<AbsractInterface> loadCities() {
+		String result = iHelloWorld.loadCities();
+		XStream xstream = new XStream();
+		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
+		
+		return list;
+	}
+
 }

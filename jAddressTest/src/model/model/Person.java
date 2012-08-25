@@ -17,8 +17,9 @@ public class Person implements AbsractInterface{
 	private Date insertDate= new Date();
     private Set<Bus> busList = new HashSet<Bus>(0);
 
+	private Address address = new Address();
 	
-	
+	private String phoneSecond="";
 	
 	public Set<Bus> getBusList() {
 		return busList;
@@ -70,6 +71,22 @@ public class Person implements AbsractInterface{
 	
 	public String getNameSurnamePhone() {
 		return getName()+" "+getSurname()+" "+getFormattedPhone() ;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getPhoneSecond() {
+		return phoneSecond;
+	}
+
+	public void setPhoneSecond(String phoneSecond) {
+		this.phoneSecond = phoneSecond;
 	}
 	
 }

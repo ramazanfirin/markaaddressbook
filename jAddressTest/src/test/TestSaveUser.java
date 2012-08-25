@@ -1,15 +1,49 @@
 package test;
 
-import java.util.List;
+import java.util.Date;
 
-import model.HttpDataProvider;
-import model.interfaces.AbsractInterface;
+import javax.swing.DefaultButtonModel;
+
 import junit.framework.TestCase;
-import server.Server;
+import model.DBDataProvider;
+import model.model.Address;
+import model.model.Bus;
+import model.model.City;
+import model.model.Driver;
 
 public class TestSaveUser extends TestCase{
 
+	public void testDriverCreate(){
+		
+		Driver user = new Driver();
+		user.setName("ramazan");
+		user.setSurname("firin");
+		user.setPhone("123456");
+		user.setInsertDate(new Date());
+		
+		Bus bus = new Bus();
+		bus.setPlate("plateramazan");
+		bus.setPhone("phoneramazan");
+		
+		City city  =new City();
+		city.setName("KAYseri");
+		DBDataProvider.getInstance().saveOrUpdate(city);
+		
+		Address address = new Address();
+		address.setCity(city);
+		address.setDescription("kıranardı");
+		
+		user.setAddress(address);
+		
+		DBDataProvider.getInstance().saveOrUpdate(user);
+		
+		DBDataProvider.getInstance().loadAllDriver2();
+		System.out.println("bitti");
+		
+		
+	}
 	
+	/*
 	public void testDriverall2(){
 		
 		new Server();
@@ -17,7 +51,7 @@ public class TestSaveUser extends TestCase{
 		System.out.println("bitti");
 	}
 
-	/*
+	
 	public void testDriverall2(){
 		
 			
