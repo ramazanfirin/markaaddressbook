@@ -23,9 +23,14 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 	protected Text _name2;
 	protected Text surname2;
 	protected Text phone2;
-
-	protected OutLocationAuthorizedPersonPage(String pageName) {
-		super(pageName);
+	
+	protected Text outLocationName;
+	
+	String pageName;
+	
+	protected OutLocationAuthorizedPersonPage(String _pageName) {
+		super(_pageName);
+		pageName= _pageName;
 	}
 
 	@Override
@@ -35,7 +40,28 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 	      container.setLayout(layout);
 	      layout.numColumns = 1;
 	      layout.verticalSpacing = 9;
-	     
+	    
+	      
+	      OutLocationWizard parentWizard = (OutLocationWizard)getWizard();
+			OutLocation outLocation = (OutLocation)parentWizard.getEntity();
+			    
+			Group grpLocationName=null;
+			grpLocationName = new Group(container, SWT.NONE);
+			grpLocationName.setText(Util.getString("name"));
+			grpLocationName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+			GridLayout grpLayoutName = new GridLayout(2, false);
+			grpLayoutName.verticalSpacing = 9;
+			grpLocationName.setLayout(grpLayoutName);	
+			
+			
+			Label label = new Label(grpLocationName, SWT.NULL);
+			label.setText(pageName+" "+Util.getString("name"));
+			outLocationName = new Text(grpLocationName, SWT.BORDER | SWT.SINGLE);
+			outLocationName.setText(outLocation.getName());
+			outLocationName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+			outLocationName.addModifyListener(textModifyListener);
+			outLocationName.setEditable(Util.isAdmin());
+	      
 	      Group grpLocation=null;
 	      grpLocation = new Group(container, SWT.NONE);
 		    grpLocation.setText(Util.getString("outOffice.firstAuthorization.person"));
@@ -45,12 +71,13 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 		    grpLocation.setLayout(grpLayout);
 	      
 
-	      OutLocationWizard parentWizard = (OutLocationWizard)getWizard();
-	      OutLocation outLocation = (OutLocation)parentWizard.getEntity();
+		
+
+
 	      
 	      AuthorizedPerson firstAuthorizedPerson = outLocation.getFirstAuthorizedPerson();
 	      
-	      Label label = new Label(grpLocation, SWT.NULL);
+	      label = new Label(grpLocation, SWT.NULL);
 	      label.setText(Util.getString("name"));
 	      _name = new Text(grpLocation, SWT.BORDER | SWT.SINGLE);
 	      _name.setText(firstAuthorizedPerson.getName());
@@ -235,6 +262,14 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 
 	public void setPhone2(Text phone2) {
 		this.phone2 = phone2;
+	}
+
+	public Text getOutLocationName() {
+		return outLocationName;
+	}
+
+	public void setOutLocationName(Text outLocationName) {
+		this.outLocationName = outLocationName;
 	}  
 
 }

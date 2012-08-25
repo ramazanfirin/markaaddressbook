@@ -6,6 +6,8 @@ import model.interfaces.AbsractInterface;
 public class OutLocation implements AbsractInterface{
 	private Long id;
 	
+	private String name="";
+	
 	private AuthorizedPerson firstAuthorizedPerson=new AuthorizedPerson();
 	private AuthorizedPerson secondAuthorizedPerson = new AuthorizedPerson() ;
 	
@@ -114,6 +116,14 @@ public class OutLocation implements AbsractInterface{
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }

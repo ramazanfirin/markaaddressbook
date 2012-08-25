@@ -6,6 +6,9 @@
 	<id name="id" column="id" type="long">
 		<generator class="native"></generator>
 	</id>
+	
+	<property name="name" column="name" type="string"></property>
+	
 	<many-to-one name="firstAuthorizedPerson"  class="model.model.AuthorizedPerson" column="AUTHORIZED_PERSON_1"   lazy="false" cascade="all"/>
 	<many-to-one name="secondAuthorizedPerson"  class="model.model.AuthorizedPerson" column="AUTHORIZED_PERSON_2"   lazy="false" cascade="all"/>
 	
