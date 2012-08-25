@@ -38,6 +38,9 @@ public class OutLocationWizard extends Wizard{
 	@Override
 	public boolean performFinish() {
 		OutLocation outLocation = (OutLocation)entity;
+		
+		outLocation.setName(authorizedPersonPage.getOutLocationName().getText());
+		
 		outLocation.getFirstAuthorizedPerson().setName(authorizedPersonPage.get_name().getText());
 		outLocation.getFirstAuthorizedPerson().setSurname(authorizedPersonPage.getSurname().getText());
 		outLocation.getFirstAuthorizedPerson().setPhone(authorizedPersonPage.getPhone().getText());
