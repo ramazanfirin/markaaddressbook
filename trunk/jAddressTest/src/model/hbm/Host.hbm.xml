@@ -19,6 +19,8 @@
             <one-to-many class="model.model.Bus" />
     </set>
 	
+	 <many-to-one name="address"  class="model.model.Address" column="address" lazy="false" cascade="all"/>
+	 <property name="phoneSecond" column="phoneSecond" type="string"></property>
 	
 </class>
 </hibernate-mapping>

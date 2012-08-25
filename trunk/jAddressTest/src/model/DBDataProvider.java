@@ -543,6 +543,23 @@ public class DBDataProvider implements DataProvider{
 				session.close();
 			}
 	 }
+
+	@Override
+	public List<AbsractInterface> loadCities() {
+		 Session session=null;
+			Transaction tx=null;
+			try {
+				session = HibernateUtil.getSessionFactory().openSession();
+				String hql = "from City p where 1=1";
+		        Query query = session.createQuery(hql);
+		        return  query.list();
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				throw e;
+			}finally {
+				session.close();
+			}
+	}
 	 
 
 

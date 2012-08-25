@@ -39,13 +39,17 @@ abstract class  BasicPersonPage extends BasicPage {
 
 	 protected Text phone;
 
-	  private ISelection selection;
+	 protected ComboViewer city;
+	 
+	 protected Text address; 
+	 
+	 private ISelection selection;
  
     protected String title;
   
   ComboViewer viewer;
 
-  
+  protected Text phoneSecond;
 
   
   public BasicPersonPage(ISelection selection,String title) {
@@ -108,6 +112,13 @@ abstract class  BasicPersonPage extends BasicPage {
     
     if (this.phone.getText().length() < 10) {
         updateStatus("Telefon alani 10 hane olmalidir.Ornek : 5551234567");
+        return false;
+      } else 
+      	updateStatus(null);	
+    
+    
+    if (this.phoneSecond.getText().length() < 10 && this.phoneSecond.getText().length() > 0) {
+        updateStatus("ikinci Telefon alani 10 hane olmalidir.Ornek : 5551234567");
         return false;
       } else 
       	updateStatus(null);	
@@ -175,6 +186,46 @@ public Text getPhone() {
 
 public void setPhone(Text phone) {
 	this.phone = phone;
+}
+
+
+public ComboViewer getCity() {
+	return city;
+}
+
+
+public void setCity(ComboViewer city) {
+	this.city = city;
+}
+
+
+public Text getAddress() {
+	return address;
+}
+
+
+public void setAddress(Text address) {
+	this.address = address;
+}
+
+
+public String getTitle() {
+	return title;
+}
+
+
+public void setTitle(String title) {
+	this.title = title;
+}
+
+
+public Text getPhoneSecond() {
+	return phoneSecond;
+}
+
+
+public void setPhoneSecond(Text phoneSecond) {
+	this.phoneSecond = phoneSecond;
 }
 
 

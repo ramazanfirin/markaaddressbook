@@ -1,9 +1,11 @@
 package wizards;
 
 import model.interfaces.AbsractInterface;
+import model.model.City;
 import model.model.OutLocation;
 
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 
 import test.wizard.EmailPage;
@@ -51,6 +53,16 @@ public class OutLocationWizard extends Wizard{
 		outLocation.setIpPhone(locationLocationPage.getIpPhone().getText());
 		
 		outLocation.setNote(locationLocationPage.getNote().getText());
+		
+		IStructuredSelection selection = (IStructuredSelection)locationLocationPage.getCity().getSelection();
+	     if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+	    	 outLocation.getAddress().setCity(null);
+		  }else{
+			  City city = (City)selection.getFirstElement();
+			  outLocation.getAddress().setCity(city);
+		  }
+	     
+	     outLocation.getAddress().setDescription(locationLocationPage.getAddress().getText());
 		
 		return true;
 	}

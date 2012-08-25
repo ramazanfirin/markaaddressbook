@@ -22,6 +22,8 @@ import model.DataProvider;
 import model.HttpDataProvider;
 import model.model.User;
 
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -104,6 +106,12 @@ public static void main(String[] args){
 }
 public Shell open(Display display) throws Exception{
 	prepareDataProvider();
+	
+	Window.setExceptionHandler(new Window.IExceptionHandler() {
+	    public void handleException(Throwable error) {
+	        MessageDialog.openError(null, "Error", "Error: " + error.getMessage());
+	    }
+	});
 	
 	shell = new Shell(display);
 	FillLayout layout = new FillLayout();

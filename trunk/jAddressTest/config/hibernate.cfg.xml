@@ -24,6 +24,7 @@
 		<mapping resource="model/hbm/OutOffice.hbm.xml"/>
 		<mapping resource="model/hbm/ServiceArea.hbm.xml"/>
 		<mapping resource="model/hbm/AuthorizedPerson.hbm.xml"/>
-		
+		<mapping resource="model/hbm/City.hbm.xml"/>
+		<mapping resource="model/hbm/Address.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

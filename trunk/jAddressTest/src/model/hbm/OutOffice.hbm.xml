@@ -17,5 +17,6 @@
 	<property name="shortCode" column="shortCode" type="string"></property>
 	<property name="note" column="note" type="string"></property>
 	
+	 <many-to-one name="address"  class="model.model.Address" column="address" lazy="false" cascade="all"/>
 </class>
 </hibernate-mapping>

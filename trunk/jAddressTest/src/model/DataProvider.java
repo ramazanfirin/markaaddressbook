@@ -23,6 +23,7 @@ public interface DataProvider {
 			 String hostName,String hostSurname,String busOwnerName,String busOwnerSurname);
 	public List<AbsractInterface> loadAllOutOffice();
 	public List<AbsractInterface> loadAllServiceArea();
+	public List<AbsractInterface> loadCities();
 	
 	//public static DataProvider getInstance();
 	

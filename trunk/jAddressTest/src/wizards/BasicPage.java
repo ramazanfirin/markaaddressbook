@@ -1,7 +1,6 @@
 package wizards;
 
-import java.util.Set;
-
+import model.model.City;
 import model.model.Person;
 
 import org.eclipse.jface.viewers.ISelection;
@@ -14,7 +13,6 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -30,6 +28,7 @@ public abstract class BasicPage extends WizardPage{
 	protected   TextModifyListener textModifyListener = new TextModifyListener();
 	protected   DigitVerifyListener digitVerifyListener = new DigitVerifyListener();
 	protected   WhiteSpaceVerifyListener whiteSpaceVerifyListener = new WhiteSpaceVerifyListener();	
+	protected   CityLabelProvider cityLabelProvider = new CityLabelProvider();	
 	
 	
 	
@@ -77,6 +76,19 @@ public abstract class BasicPage extends WizardPage{
 			if (element instanceof Person) {
 				Person driver = (Person) element;
 				return driver.getNameSurname();
+			}
+			return super.getText(element);
+		}
+		
+	}	
+	
+	
+	class CityLabelProvider extends LabelProvider{
+		@Override
+		public String getText(Object element) {
+			if (element instanceof City) {
+				City driver = (City) element;
+				return driver.getName();
 			}
 			return super.getText(element);
 		}

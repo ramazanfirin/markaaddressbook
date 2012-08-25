@@ -18,7 +18,7 @@ public class OutLocation implements AbsractInterface{
 	private String shortCode="";
 	private String note="";
 	
-	private String adress="";
+	private Address address = new Address();
 	
 	
 	
@@ -67,14 +67,6 @@ public class OutLocation implements AbsractInterface{
 		this.note = note;
 	}
 
-	public String getAdress() {
-		return adress;
-	}
-
-	public void setAdress(String adress) {
-		this.adress = adress;
-	}
-
 	public String getFirstPhone() {
 		return firstPhone;
 	}
@@ -114,6 +106,14 @@ public class OutLocation implements AbsractInterface{
 			result = result + " " +Util.getFormattedPhone(firstPhone);
 		
 		return result;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	
 }
