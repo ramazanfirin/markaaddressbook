@@ -560,6 +560,56 @@ public class DBDataProvider implements DataProvider{
 				session.close();
 			}
 	}
+
+	@Override
+	public List<AbsractInterface> searchOutOffice(String name,String cityId) {
+		Session session=null;
+		Transaction tx=null;
+		boolean driverNameExist=false;
+		boolean busOwnerExist=false;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String queryString="from OutOffice p where 1=1 ";
+			if(name!=null && !name.equals(""))
+				queryString = queryString+ " and (p.name like '%"+name.toLowerCase()+"%' or p.name like '%"+name.toUpperCase()+"%')";
+			
+			if(cityId!=null && !cityId.equals(""))
+				queryString = queryString+ " and (p.address.city.id="+cityId+")";
+			
+			Query query = session.createQuery(queryString);
+			return  query.list();
+			
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			session.close();
+		}
+	}
+
+	@Override
+	public List<AbsractInterface> searchServiceArea(String name,String cityId) {
+		Session session=null;
+		Transaction tx=null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			String queryString="from ServiceArea p where 1=1 ";
+			if(name!=null && !name.equals(""))
+				queryString = queryString+ " and (p.name like '%"+name.toLowerCase()+"%' or p.name like '%"+name.toUpperCase()+"%')";
+			
+			if(cityId!=null && !cityId.equals(""))
+				queryString = queryString+ " and (p.address.city.id="+cityId+")";
+			
+			Query query = session.createQuery(queryString);
+			return  query.list();
+			
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			session.close();
+		}
+	}
 	 
 
 

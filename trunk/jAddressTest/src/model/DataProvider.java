@@ -35,4 +35,7 @@ public interface DataProvider {
 	public void deleteDriver(Object object);
 	
 	
+	public List<AbsractInterface> searchOutOffice(String name,String city);
+	public List<AbsractInterface> searchServiceArea(String name,String city);
+	
 }
