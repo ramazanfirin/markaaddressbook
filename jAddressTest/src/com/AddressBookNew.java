@@ -20,9 +20,11 @@ import java.util.ResourceBundle;
 import model.DBDataProvider;
 import model.DataProvider;
 import model.HttpDataProvider;
+import model.model.City;
 import model.model.User;
 
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -77,6 +79,8 @@ public class AddressBookNew {
 	 
 	 public Boolean userLocalDB=true;
 	 public Boolean isRunning=false;
+	 
+	 public CityLabelProvider cityLabelProvider = new CityLabelProvider();
 	 
 	 protected static AddressBookNew instance = new AddressBookNew();
 	 public static AddressBookNew getInstance() {
@@ -296,7 +300,17 @@ public void setDataProvider(DataProvider dataProvider) {
 }
 
 
-
+class CityLabelProvider extends LabelProvider{
+	@Override
+	public String getText(Object element) {
+		if (element instanceof City) {
+			City driver = (City) element;
+			return driver.getName();
+		}
+		return super.getText(element);
+	}
+	
+}	
 
 
 }

@@ -217,4 +217,18 @@ public class HttpDataProvider implements DataProvider{
 		return list;
 	}
 
+
+	@Override
+	public List<AbsractInterface> searchOutOffice(String name,String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<AbsractInterface> searchServiceArea(String name,String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

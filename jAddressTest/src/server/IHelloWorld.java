@@ -1,13 +1,9 @@
 package server;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import model.model.User;
-
 @WebService
-public interface IHelloWorld {
+public interface IHelloWorld{
    //@WebParam is optional
 	 String loadAllDriver2();
 	 String loadAllBus2();
