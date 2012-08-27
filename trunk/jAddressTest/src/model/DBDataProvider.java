@@ -13,6 +13,7 @@ import model.model.Bus;
 import model.model.BusOwner;
 import model.model.Driver;
 import model.model.Host;
+import model.model.Muavin;
 import model.model.User;
 
 import org.hibernate.HibernateException;
@@ -316,7 +317,7 @@ public class DBDataProvider implements DataProvider{
 			}
 	 }
 
-	 public List<AbsractInterface> searchBus(String plate,String phone,String driverName,String driverSurname,
+	 public List<AbsractInterface> searchBus(String plate,String shortCode,String phone,String driverName,String driverSurname,
 			 String hostName,String hostSurname,String busOwnerName,String busOwnerSurname){
 		 Session session=null;
 			Transaction tx=null;
@@ -363,6 +364,14 @@ public class DBDataProvider implements DataProvider{
 					if(driverNameExist){
 						queryString2 = queryString2+ " and p.phone like '%"+phone+"%'";	
 						queryString3 = queryString3+ " and p.phone like '%"+phone+"%'";	
+					}	
+				}
+				
+				if(shortCode!=null && !shortCode.equals("")){
+					queryString1 = queryString1+ " and p.shortCode like '%"+shortCode+"%'";	
+					if(driverNameExist){
+						queryString2 = queryString2+ " and p.shortCode like '%"+shortCode+"%'";	
+						queryString3 = queryString3+ " and p.shortCode like '%"+shortCode+"%'";	
 					}	
 				}
 				
@@ -609,6 +618,47 @@ public class DBDataProvider implements DataProvider{
 		}finally {
 			session.close();
 		}
+	}
+
+	@Override
+	public List<AbsractInterface> searchGeneral(String name, String surname,
+			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) {
+		
+		Set<AbsractInterface> result= new HashSet<AbsractInterface>();
+		
+		if((name!=null && !name.equals("")) || (surname!=null && !surname.equals(""))){
+		
+			List<AbsractInterface> list= searchEntiy(Driver.class, name, surname, "");
+			result.addAll(list);
+			
+			list= searchEntiy(Host.class, name, surname, "");
+			result.addAll(list);
+	
+			list= searchEntiy(Muavin.class, name, surname, "");
+			result.addAll(list);
+		
+			list= searchEntiy(BusOwner.class, name, surname, "");
+			result.addAll(list);
+		
+		}if((busPlate!=null && !busPlate.equals("")) || (busShortCode!=null && !busShortCode.equals(""))){
+			List<AbsractInterface> list= searchBus(busPlate, busShortCode, "", "", "", "", "", "", "");
+			result.addAll(list);
+		}
+		
+		if((outOfficeName!=null && !outOfficeName.equals("")) || (outOfficeCityId!=null && !outOfficeCityId.equals(""))){
+			List<AbsractInterface> list= searchOutOffice(outOfficeName, outOfficeCityId);
+			result.addAll(list);
+		}
+		
+		if((serviceAreaName!=null && !serviceAreaName.equals("")) || (serviceAreaCityId!=null && !serviceAreaCityId.equals(""))){
+			List<AbsractInterface> list= searchServiceArea(serviceAreaName, serviceAreaCityId);
+			result.addAll(list);
+		}
+		
+		List<AbsractInterface> list = new ArrayList<AbsractInterface>(); 
+		list.addAll(result);
+
+		return  list;
 	}
 	 
 

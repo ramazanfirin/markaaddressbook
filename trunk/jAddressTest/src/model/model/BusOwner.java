@@ -42,5 +42,9 @@ public class BusOwner extends Person{
 		this.shortCode = shortCode;
 	}
 
+	@Override
+	public String getMission() {
+		return "Otobus Sahibi";
+	}
 	
 }

@@ -129,11 +129,11 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> searchBus(String plate, String phone,
+	public List<AbsractInterface> searchBus(String plate, String shortCode,String phone,
 			String driverName, String driverSurname, String hostName,
 			String hostSurname, String busOwnerName, String busOwnerSurname) {
 		
-		String result = iHelloWorld.searchBus(plate, phone, driverName, driverSurname, hostName, hostSurname, busOwnerName, busOwnerSurname);
+		String result = iHelloWorld.searchBus(plate,shortCode, phone, driverName, driverSurname, hostName, hostSurname, busOwnerName, busOwnerSurname);
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
 		
@@ -227,6 +227,14 @@ public class HttpDataProvider implements DataProvider{
 
 	@Override
 	public List<AbsractInterface> searchServiceArea(String name,String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<AbsractInterface> searchGeneral(String name, String surname,
+			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -47,6 +47,7 @@ import widgets.DriverTabItem;
 import widgets.HostTabItem;
 import widgets.MuavinTabItem;
 import widgets.OutOfficeTabItem;
+import widgets.SearchTabItem;
 import widgets.ServiceAreaTabItem;
 import widgets.UserTabItem;
 /**
@@ -70,6 +71,8 @@ public class AddressBookNew {
 	 private MuavinTabItem tabItemMuavin;
 	 private OutOfficeTabItem tabItemOutOffice;
 	 private ServiceAreaTabItem tabItemServiceArea;
+	 private SearchTabItem tabItemSearch;
+	 
 	 
 	 private User loginUser;
 	
@@ -147,6 +150,7 @@ public Shell open(Display display) throws Exception{
     cTabFolder.setUnselectedImageVisible(false);
     cTabFolder.setUnselectedCloseVisible(false);
 	
+    tabItemSearch = new SearchTabItem(cTabFolder,Util.getString("search"));
     tabItemBus = new BusTabItem(cTabFolder,Util.getString("bus.list"));
     tabItemDriver = new DriverTabItem(cTabFolder,Util.getString("driver.list"));
     tabItemHost = new HostTabItem(cTabFolder,Util.getString("host.list"));
@@ -310,6 +314,17 @@ class CityLabelProvider extends LabelProvider{
 		return super.getText(element);
 	}
 	
+}
+
+
+public SearchTabItem getTabItemSearch() {
+	return tabItemSearch;
+}
+
+
+
+public void setTabItemSearch(SearchTabItem tabItemSearch) {
+	this.tabItemSearch = tabItemSearch;
 }	
 
 
