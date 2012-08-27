@@ -126,4 +126,12 @@ public class OutLocation implements AbsractInterface{
 		this.name = name;
 	}
 	
+	public String getFormattedPhone(){
+		return Util.getFormattedPhone(firstPhone);
+	}
+
+	@Override
+	public String getMission() {
+		return "Dis Yazihane";
+	}
 }

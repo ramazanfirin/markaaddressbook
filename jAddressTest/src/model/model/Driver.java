@@ -67,4 +67,9 @@ public class Driver  extends Person implements AbsractInterface {
 	public void setThirdDriverBusList(Set<Bus> thirdDriverBusList) {
 		this.thirdDriverBusList = thirdDriverBusList;
 	}
+
+	@Override
+	public String getMission() {
+		return "Sofor";
+	}
 }

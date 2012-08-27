@@ -19,7 +19,7 @@ public interface DataProvider {
 	public List<AbsractInterface> loadAuthorith();
 	public User checkPassword(String username,String password);
 	public List<AbsractInterface> searchEntiy(Class clazz,String name,String surname,String phone);
-	public List<AbsractInterface> searchBus(String plate,String phone,String driverName,String driverSurname,
+	public List<AbsractInterface> searchBus(String plate,String shortCode,String phone,String driverName,String driverSurname,
 			 String hostName,String hostSurname,String busOwnerName,String busOwnerSurname);
 	public List<AbsractInterface> loadAllOutOffice();
 	public List<AbsractInterface> loadAllServiceArea();
@@ -37,5 +37,6 @@ public interface DataProvider {
 	
 	public List<AbsractInterface> searchOutOffice(String name,String city);
 	public List<AbsractInterface> searchServiceArea(String name,String city);
-	
+	public List<AbsractInterface> searchGeneral(String name,String surname,String busPlate,String busShortCode,
+			                                    String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId);
 }

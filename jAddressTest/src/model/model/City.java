@@ -19,5 +19,9 @@ public class City implements AbsractInterface{
 	public void setName(String name) {
 		this.name = name;
 	}
+	@Override
+	public String getMission() {
+		return "";
+	}
 	
 }

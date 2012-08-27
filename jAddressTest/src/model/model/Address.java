@@ -26,5 +26,9 @@ public class Address implements AbsractInterface{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@Override
+	public String getMission() {
+		return "";
+	}
 	
 }

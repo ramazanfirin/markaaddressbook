@@ -18,4 +18,8 @@ public class Authority implements AbsractInterface{
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
+	@Override
+	public String getMission() {
+		return "";
+	}
 }

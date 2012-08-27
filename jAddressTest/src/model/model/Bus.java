@@ -104,4 +104,8 @@ public class Bus implements AbsractInterface{
 	public void setShortCode(String shortCode) {
 		this.shortCode = shortCode;
 	}
+	@Override
+	public String getMission() {
+		return "Otobus";
+	}
 }

@@ -114,10 +114,10 @@ public class HelloWorldImpl implements IHelloWorld {
 
 
 	@Override
-	public String searchBus(String plate, String phone, String driverName,
+	public String searchBus(String plate,String shortCode, String phone, String driverName,
 			String driverSurname, String hostName, String hostSurname,
 			String busOwnerName, String busOwnerSurname) {
-		List<AbsractInterface> list=DBDataProvider.getInstance().searchBus(plate, phone, driverName, driverSurname, hostName, hostSurname, busOwnerName, busOwnerSurname);
+		List<AbsractInterface> list=DBDataProvider.getInstance().searchBus(plate,shortCode, phone, driverName, driverSurname, hostName, hostSurname, busOwnerName, busOwnerSurname);
 		XStream xstream = new XStream();
 		String xml = xstream.toXML(list);
 		return xml;

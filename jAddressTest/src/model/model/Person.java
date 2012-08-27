@@ -88,5 +88,9 @@ public class Person implements AbsractInterface{
 	public void setPhoneSecond(String phoneSecond) {
 		this.phoneSecond = phoneSecond;
 	}
+
+	public String getMission() {
+		return "Kisi";
+	}
 	
 }

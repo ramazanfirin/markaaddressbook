@@ -49,7 +49,7 @@ public class BusTabItem extends BasicTabItem{
 //				textHostName.getText(), textHostSurname.getText(), textOwnerName.getText(), textOwnerSurname.getText());
 	
 		try {
-			entityList =Util.getApplicationInstance().getDataProvider().searchBus(textBusPlate.getText(), textBusPhone.getText(), textDriverName.getText(), textDriverSurname.getText(), 
+			entityList =Util.getApplicationInstance().getDataProvider().searchBus(textBusPlate.getText(),textBusShortCode.getText(), textBusPhone.getText(), textDriverName.getText(), textDriverSurname.getText(), 
 					"", "", "", "");
 		} catch (Exception e) {
 			 
