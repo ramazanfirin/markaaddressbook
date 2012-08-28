@@ -325,6 +325,18 @@ public SearchTabItem getTabItemSearch() {
 
 public void setTabItemSearch(SearchTabItem tabItemSearch) {
 	this.tabItemSearch = tabItemSearch;
+}
+
+
+
+public ServiceAreaTabItem getTabItemServiceArea() {
+	return tabItemServiceArea;
+}
+
+
+
+public void setTabItemServiceArea(ServiceAreaTabItem tabItemServiceArea) {
+	this.tabItemServiceArea = tabItemServiceArea;
 }	
 
 

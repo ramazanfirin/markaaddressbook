@@ -4,9 +4,15 @@ import java.util.List;
 
 import model.interfaces.AbsractInterface;
 import model.model.Bus;
+import model.model.BusOwner;
 import model.model.City;
+import model.model.Driver;
+import model.model.Host;
+import model.model.Muavin;
 import model.model.OutLocation;
+import model.model.OutOffice;
 import model.model.Person;
+import model.model.ServiceArea;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -15,10 +21,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 import util.Util;
@@ -50,6 +59,35 @@ public class SearchTabItem extends BasicTabItem{
 	
 	public SearchTabItem(CTabFolder parent, String name) {
 		super(parent, name);
+		//table.get
+		table.setMenu(null);
+		table.removeSelectionListener(listener);
+	    table.addSelectionListener(new SelectionAdapter() {
+		public void widgetDefaultSelected(SelectionEvent e) {
+			TableItem[] items = table.getSelection();
+			if (items.length > 0){
+					System.out.println(items[0].getData().toString());
+			
+			AbsractInterface absractInterface = (AbsractInterface)items[0].getData();
+			
+			if(absractInterface instanceof Bus){
+				Util.getApplicationInstance().getTabItemBus().editEntity(absractInterface);
+			}else if(absractInterface instanceof Driver){
+				Util.getApplicationInstance().getTabItemDriver().editEntity(absractInterface);
+			}else if(absractInterface instanceof Host){
+				Util.getApplicationInstance().getTabItemHost().editEntity(absractInterface);
+			}else if(absractInterface instanceof BusOwner){
+				Util.getApplicationInstance().getTabItemBusOwner().editEntity(absractInterface);
+			}else if(absractInterface instanceof Muavin){
+				Util.getApplicationInstance().getTabItemMuavin().editEntity(absractInterface);
+			}else if(absractInterface instanceof OutOffice){
+				Util.getApplicationInstance().getTabItemOutOffice().editEntity(absractInterface);
+			}else if(absractInterface instanceof ServiceArea){
+				Util.getApplicationInstance().getTabItemServiceArea().editEntity(absractInterface);
+			}	
+		}	
+		}
+	});
 	}
 
 	
@@ -58,47 +96,14 @@ public class SearchTabItem extends BasicTabItem{
 //		entityList =DBManager.getInstance().searchBus(textBusPlate.getText(), textBusPhone.getText(), textDriverName.getText(), textDriverSurname.getText(), 
 //				textHostName.getText(), textHostSurname.getText(), textOwnerName.getText(), textOwnerSurname.getText());
 	  
-		IStructuredSelection selection = (IStructuredSelection)outOfficeCity.getSelection();
-	  	if(selection.isEmpty() || selection.getFirstElement() instanceof String){
-			outOfficecityId="";
-		  }else{
-			  City city = (City)selection.getFirstElement();
-			  outOfficecityId=city.getId().toString();
-		  }
-		
-		selection = (IStructuredSelection)serviceAreaCity.getSelection();
-	 	if(selection.isEmpty() || selection.getFirstElement() instanceof String){
-			serviceAreaCityId="";
-		  }else{
-			  City city = (City)selection.getFirstElement();
-			  serviceAreaCityId=city.getId().toString();
-		  }
-	   
-		
-		
-		
-		if(Util.isEmpty(name.getText()) && 
-			   Util.isEmpty(surname.getText()) && 
-			   Util.isEmpty(textBusPlate.getText()) && 
-			   Util.isEmpty(textShortCode.getText()) && 
-		       Util.isEmpty(outOfficeNameText.getText()) &&
-		       Util.isEmpty(outOfficecityId) &&
-		       Util.isEmpty(serviceAreaNameText.getText()) &&
-		       Util.isEmpty(serviceAreaCityId)
-			   
-	      ){
+		if(FormParameterIsEmpty()){
 		   MessageDialog.openError(this.shell, "Hata", "En az bir kriter doldurunuz");
 		   return;
 	   }	
-		
-	   
-	   
-	   
-	   
-	   try {
+		 try {
 			entityList =Util.getApplicationInstance().getDataProvider().searchGeneral(name.getText(), surname.getText(), textBusPlate.getText(), textShortCode.getText(),
-					outOfficeNameText.getText(),outOfficecityId,serviceAreaNameText.getText(),serviceAreaCityId);
-							} catch (Exception e) {
+			outOfficeNameText.getText(),outOfficecityId,serviceAreaNameText.getText(),serviceAreaCityId);
+		} catch (Exception e) {
 			 
 			e.printStackTrace();
 			MessageDialog.openError(this.shell, "Hata", e.getMessage());
@@ -109,12 +114,11 @@ public class SearchTabItem extends BasicTabItem{
 	@Override
 	void prepareComponents(Composite grpLocationBus) {
 		
-
 		 GridLayout grpLayout = new GridLayout(4, false);
 		    grpLayout.verticalSpacing = 0;
 		    grpLocation.setLayout(grpLayout);
 		    
-		
+		    
 		
 		
 		Label nameText=new Label(grpLocationBus,SWT.NONE);
@@ -203,6 +207,8 @@ public class SearchTabItem extends BasicTabItem{
 		serviceAreaCity.setInput(cityList);
 		serviceAreaCity.getCombo().setText(Util.getString("select"));
 			
+		
+
 	}
 
 	@Override
@@ -224,7 +230,8 @@ public class SearchTabItem extends BasicTabItem{
 
 	@Override
 	void loadAllItems() {
-		entityList = Util.getApplicationInstance().getDataProvider().loadAllBus2();
+		if(!FormParameterIsEmpty())
+			search();
 	}
 	
 	@Override
@@ -277,7 +284,34 @@ public class SearchTabItem extends BasicTabItem{
 		Util.getApplicationInstance().getDataProvider().delete(object);
 		
 	}
+	
+	public boolean FormParameterIsEmpty(){
+		outOfficecityId = getComboValue(outOfficeCity);
+		serviceAreaCityId = getComboValue(serviceAreaCity);
+		
+		if(Util.isEmpty(name.getText()) && 
+				   Util.isEmpty(surname.getText()) && 
+				   Util.isEmpty(textBusPlate.getText()) && 
+				   Util.isEmpty(textShortCode.getText()) && 
+			       Util.isEmpty(outOfficeNameText.getText()) &&
+			       Util.isEmpty(outOfficecityId) &&
+			       Util.isEmpty(serviceAreaNameText.getText()) &&
+			       Util.isEmpty(serviceAreaCityId)
+		)
+			return true;
+		else
+			return false;
+	}
 
+	public String getComboValue(ComboViewer combo){
+		IStructuredSelection selection = (IStructuredSelection)combo.getSelection();
+	  	if(selection.isEmpty() || selection.getFirstElement() instanceof String){
+			return "";
+		  }else{
+			  City city = (City)selection.getFirstElement();
+			  return city.getId().toString();
+		  }
+	}
 }
 
 
