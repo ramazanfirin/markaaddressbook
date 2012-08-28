@@ -56,6 +56,8 @@ public abstract class BasicTabItem extends CTabItem{
 	
 	Group grpLocation=null;
 	
+	 SelectionListener listener = null;
+	
 	public BasicTabItem(CTabFolder parent,String name) {
 		super(parent, SWT.NONE);
 		
@@ -106,13 +108,29 @@ public abstract class BasicTabItem extends CTabItem{
 	    if(Util.isAdmin())
 	    	table.setMenu(createPopUpMenu());	
 	    table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true));
-	    table.addSelectionListener(new SelectionAdapter() {
-			public void widgetDefaultSelected(SelectionEvent e) {
+
+	    listener = new SelectionListener() {
+	    	public void widgetDefaultSelected(SelectionEvent e) {
 				TableItem[] items = table.getSelection();
 				if (items.length > 0)
 						editEntity(items[0].getData());
 			}
-		});
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+	      };
+	      
+	      table.addSelectionListener(listener);
+//	    table.addSelectionListener(new SelectionAdapter() {
+//			public void widgetDefaultSelected(SelectionEvent e) {
+//				TableItem[] items = table.getSelection();
+//				if (items.length > 0)
+//						editEntity(items[0].getData());
+//			}
+//		});
 	
 	    
 	    for(int i = 0; i < getColumNames().length; i++) {
