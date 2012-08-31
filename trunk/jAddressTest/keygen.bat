@@ -1,0 +1,1 @@
+keytool -genkey -alias alias -keystore .keystore2

@@ -6,96 +6,122 @@
 -->
 
 <project name="Areca compilation" default="compileall">
-    <description>Areca's compilation script</description>
+	<description>Areca's compilation script</description>
 
-    <!-- Path to SWT libraries (download the SWT package if this file is missing on your system) -->
-    <property name="swtfile" value="./lib/swt.jar"/>
-	<property name="jsmooth.dir" value="C:/Program Files (x86)/JSmooth 0.9.9-7"/>
+	<!-- Path to SWT libraries (download the SWT package if this file is missing on your system) -->
+	<property name="swtfile" value="./lib/swt.jar" />
+	<property name="jsmooth.dir" value="C:/Program Files (x86)/JSmooth 0.9.9-7" />
 
-    <property name="root" value="."/>
+	<property name="root" value="." />
+	<property name="version" value="_v.1.2_beta" />
+	<!-- Test the OS -->
+	<condition property="isWindows">
+		<and>
+			<os family="windows" />
+		</and>
+	</condition>
 
-    <!-- Test the OS -->
-    <condition property="isWindows">
-        <and>
-            <os family="windows"/>
-        </and>
-    </condition>
-	
 
-	<target name="zip2">
-				<zip destfile="${root}/installer/OtobusFihrist2.zip" basedir="${root}" 
-					excludes="src/**,installer/**,jsmooth/**,bin/**,.settings/**,build.xml,.project,.classpath"  update="true">
-				
-					
-				</zip>
-			</target>
-	
 	<target name="zip3">
-					<zip destfile="${root}/installer/SuhaTurizm_OtobusFihrist_v.0.9.0.0_beta.zip" basedir="${root}" 
-						includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihrist.exe"  update="true">
-					
-						
-					</zip>
-				</target>
-	
-	
+		<zip destfile="${root}/installer/SuhaTurizm_OtobusFihristServer${version}.zip" basedir="${root}" includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihrist.exe" update="true"></zip>
+	</target>
 
-	<target name="build-exe" depends="compilejava"> 
-		<exec executable="${jsmooth.dir}/jsmoothcmd.exe"> 
-		<arg value="${root}/jsmooth/otobusFihrist_gui.jsmooth"/> 
-		</exec> 
-	</target> 
-	
+	<target name="zip4">
+		<zip destfile="${root}/installer/SuhaTurizm_OtobusFihristClient${version}.zip" basedir="${root}" includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihristClient.exe" update="true"></zip>
+	</target>
 
-    <target name="compilejava">
-        <description>Java compilation task (builds areca.jar)</description>
+	<target name="zipJavaWebStartFiles">
+		<zip destfile="${root}/installer/SuhaTurizm_OtobusFihrist_WebStart_${version}.zip" basedir="${root}" 
+			includes="lib/**,javawebstart/resources/**,javawebstart/otobusFihristClient.jnlp" update="true"></zip>
+	</target>
 
-        <delete dir="${root}/classes"/>
-        <mkdir dir="${root}/classes"/>
+	<target name="build-exe">
+		<exec executable="${jsmooth.dir}/jsmoothcmd.exe">
+			<arg value="${root}/jsmooth/otobusFihrist_gui_server.jsmooth" />
+		</exec>
+	</target>
 
-        <javac srcdir="${root}/src"
-               destdir="${root}/classes"
-               debug="off"
-               source="1.6">
-		       
-        		<classpath>
-		                <fileset dir="${root}/lib">
-		                    <include name="**/*.jar"/>
-		                </fileset>
-		                <fileset file="${swtfile}"/>
-		            </classpath>
+	<target name="build-exe-client">
+		<exec executable="${jsmooth.dir}/jsmoothcmd.exe">
+			<arg value="${root}/jsmooth/otobusFihrist_gui_client.jsmooth" />
+		</exec>
+	</target>
+
+	<target name="singjar">
+		<signjar alias="alias" keystore=".keystore2" storepass="ramazan" lazy="true">
+			<path>
+				<fileset dir="${root}/lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</path>
+		</signjar>
+	</target>
+
+	<target name="singjarWebStart">
+		<signjar alias="alias" keystore=".keystore2" storepass="ramazan" lazy="true">
+			<path>
+				<fileset dir="${root}/javawebstart/resources">
+					<include name="**/*.jar" />
+				</fileset>
+			</path>
+		</signjar>
+	</target>
+
+	<target name="compilejava">
+		<description>Java compilation task (builds areca.jar)</description>
+		<delete dir="${root}/classes" />
+		<mkdir dir="${root}/classes" />
+		<javac srcdir="${root}/src" destdir="${root}/classes" debug="off" source="1.6">
+			<classpath>
+				<fileset dir="${root}/lib">
+					<include name="**/*.jar" />
+				</fileset>
+				<fileset file="${swtfile}" />
+			</classpath>
 		</javac>
 
-        <jar destfile="${root}/lib/otobusFihrist.jar">
-            <fileset dir="${root}/classes"/>
-            <fileset dir="${root}">
-                <include name="icons/**"/>
-            
-            </fileset>
-        	
-        	<fileset dir="${root}/src">
-        		            <include name="model/hbm/*.hbm.xml" />
-        					
-        	</fileset>
-        	
-        	<fileset dir="${root}/src">
-        	        <include name="**/*.properties"/>
-        		    <include name="resources/*.properties"/>    
-        			<include name="**/*.gif"/>
-        	        <include name="**/*.jpg"/>
-        	        <include name="**/*.png"/>
-        	 </fileset>
-        </jar>
+		<jar destfile="${root}/lib/otobusFihrist.jar">
+			<fileset dir="${root}/classes" />
+			<fileset dir="${root}">
+				<include name="icons/**" />
+			</fileset>
 
-        <delete dir="${root}/classes"/>
-    </target>
+			<fileset dir="${root}/src">
+				<include name="model/hbm/*.hbm.xml" />
+			</fileset>
 
-      <target name="compileall">
-        <description>Global compilation task (builds areca.jar and libarecafs.so)</description>
-        <antcall target="compilejava"/>
-      	<antcall target="build-exe"/>
-      	<antcall target="zip3"/>
-    </target>
-	
-	
+			<fileset dir="${root}/src">
+				<include name="**/*.properties" />
+				<include name="resources/*.properties" />
+				<include name="**/*.gif" />
+				<include name="**/*.jpg" />
+				<include name="**/*.png" />
+			</fileset>
+		</jar>
+
+		<jar destfile="${root}/javawebstart/resources/resources.jar">
+			<fileset dir="${root}/translations">
+				<include name="**" />
+			</fileset>
+
+			<fileset dir="${root}/config">
+				<include name="**" />
+			</fileset>
+		</jar>
+		<delete dir="${root}/classes" />
+	</target>
+
+	<target name="compileall">
+		<description>Global compilation task (builds areca.jar and libarecafs.so)</description>
+		<antcall target="compilejava" />
+		<antcall target="singjar" />
+		<antcall target="singjarWebStart" />
+		<antcall target="build-exe" />
+		<antcall target="build-exe-client" />
+		<antcall target="zip3" />
+		<antcall target="zip4" />
+		<antcall target="zipJavaWebStartFiles" />
+	</target>
+
+
 </project>

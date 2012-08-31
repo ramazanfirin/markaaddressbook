@@ -1,5 +1,6 @@
-#Mon Aug 13 08:19:40 EEST 2012
+#Sat Aug 25 23:07:23 EEST 2012
 eclipse.preferences.version=1
 encoding//config/cities.sql=UTF-8
+encoding//config/import.sql=ISO-8859-9
 encoding//src/test/ComboDeselect.java=UTF-8
 encoding//src/test/TestSaveUser.java=UTF-8

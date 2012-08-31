@@ -114,11 +114,11 @@ public static void main(String[] args){
 public Shell open(Display display) throws Exception{
 	prepareDataProvider();
 	
-	Window.setExceptionHandler(new Window.IExceptionHandler() {
-	    public void handleException(Throwable error) {
-	        MessageDialog.openError(null, "Error", "Error: " + error.getMessage());
-	    }
-	});
+//	Window.setExceptionHandler(new Window.IExceptionHandler() {
+//	    public void handleException(Throwable error) {
+//	        MessageDialog.openError(null, "Error", "Error: " + error.getMessage());
+//	    }
+//	});
 	
 	shell = new Shell(display);
 	FillLayout layout = new FillLayout();

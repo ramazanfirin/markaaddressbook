@@ -2,6 +2,7 @@ package com;
 
 import model.model.User;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.mihalis.opal.login.LoginDialogVerifier;
 
 import util.Util;
@@ -31,5 +32,6 @@ public class LoginVerifier implements LoginDialogVerifier{
 		            	 throw new Exception("Sifre yanlis");
 		            
 		           Util.getApplicationInstance().setLoginUser(user); 
+		           MessageDialog.openError(null, "Error", "Error: " + "kontrol 1");
  }
 }
