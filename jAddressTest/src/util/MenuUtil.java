@@ -2,12 +2,14 @@ package util;
 
 import model.model.User;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -153,24 +155,27 @@ public class MenuUtil {
 	
 	public static ToolBar createToolBar(Composite parent){
 		final Composite _parent=parent;
-		
+		 MessageDialog.openError(null, "Error", "Error: " + "kontrol 25");
 		ToolBar toolBar = new ToolBar(parent, SWT.FLAT | SWT.WRAP | SWT.RIGHT);
 		toolBar.setSize(300,70);
-		
+		 MessageDialog.openError(null, "Error", "Error: " + "kontrol 26 isAdmin="+Util.isAdmin());
 	    ToolItem itemDriver = new ToolItem(toolBar, SWT.PUSH);
 	    itemDriver.setEnabled(Util.isAdmin());
 	    itemDriver.setText(Util.getString("toolbar.new.driver"));
-	    Image icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");    itemDriver.setImage(icon);
+	    //Image icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");    
+	    ClassLoader classLoader = parent.getClass().getClassLoader();
+	    Image icon = new Image(parent.getShell().getDisplay(), classLoader.getResourceAsStream("resources/user_list.png"));
+	    itemDriver.setImage(icon);
 	    itemDriver.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				Util.getApplicationInstance().getTabItemDriver().newEntity();
 			}
 		});
-	    
+	    MessageDialog.openError(null, "Error", "Error: " + "kontrol 27");
 	    ToolItem itemBus = new ToolItem(toolBar, SWT.PUSH);
 	    itemBus.setEnabled(Util.isAdmin());
 	    itemBus.setText(Util.getString("toolbar.new.bus"));
-	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
 	    itemBus.setImage(icon);
 	    itemBus.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
@@ -181,7 +186,7 @@ public class MenuUtil {
 	    ToolItem itemHost = new ToolItem(toolBar, SWT.PUSH);
 	    itemHost.setEnabled(Util.isAdmin());
 	    itemHost.setText(Util.getString("toolbar.new.host"));
-	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
 	    itemHost.setImage(icon);
 	    itemHost.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
@@ -192,7 +197,7 @@ public class MenuUtil {
 	    ToolItem itemBusOwner = new ToolItem(toolBar, SWT.PUSH);
 	    itemBusOwner.setEnabled(Util.isAdmin());
 	    itemBusOwner.setText(Util.getString("toolbar.new.busOwner"));
-	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
 	    itemBusOwner.setImage(icon);
 	    itemBusOwner.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
@@ -203,7 +208,7 @@ public class MenuUtil {
 	    ToolItem itemUser = new ToolItem(toolBar, SWT.PUSH);
 	    itemUser.setEnabled(Util.isAdmin());
 	    itemUser.setText(Util.getString("toolbar.new.user"));
-	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
 	    itemUser.setImage(icon);
 	    itemUser.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
@@ -213,7 +218,7 @@ public class MenuUtil {
 	    
 	    ToolItem itemUserUpdate = new ToolItem(toolBar, SWT.PUSH);
 	    itemUserUpdate.setText(Util.getString("userOperationMenu.update"));
-	    icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
 	    itemUserUpdate.setImage(icon);
 	    itemUserUpdate.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
