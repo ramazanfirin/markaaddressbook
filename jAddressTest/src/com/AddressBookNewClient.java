@@ -14,6 +14,8 @@ package com;
 
 
 /* Imports */
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -75,4 +77,8 @@ public class AddressBookNewClient extends AddressBookNew{
 		}
 	}
 
+	public List<String> getServerAddresses(){
+		return Util.getServerAddresses();
+	}
+	
 }

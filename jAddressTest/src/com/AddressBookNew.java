@@ -14,8 +14,15 @@ package com;
 
 
 /* Imports */
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.ResourceBundle;
+
+import javax.jnlp.BasicService;
+import javax.jnlp.ServiceManager;
+import javax.jnlp.UnavailableServiceException;
 
 import model.DBDataProvider;
 import model.DataProvider;
@@ -25,7 +32,6 @@ import model.model.User;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -35,7 +41,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
-import org.mihalis.opal.login.LoginDialog;
 
 import server.Server;
 import util.MenuUtil;
@@ -50,6 +55,7 @@ import widgets.OutOfficeTabItem;
 import widgets.SearchTabItem;
 import widgets.ServiceAreaTabItem;
 import widgets.UserTabItem;
+
 /**
  * AddressBookExample is an example that uses <code>org.eclipse.swt 
  * libraries to implement a simple address book.  This application has 
@@ -60,6 +66,11 @@ public class AddressBookNew {
 
 	boolean checkLogin=true;
 	public static ResourceBundle resAddressBook = ResourceBundle.getBundle("addressbook",new Locale("tr", "TR"));
+	public static ResourceBundle parameters = ResourceBundle.getBundle("parameters",new Locale("tr", "TR"));
+
+	Properties props = new Properties();
+	
+	
 	private Shell shell;
 	
 	 private BasicCTabFolder cTabFolder;
@@ -85,6 +96,8 @@ public class AddressBookNew {
 	 
 	 public CityLabelProvider cityLabelProvider = new CityLabelProvider();
 	 
+	 CustomLoginDialog dialog;
+	 
 	 protected static AddressBookNew instance = new AddressBookNew();
 	 public static AddressBookNew getInstance() {
 			return instance;
@@ -93,7 +106,12 @@ public class AddressBookNew {
 	 
 	 
 public static void main(String[] args){
+
 	System.out.println("basliyoruz");
+	
+	
+	
+	
 	try {
 		Server server = new Server();
 		instance.userLocalDB=true;
@@ -112,6 +130,9 @@ public static void main(String[] args){
 	}
 }
 public Shell open(Display display) throws Exception{
+	//props.load(getClass().getResourceAsStream("test.properties"));
+	
+	MessageDialog.openError(null, "Error", "Error: " + "kontrol 26 isAdmin=");
 	prepareDataProvider();
 	
 //	Window.setExceptionHandler(new Window.IExceptionHandler() {
@@ -174,11 +195,15 @@ public void prepareDataProvider(){
 }
 
 public boolean checkLogin(){
-	final LoginDialog dialog = new LoginDialog();
+	dialog = new CustomLoginDialog();
 	dialog.setDescription(Util.getString("login.message"));
+		
 	dialog.setDisplayRememberPassword(false);
 	dialog.setVerifier(new LoginVerifier());
-    
+    dialog.setServerList(getServerAddresses());	
+
+	
+	
 	if(checkLogin)
 		return dialog.open();
 	else{
@@ -206,6 +231,14 @@ private ToolBar createToolBar(Composite parent){
 	return MenuUtil.createToolBar(parent);
 
 }
+
+public List<String> getServerAddresses(){
+	
+	List<String> serverAddress = new ArrayList<String>();
+	serverAddress.add("LOCAL_DB222222222");
+	return serverAddress;
+}
+
 
 public DriverTabItem getTabItemDriver() {
 	return tabItemDriver;
@@ -337,6 +370,18 @@ public ServiceAreaTabItem getTabItemServiceArea() {
 
 public void setTabItemServiceArea(ServiceAreaTabItem tabItemServiceArea) {
 	this.tabItemServiceArea = tabItemServiceArea;
+}
+
+
+
+public CustomLoginDialog getDialog() {
+	return dialog;
+}
+
+
+
+public void setDialog(CustomLoginDialog dialog) {
+	this.dialog = dialog;
 }	
 
 

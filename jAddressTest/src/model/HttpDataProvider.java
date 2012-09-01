@@ -9,6 +9,7 @@ import model.model.User;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 
 import server.IHelloWorld;
+import util.Util;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -25,10 +26,16 @@ public class HttpDataProvider implements DataProvider{
 	    //register WebService interface
 	    factory.setServiceClass(IHelloWorld.class);
 	    //set webservice publish address to factory.
-	    factory.setAddress("http://localhost:8090/OtobusFihrist");
+	    //factory.setAddress("http://localhost:8090/OtobusFihrist");
+	    //factory.setAddress(Util.getParameter("serverAddress"));
 	    
 	    iHelloWorld = (IHelloWorld) factory.create();
 
+	}
+	
+	public void prepareEndPoint(String endPoint){
+		factory.setAddress(endPoint);
+		iHelloWorld = (IHelloWorld) factory.create();
 	}
 
 	private static HttpDataProvider instance = new HttpDataProvider();
@@ -237,6 +244,16 @@ public class HttpDataProvider implements DataProvider{
 			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	public JaxWsProxyFactoryBean getFactory() {
+		return factory;
+	}
+
+
+	public void setFactory(JaxWsProxyFactoryBean factory) {
+		this.factory = factory;
 	}
 
 }
