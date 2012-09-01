@@ -27,11 +27,12 @@ public class LoginVerifier implements LoginDialogVerifier{
 //                    throw new Exception("Authentication failed, please check your password.");
 //            }
             
-           	 User user=Util.getApplicationInstance().getDataProvider().checkPassword(login, Util.encrypt(password));
+            Util.setServerEndPoint();
+           	User user=Util.getApplicationInstance().getDataProvider().checkPassword(login, Util.encrypt(password));
 		            if(user==null)
 		            	 throw new Exception("Sifre yanlis");
 		            
-		           Util.getApplicationInstance().setLoginUser(user); 
-		           MessageDialog.openError(null, "Error", "Error: " + "kontrol 1");
+		    Util.getApplicationInstance().setLoginUser(user); 
+		    Util.saveEndPoint();
  }
 }
