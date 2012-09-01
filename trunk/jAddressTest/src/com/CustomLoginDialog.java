@@ -77,6 +77,7 @@ public class CustomLoginDialog {
         private Button buttonOk;
         
         private List<String> serverList = new ArrayList<String>();
+        private Boolean serverAddressEnabled = true;
         /**
          * Constructor
          */
@@ -233,12 +234,13 @@ public class CustomLoginDialog {
                 label.setText("Server Adres");
 
 				// Combo
-				final Combo combo = new Combo(this.shell, SWT.BORDER);
+				final Combo combo = new Combo(this.shell, SWT.BORDER );
 				combo.setLayoutData(new GridData(GridData.FILL, GridData.END, true,
 						false, 3, 1));
 				for (final String loginToAdd : this.serverList) {
 					combo.add(loginToAdd);
 				}
+				combo.setEnabled(serverAddressEnabled);
 				combo.setText(this.login == null ? "" : this.login);
 				combo.setFocus();
 				combo.setText(serverList.get(0));  
@@ -562,6 +564,14 @@ public class CustomLoginDialog {
 
 		public void setServer(String server) {
 			this.server = server;
+		}
+
+		public Boolean getServerAddressEnabled() {
+			return serverAddressEnabled;
+		}
+
+		public void setServerAddressEnabled(Boolean serverAddressEnabled) {
+			this.serverAddressEnabled = serverAddressEnabled;
 		}
 
 }

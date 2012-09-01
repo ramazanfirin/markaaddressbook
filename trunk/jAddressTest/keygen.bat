@@ -1,1 +1,1 @@
-keytool -genkey -alias alias -keystore .keystore2
+keytool -genkey -alias alias -keystore keystoreOtobusFihrist

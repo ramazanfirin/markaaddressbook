@@ -17,8 +17,6 @@ import javax.jnlp.UnavailableServiceException;
 import model.HttpDataProvider;
 
 import org.apache.commons.codec.binary.Base64;
-import org.eclipse.jface.dialogs.MessageDialog;
-
 import com.AddressBookNew;
 import com.AddressBookNewClient;
 
@@ -34,22 +32,16 @@ public class Util {
 	}
 	
 	public static String getParameterAsStream(String name){
-		MessageDialog.openError(null, "Error", "Error: " + "kontrol 150");
 		Properties props = new Properties();
 		String message ="";
 		try {
-			MessageDialog.openError(null, "Error", "Error: " + "kontrol 160");
 			ClassLoader classLoader = props.getClass().getClassLoader();
 			InputStream a =classLoader.getResourceAsStream("parameters.properties");
 			props.load(classLoader.getResourceAsStream("parameters.properties"));
-			MessageDialog.openError(null, "Error", "Error: " + "kontrol 165");
 			message = props.getProperty(name);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			MessageDialog.openError(null, "Error", "Error: " + "kontrol 170"+e.getMessage()+e.toString());
 			e.printStackTrace();
 		}
-		MessageDialog.openError(null, "Error", "Error: " + "kontrol 180"+message);
 		return message;
 	}
 	
@@ -83,13 +75,11 @@ public class Util {
 	}
 	
 	public static List<String> getServerAddresses(){
-		MessageDialog.openError(null, "Error", "Error: " + "kontrol 100");
 		String[] serverAddresses=null;
 		if(Util.isFromJNPL()){
-			serverAddresses= getParameterAsStream("serverAddress").split(",");
+			serverAddresses= getParameter("serverAddress").split(",");
 		}else
 			serverAddresses = getParameterProperties("serverAddress").split(",");
-		MessageDialog.openError(null, "Error", "Error: " + "kontrol 200");
 		List<String> serverAddress = new ArrayList<String>();
 		for (int i = 0; i < serverAddresses.length; i++) {
 			serverAddress.add(serverAddresses[i]);

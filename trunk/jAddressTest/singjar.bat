@@ -1,0 +1,1 @@
+jarsigner -keystore .keystore2 -storepass ramazan -keypass ramazan resources.jar alias

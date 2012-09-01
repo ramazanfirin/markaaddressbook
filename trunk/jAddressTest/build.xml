@@ -32,7 +32,7 @@
 
 	<target name="zipJavaWebStartFiles">
 		<zip destfile="${root}/installer/SuhaTurizm_OtobusFihrist_WebStart_${version}.zip" basedir="${root}" 
-			includes="lib/**,javawebstart/resources/**,javawebstart/otobusFihristClient.jnlp" update="true"></zip>
+			includes="lib/**,javawebstart/resources/**,javawebstart/otobusFihristClient.jnlp,.keystore2,singjar.bat"  update="true"></zip>
 	</target>
 
 	<target name="build-exe">
@@ -48,7 +48,8 @@
 	</target>
 
 	<target name="singjar">
-		<signjar alias="alias" keystore=".keystore2" storepass="ramazan" lazy="true">
+		
+		<signjar alias="alias" keystore="${root}/.keystore2" storepass="ramazan" lazy="true">
 			<path>
 				<fileset dir="${root}/lib">
 					<include name="**/*.jar" />
@@ -58,7 +59,7 @@
 	</target>
 
 	<target name="singjarWebStart">
-		<signjar alias="alias" keystore=".keystore2" storepass="ramazan" lazy="true">
+		<signjar alias="alias" keystore="${root}/.keystore2" storepass="ramazan" lazy="true">
 			<path>
 				<fileset dir="${root}/javawebstart/resources">
 					<include name="**/*.jar" />

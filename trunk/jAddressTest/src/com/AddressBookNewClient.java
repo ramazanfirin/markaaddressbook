@@ -64,8 +64,8 @@ public class AddressBookNewClient extends AddressBookNew{
 		System.out.println("basliyoruz2");
 		try {
 			display = new Display();
-			instance.userLocalDB=false;
-			instance.isRunning=true;
+			//instance.userLocalDB=false;
+			//instance.isRunning=true;
 			Shell shell = instance.open(display);
 			while(!shell.isDisposed()){
 				if(!display.readAndDispatch())
@@ -75,6 +75,13 @@ public class AddressBookNewClient extends AddressBookNew{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public AddressBookNewClient() {
+		super();
+		loginDialogServerAddressEnabled  = true;
+		userLocalDB=false;
+		isRunning=true;
 	}
 
 	public List<String> getServerAddresses(){

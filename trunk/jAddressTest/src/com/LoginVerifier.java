@@ -1,8 +1,6 @@
 package com;
 
 import model.model.User;
-
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.mihalis.opal.login.LoginDialogVerifier;
 
 import util.Util;
