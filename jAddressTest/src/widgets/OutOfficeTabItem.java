@@ -75,7 +75,6 @@ public class OutOfficeTabItem extends BasicTabItem{
 		label.setText(Util.getString("city"));
 		city = new ComboViewer(grpLocation, SWT.READ_ONLY);
 		city.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		city.getCombo().setEnabled(Util.isAdmin());
 		city.setContentProvider(new ArrayContentProvider());
 		city.setLabelProvider(Util.getApplicationInstance().cityLabelProvider);
 		city.setInput(cityList);

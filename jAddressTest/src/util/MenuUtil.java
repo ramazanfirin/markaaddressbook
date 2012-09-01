@@ -2,7 +2,6 @@ package util;
 
 import model.model.User;
 
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -155,10 +154,8 @@ public class MenuUtil {
 	
 	public static ToolBar createToolBar(Composite parent){
 		final Composite _parent=parent;
-		 MessageDialog.openError(null, "Error", "Error: " + "kontrol 25");
 		ToolBar toolBar = new ToolBar(parent, SWT.FLAT | SWT.WRAP | SWT.RIGHT);
 		toolBar.setSize(300,70);
-		 MessageDialog.openError(null, "Error", "Error: " + "kontrol 26 isAdmin="+Util.isAdmin());
 	    ToolItem itemDriver = new ToolItem(toolBar, SWT.PUSH);
 	    itemDriver.setEnabled(Util.isAdmin());
 	    itemDriver.setText(Util.getString("toolbar.new.driver"));
@@ -171,7 +168,6 @@ public class MenuUtil {
 				Util.getApplicationInstance().getTabItemDriver().newEntity();
 			}
 		});
-	    MessageDialog.openError(null, "Error", "Error: " + "kontrol 27");
 	    ToolItem itemBus = new ToolItem(toolBar, SWT.PUSH);
 	    itemBus.setEnabled(Util.isAdmin());
 	    itemBus.setText(Util.getString("toolbar.new.bus"));

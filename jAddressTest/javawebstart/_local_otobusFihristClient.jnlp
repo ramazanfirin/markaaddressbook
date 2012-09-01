@@ -60,6 +60,8 @@
         	    <jar href="xstream-1.4.3.jar"/>
         	    
         	    <jar href="../javawebstart/resources/resources.jar"/>
+        	    <jar href="jnlp-1.6.jar"/>
         </resources>
         <application-desc main-class="com.AddressBookNewClient"/>
+         <update check="always" policy="always"/>
 </jnlp>

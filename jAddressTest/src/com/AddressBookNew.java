@@ -97,6 +97,7 @@ public class AddressBookNew {
 	 public CityLabelProvider cityLabelProvider = new CityLabelProvider();
 	 
 	 CustomLoginDialog dialog;
+	 public Boolean loginDialogServerAddressEnabled = false;
 	 
 	 protected static AddressBookNew instance = new AddressBookNew();
 	 public static AddressBookNew getInstance() {
@@ -130,9 +131,6 @@ public static void main(String[] args){
 	}
 }
 public Shell open(Display display) throws Exception{
-	//props.load(getClass().getResourceAsStream("test.properties"));
-	
-	MessageDialog.openError(null, "Error", "Error: " + "kontrol 26 isAdmin=");
 	prepareDataProvider();
 	
 //	Window.setExceptionHandler(new Window.IExceptionHandler() {
@@ -201,7 +199,7 @@ public boolean checkLogin(){
 	dialog.setDisplayRememberPassword(false);
 	dialog.setVerifier(new LoginVerifier());
     dialog.setServerList(getServerAddresses());	
-
+    dialog.setServerAddressEnabled(getLoginDialogServerAddressEnabled());
 	
 	
 	if(checkLogin)
@@ -235,7 +233,7 @@ private ToolBar createToolBar(Composite parent){
 public List<String> getServerAddresses(){
 	
 	List<String> serverAddress = new ArrayList<String>();
-	serverAddress.add("LOCAL_DB222222222");
+	serverAddress.add("LOCAL_DB");
 	return serverAddress;
 }
 
@@ -382,6 +380,19 @@ public CustomLoginDialog getDialog() {
 
 public void setDialog(CustomLoginDialog dialog) {
 	this.dialog = dialog;
+}
+
+
+
+public Boolean getLoginDialogServerAddressEnabled() {
+	return loginDialogServerAddressEnabled;
+}
+
+
+
+public void setLoginDialogServerAddressEnabled(
+		Boolean loginDialogServerAddressEnabled) {
+	this.loginDialogServerAddressEnabled = loginDialogServerAddressEnabled;
 }	
 
 

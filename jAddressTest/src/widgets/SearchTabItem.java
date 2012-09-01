@@ -157,7 +157,6 @@ public class SearchTabItem extends BasicTabItem{
 		
 		outOfficeCity = new ComboViewer(grpLocation, SWT.READ_ONLY);
 		outOfficeCity.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		outOfficeCity.getCombo().setEnabled(Util.isAdmin());
 		outOfficeCity.setContentProvider(new ArrayContentProvider());
 		outOfficeCity.setLabelProvider(Util.getApplicationInstance().cityLabelProvider);
 		outOfficeCity.setInput(cityList);
@@ -201,7 +200,6 @@ public class SearchTabItem extends BasicTabItem{
 		
 		serviceAreaCity = new ComboViewer(grpLocation, SWT.READ_ONLY);
 		serviceAreaCity.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		serviceAreaCity.getCombo().setEnabled(Util.isAdmin());
 		serviceAreaCity.setContentProvider(new ArrayContentProvider());
 		serviceAreaCity.setLabelProvider(Util.getApplicationInstance().cityLabelProvider);
 		serviceAreaCity.setInput(cityList);
