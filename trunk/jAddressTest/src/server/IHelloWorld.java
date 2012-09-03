@@ -25,4 +25,17 @@ public interface IHelloWorld{
 	 String saveOrUpdate(String string)  throws Exception;
 	 
 	 String loadCities();
+
+	 void delete(String string) ;
+	 void deleteBusOwner(String string) ;
+	 void deleteHost(String string) ;
+	 void deleteMuavin(String string) ;
+	 void deleteDriver(String string) ;
+	 
+	 String searchOutOffice(String name,String cityId);
+	 String searchServiceArea(String name,String cityId);
+	 String searchGeneral(String name, String surname,
+				String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId);
+	 
+	 void checkException() throws Exception;
 }

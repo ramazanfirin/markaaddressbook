@@ -20,10 +20,6 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import javax.jnlp.BasicService;
-import javax.jnlp.ServiceManager;
-import javax.jnlp.UnavailableServiceException;
-
 import model.DBDataProvider;
 import model.DataProvider;
 import model.HttpDataProvider;
@@ -32,6 +28,7 @@ import model.model.User;
 
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -133,11 +130,11 @@ public static void main(String[] args){
 public Shell open(Display display) throws Exception{
 	prepareDataProvider();
 	
-//	Window.setExceptionHandler(new Window.IExceptionHandler() {
-//	    public void handleException(Throwable error) {
-//	        MessageDialog.openError(null, "Error", "Error: " + error.getMessage());
-//	    }
-//	});
+	Window.setExceptionHandler(new Window.IExceptionHandler() {
+	    public void handleException(Throwable error) {
+	        MessageDialog.openError(null, "Error", "Error: Global Error Handler " + error.getMessage());
+	    }
+	});
 	
 	shell = new Shell(display);
 	FillLayout layout = new FillLayout();

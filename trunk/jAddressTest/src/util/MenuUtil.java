@@ -2,6 +2,7 @@ package util;
 
 import model.model.User;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
@@ -60,7 +61,7 @@ public class MenuUtil {
 					try {
 						Util.getApplicationInstance().getDataProvider().saveOrUpdate(user);
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
+						MessageDialog.openError(wizardDialog.getShell(), "Error", e1.getMessage());
 						e1.printStackTrace();
 					}
 				}
@@ -225,7 +226,7 @@ public class MenuUtil {
 					try {
 						Util.getApplicationInstance().getDataProvider().saveOrUpdate(user);
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
+						MessageDialog.openError(wizardDialog.getShell(), "Error", e1.getMessage());
 						e1.printStackTrace();
 					}
 					

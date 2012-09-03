@@ -209,7 +209,7 @@ public abstract class BasicTabItem extends CTabItem{
 				//getParent().setSelection(this);
 				loadData();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				MessageDialog.openError(wizard.getShell(), "Error", e.getMessage());
 				e.printStackTrace();
 			}
 			
@@ -234,7 +234,7 @@ public abstract class BasicTabItem extends CTabItem{
 			loadAllItems();
 			refresh();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			//MessageDialog.openError(shell, title, message);
 			e.printStackTrace();
 		}
 	}

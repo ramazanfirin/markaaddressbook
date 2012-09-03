@@ -1,47 +1,58 @@
 package test;
 
-import java.util.Date;
-
-import javax.swing.DefaultButtonModel;
-
 import junit.framework.TestCase;
-import model.DBDataProvider;
-import model.model.Address;
-import model.model.Bus;
-import model.model.City;
-import model.model.Driver;
+import model.HttpDataProvider;
+import server.Server;
 
 public class TestSaveUser extends TestCase{
-
-	public void testDriverCreate(){
+	
+	
+public void testSoapFault(){
 		
-		Driver user = new Driver();
-		user.setName("ramazan");
-		user.setSurname("firin");
-		user.setPhone("123456");
-		user.setInsertDate(new Date());
+		new Server();
+		HttpDataProvider httpDataProvider = new HttpDataProvider();
+		httpDataProvider.prepareEndPoint("http://localhost:8090/OtobusFihrist");
 		
-		Bus bus = new Bus();
-		bus.setPlate("plateramazan");
-		bus.setPhone("phoneramazan");
-		
-		City city  =new City();
-		city.setName("KAYseri");
-		DBDataProvider.getInstance().saveOrUpdate(city);
-		
-		Address address = new Address();
-		address.setCity(city);
-		address.setDescription("kıranardı");
-		
-		user.setAddress(address);
-		
-		DBDataProvider.getInstance().saveOrUpdate(user);
-		
-		DBDataProvider.getInstance().loadAllDriver2();
-		System.out.println("bitti");
-		
+		try {
+			httpDataProvider.testException();
+			System.out.println("hatasiz bitti");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("hata var= "+ e.getMessage());
+		}
 		
 	}
+
+//	public void testDriverCreate(){
+//		
+//		Driver user = new Driver();
+//		user.setName("ramazan");
+//		user.setSurname("firin");
+//		user.setPhone("123456");
+//		user.setInsertDate(new Date());
+//		
+//		Bus bus = new Bus();
+//		bus.setPlate("plateramazan");
+//		bus.setPhone("phoneramazan");
+//		
+//		City city  =new City();
+//		city.setName("KAYseri");
+//		DBDataProvider.getInstance().saveOrUpdate(city);
+//		
+//		Address address = new Address();
+//		address.setCity(city);
+//		address.setDescription("kıranardı");
+//		
+//		user.setAddress(address);
+//		
+//		DBDataProvider.getInstance().saveOrUpdate(user);
+//		
+//		DBDataProvider.getInstance().loadAllDriver2();
+//		System.out.println("bitti");
+//		
+//		
+//	}
 	
 	/*
 	public void testDriverall2(){

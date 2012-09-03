@@ -660,6 +660,12 @@ public class DBDataProvider implements DataProvider{
 
 		return  list;
 	}
+
+	@Override
+	public void testException() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 	 
 
 

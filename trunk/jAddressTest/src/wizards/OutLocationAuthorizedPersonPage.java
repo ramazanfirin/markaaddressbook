@@ -183,6 +183,7 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
       } else 
       	updateStatus(null);	
     
+    if(!Util.isEmpty(this._name2.getText()) || !Util.isEmpty(this.surname2.getText()) || !Util.isEmpty(this.phone2.getText())){
 	if (this._name2.getText().length() == 0) {
 	      updateStatus("Isim alani zorunludur");
 	      return false;
@@ -207,7 +208,7 @@ public class OutLocationAuthorizedPersonPage extends BasicPage{
 	        return false;
 	      } else 
 	      	updateStatus(null);	    
-    
+    }
 
     updateStatus(null);
     setPageComplete(true);

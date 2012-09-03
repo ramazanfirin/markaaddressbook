@@ -6,6 +6,7 @@ import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.Person;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
@@ -165,7 +166,7 @@ abstract class  PersonPage extends BasicPersonPage {
 							try {
 								Util.getApplicationInstance().getDataProvider().saveOrUpdate(bus);
 							} catch (Exception e1) {
-								// TODO Auto-generated catch block
+								MessageDialog.openError(wizardDialog.getShell(), "Error", e1.getMessage());
 								e1.printStackTrace();
 							}
 					}
