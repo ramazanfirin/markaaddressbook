@@ -168,5 +168,87 @@ public class HelloWorldImpl implements IHelloWorld {
 		return xml;
 	}
 
+
+	@Override
+	public void delete(String string) {
+		XStream xstream = new XStream();
+		Object object = xstream.fromXML(string);
+		DBDataProvider.getInstance().delete(object);
+		
+	}
+
+
+	@Override
+	public void deleteBusOwner(String string) {
+		XStream xstream = new XStream();
+		Object object = xstream.fromXML(string);
+		DBDataProvider.getInstance().deleteBusOwner(object);
+		
+	}
+
+
+	@Override
+	public void deleteHost(String string){
+		XStream xstream = new XStream();
+		Object object = xstream.fromXML(string);
+		DBDataProvider.getInstance().deleteHost(object);
+	}
+
+
+	@Override
+	public void deleteMuavin(String string) {
+		XStream xstream = new XStream();
+		Object object = xstream.fromXML(string);
+		DBDataProvider.getInstance().deleteMuavin(object);
+		
+	}
+
+
+	@Override
+	public void deleteDriver(String string) {
+		XStream xstream = new XStream();
+		Object object = xstream.fromXML(string);
+		DBDataProvider.getInstance().deleteDriver(object);		
+	}
+
+
+	@Override
+	public String searchOutOffice(String name, String cityId) {
+		List<AbsractInterface> list=DBDataProvider.getInstance().searchOutOffice(name, cityId);
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(list);
+		return xml;
+	}
+
+
+	@Override
+	public String searchServiceArea(String name, String cityId) {
+		List<AbsractInterface> list=DBDataProvider.getInstance().searchServiceArea(name, cityId);
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(list);
+		return xml;
+	}
+
+
+	@Override
+	public String searchGeneral(String name, String surname, String busPlate,
+			String busShortCode, String outOfficeName, String outOfficeCityId,
+			String serviceAreaName, String serviceAreaCityId) {
+		List<AbsractInterface> list=DBDataProvider.getInstance().
+			searchGeneral(name, surname, busPlate, busShortCode, outOfficeName, outOfficeCityId, serviceAreaName, serviceAreaCityId);
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(list);
+		return xml;
+
+	}
+
+
+	@Override
+	public void checkException() throws Exception {
+		System.out.println(" on checkException ");
+		throw new Exception("deneme");
+		
+	}
+
 	
 }

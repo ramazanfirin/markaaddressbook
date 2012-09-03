@@ -39,4 +39,6 @@ public interface DataProvider {
 	public List<AbsractInterface> searchServiceArea(String name,String city);
 	public List<AbsractInterface> searchGeneral(String name,String surname,String busPlate,String busShortCode,
 			                                    String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId);
+	
+	public void testException() throws Exception;
 }

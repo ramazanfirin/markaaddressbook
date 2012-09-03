@@ -56,6 +56,7 @@ public class OutLocationWizard extends Wizard{
 		outLocation.setIpPhone(locationLocationPage.getIpPhone().getText());
 		
 		outLocation.setNote(locationLocationPage.getNote().getText());
+		outLocation.setShortCode(locationLocationPage.getShortCode().getText());
 		
 		IStructuredSelection selection = (IStructuredSelection)locationLocationPage.getCity().getSelection();
 	     if(selection.isEmpty() || selection.getFirstElement() instanceof String){

@@ -181,37 +181,46 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public void delete(Object o) {
-		// TODO Auto-generated method stub
+	public void delete(Object o){
+		XStream xstream = new XStream();
+		String string = xstream.toXML(o);
+		iHelloWorld.delete(string);
 		
 	}
 
 
 	@Override
 	public void deleteBusOwner(Object object) {
-		// TODO Auto-generated method stub
+		XStream xstream = new XStream();
+		String string = xstream.toXML(object);
+		iHelloWorld.deleteBusOwner(string);
 		
 	}
 
 
 	@Override
 	public void deleteHost(Object object) {
-		// TODO Auto-generated method stub
+		XStream xstream = new XStream();
+		String string = xstream.toXML(object);
+		iHelloWorld.deleteHost(string);
 		
 	}
 
 
 	@Override
 	public void deleteMuavin(Object object) {
-		// TODO Auto-generated method stub
+		XStream xstream = new XStream();
+		String string = xstream.toXML(object);
+		iHelloWorld.deleteMuavin(string);
 		
 	}
 
 
 	@Override
 	public void deleteDriver(Object object) {
-		// TODO Auto-generated method stub
-		
+		XStream xstream = new XStream();
+		String string = xstream.toXML(object);
+		iHelloWorld.deleteDriver(string);
 	}
 
 
@@ -227,23 +236,32 @@ public class HttpDataProvider implements DataProvider{
 
 	@Override
 	public List<AbsractInterface> searchOutOffice(String name,String city) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = iHelloWorld.searchOutOffice(name,city);
+		XStream xstream = new XStream();
+		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
+		
+		return list;
 	}
 
 
 	@Override
 	public List<AbsractInterface> searchServiceArea(String name,String city) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = iHelloWorld.searchServiceArea(name,city);
+		XStream xstream = new XStream();
+		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
+		
+		return list;
 	}
 
 
 	@Override
 	public List<AbsractInterface> searchGeneral(String name, String surname,
 			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) {
-		// TODO Auto-generated method stub
-		return null;
+		String result = iHelloWorld.searchGeneral(name, surname, busPlate, busShortCode, outOfficeName, outOfficeCityId, serviceAreaName, serviceAreaCityId);
+		XStream xstream = new XStream();
+		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
+		
+		return list;
 	}
 
 
@@ -254,6 +272,12 @@ public class HttpDataProvider implements DataProvider{
 
 	public void setFactory(JaxWsProxyFactoryBean factory) {
 		this.factory = factory;
+	}
+
+	@Override
+	public void testException() throws Exception {
+		iHelloWorld.checkException();
+		
 	}
 
 }

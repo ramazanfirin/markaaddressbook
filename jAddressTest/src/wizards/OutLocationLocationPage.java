@@ -23,6 +23,7 @@ public class OutLocationLocationPage extends BasicPage{
 	Text phone3;
 	Text ipPhone;
 	Text note;
+	Text shortCode;
 	
 	ComboViewer city;
     Text address;
@@ -80,6 +81,16 @@ public class OutLocationLocationPage extends BasicPage{
 	      ipPhone.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 	      ipPhone.addModifyListener(textModifyListener);
 	      ipPhone.setEditable(Util.isAdmin());	
+	      ipPhone.setTextLimit(3);
+	      
+	      label = new Label(container, SWT.NULL);
+	      label.setText(Util.getString("shortCode"));
+	      shortCode = new Text(container, SWT.BORDER | SWT.SINGLE);
+	      shortCode.setText(outLocation.getShortCode());
+	      shortCode.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+	      shortCode.addModifyListener(textModifyListener);
+	      shortCode.setEditable(Util.isAdmin());	
+	      shortCode.setTextLimit(6);
 	      
 	      createLine(container, layout.numColumns);
 	      
@@ -131,7 +142,16 @@ public class OutLocationLocationPage extends BasicPage{
 		if (this.getPhone1().getText().length() == 0) {
 		      updateStatus("ilk Telefon alani zorunludur");
 		      return false;
-		    }else
+		}if (this.getIpPhone().getText().length()  >0 && this.getIpPhone().getText().length()<3) {
+		      updateStatus("ip  Telefon alani 3 hane olmalidir");
+		      return false;
+		}if(!Util.isEmpty(this.getShortCode().getText())){
+			if (this.getShortCode().getText().length()<4) {
+			      updateStatus("Kisa kod alani 4-6 hane olmalidir");
+			      return false;
+			}
+		}
+		else
 		      updateStatus(null);	 
 
 		updateStatus(null);
@@ -194,6 +214,14 @@ public class OutLocationLocationPage extends BasicPage{
 
 	public void setAddress(Text address) {
 		this.address = address;
+	}
+
+	public Text getShortCode() {
+		return shortCode;
+	}
+
+	public void setShortCode(Text shortCode) {
+		this.shortCode = shortCode;
 	}
 
 }
