@@ -40,6 +40,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 
 import server.Server;
+import util.LogClass;
 import util.MenuUtil;
 import util.Util;
 import widgets.BasicCTabFolder;
@@ -133,6 +134,7 @@ public Shell open(Display display) throws Exception{
 	Window.setExceptionHandler(new Window.IExceptionHandler() {
 	    public void handleException(Throwable error) {
 	        MessageDialog.openError(null, "Error", "Error: Global Error Handler " + error.getMessage());
+	        LogClass.logger.error("error",error );
 	    }
 	});
 	
@@ -166,7 +168,7 @@ public Shell open(Display display) throws Exception{
     cTabFolder.setUnselectedImageVisible(false);
     cTabFolder.setUnselectedCloseVisible(false);
 	
-    tabItemSearch = new SearchTabItem(cTabFolder,Util.getString("search"));
+    tabItemSearch = new SearchTabItem(cTabFolder,Util.getString("general.search"));
     tabItemBus = new BusTabItem(cTabFolder,Util.getString("bus.list"));
     tabItemDriver = new DriverTabItem(cTabFolder,Util.getString("driver.list"));
     tabItemHost = new HostTabItem(cTabFolder,Util.getString("host.list"));
@@ -189,7 +191,7 @@ public void prepareDataProvider(){
 		dataProvider = new HttpDataProvider();
 }
 
-public boolean checkLogin(){
+public boolean checkLogin() throws Exception{
 	dialog = new CustomLoginDialog();
 	dialog.setDescription(Util.getString("login.message"));
 		
