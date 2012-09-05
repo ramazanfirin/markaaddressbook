@@ -7,6 +7,7 @@ import model.interfaces.AbsractInterface;
 import model.model.Bus;
 import model.model.Driver;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
@@ -17,6 +18,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import util.LogClass;
 import util.Util;
 
 class BusPage extends BasicPage{
@@ -83,8 +85,16 @@ class BusPage extends BasicPage{
       
     createLine(container, layout.numColumns);
     
-    List driverList=Util.getApplicationInstance().getDataProvider().loadAllDriver2();
-    driverList.add(0,Util.getString("select"));
+    List driverList=null;
+	try {
+		driverList = Util.getApplicationInstance().getDataProvider().loadAllDriver2();
+		 driverList.add(0,Util.getString("select"));
+	} catch (Exception e1) {
+		MessageDialog.openError(this.getShell(), "Hata", e1.getMessage());
+		e1.printStackTrace();
+		LogClass.logger.error("Error", e1);
+	}
+   
     
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("driver.first"));
@@ -131,8 +141,16 @@ class BusPage extends BasicPage{
     
     createLine(container, layout.numColumns);
     
-    List hostList=Util.getApplicationInstance().getDataProvider().loadHosts();
-    hostList.add(0,Util.getString("select"));
+    List hostList=null;
+	try {
+		hostList = Util.getApplicationInstance().getDataProvider().loadHosts();
+		hostList.add(0,Util.getString("select"));
+	} catch (Exception e1) {
+		MessageDialog.openError(this.getShell(), "Hata", e1.getMessage());
+		e1.printStackTrace();
+		LogClass.logger.error("Error", e1);
+	}
+    
     
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("host"));
@@ -149,8 +167,16 @@ class BusPage extends BasicPage{
     	viewer4.getCombo().setText(Util.getString("select")); 
     
     
-    List muavinList=Util.getApplicationInstance().getDataProvider().loadAllMuavin();
-    muavinList.add(0,Util.getString("select"));
+    List muavinList=null;
+	try {
+		muavinList = Util.getApplicationInstance().getDataProvider().loadAllMuavin();
+		muavinList.add(0,Util.getString("select"));
+	} catch (Exception e1) {
+		MessageDialog.openError(this.getShell(), "Hata", e1.getMessage());
+		e1.printStackTrace();
+		LogClass.logger.error("Error", e1);
+	}
+    
     
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("muavin"));
@@ -170,8 +196,16 @@ class BusPage extends BasicPage{
   
     createLine(container, layout.numColumns);
     
-    List ownerList=Util.getApplicationInstance().getDataProvider().loadBusOwners();
-    ownerList.add(0,Util.getString("select"));
+    List ownerList=null;
+	try {
+		ownerList = Util.getApplicationInstance().getDataProvider().loadBusOwners();
+		ownerList.add(0,Util.getString("select"));
+	} catch (Exception e1) {
+		MessageDialog.openError(this.getShell(), "Hata", e1.getMessage());
+		e1.printStackTrace();
+		LogClass.logger.error("Error", e1);
+	}
+    
     
     label = new Label(container, SWT.NULL);
     label.setText(Util.getString("busOwner.first"));

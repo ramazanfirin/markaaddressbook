@@ -35,6 +35,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
+import util.LogClass;
 import util.Util;
 
 public abstract class BasicTabItem extends CTabItem{
@@ -83,7 +84,13 @@ public abstract class BasicTabItem extends CTabItem{
 		searchDriverButton.setText(Util.getString("search"));
 		searchDriverButton.addSelectionListener(new SelectionListener() {
 		      public void widgetSelected(SelectionEvent event) {
-		    	  search();
+		    	  try {
+					search();
+				} catch (Exception e1) {
+					MessageDialog.openError(shell, "Hata", e1.getMessage());
+					e1.printStackTrace();
+					LogClass.logger.error("Error", e1);
+				}
 		      }
 		      public void widgetDefaultSelected(SelectionEvent event) {
 		        //text.setText("No worries!");
@@ -151,29 +158,29 @@ public abstract class BasicTabItem extends CTabItem{
 	
 	
 	
-	abstract void search();
+	abstract void search() throws Exception;
 	abstract void prepareComponents(Composite composite);
 	abstract String[] getColumNames();
 	abstract Wizard getNewWizard();
 	abstract void createNewEntity();
 	//abstract ITableLabelProvider getTableLabelProvider();
-	abstract void loadAllItems();
+	abstract void loadAllItems() throws Exception;
 	abstract String getTableColumValues(Object object,int columnIndex);
 	abstract String getName();
 	abstract String getWizardTitle();
-	abstract void deleteEntity(Object object);
+	abstract void deleteEntity(Object object) throws Exception;
 	
 	public void refresh(){
 		tableViewer.setInput(entityList);
 		tableViewer.refresh();
 	}
 	
-	public void loadData(){
+	public void loadData() throws Exception{
       loadAllItems();
       refresh();
 	}
 	
-	public void notifyAllTabItems(){
+	public void notifyAllTabItems() throws Exception{
 		 BasicCTabFolder basicCTabFolder = (BasicCTabFolder)getParent();
 	        basicCTabFolder.refreshAllTabItems();
 		
@@ -208,18 +215,19 @@ public abstract class BasicTabItem extends CTabItem{
 				//refresh();
 				//getParent().setSelection(this);
 				loadData();
+				notifyAllTabItems();
+				refresh();
+
 			} catch (Exception e) {
 				MessageDialog.openError(wizard.getShell(), "Error", e.getMessage());
 				e.printStackTrace();
 			}
 			
-			notifyAllTabItems();
-			refresh();
-		}
+					}
 	}
 	
 	
-	public void delete(Object object){
+	public void delete(Object object) throws Exception{
 		
 		deleteEntity(object);
 		entityList.remove(object);
@@ -294,7 +302,13 @@ public abstract class BasicTabItem extends CTabItem{
 				if (items.length == 0) return;
 				boolean answer = MessageDialog.openConfirm(shell, "Onaylama", "Silmek istiyor musunuz?");
 				if(answer)
-					delete(items[0].getData());
+					try {
+						delete(items[0].getData());
+					} catch (Exception e1) {
+						MessageDialog.openError(shell, "Hata", e1.getMessage());
+						e1.printStackTrace();
+						LogClass.logger.error("Error", e1);
+					}
 				
 			}
 		});

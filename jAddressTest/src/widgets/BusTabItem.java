@@ -151,7 +151,7 @@ public class BusTabItem extends BasicTabItem{
 	}
 
 	@Override
-	void loadAllItems() {
+	void loadAllItems() throws Exception{
 		entityList = Util.getApplicationInstance().getDataProvider().loadAllBus2();
 	}
 	
@@ -202,7 +202,7 @@ public class BusTabItem extends BasicTabItem{
 
 
 	@Override
-	void deleteEntity(Object object) {
+	void deleteEntity(Object object) throws Exception{
 		Util.getApplicationInstance().getDataProvider().delete(object);
 		
 	}

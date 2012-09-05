@@ -15,7 +15,7 @@ public class MuavinTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void search() {
+	void search() throws Exception{
 		super.search();
 		
 	}
@@ -33,7 +33,7 @@ public class MuavinTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void loadAllItems() {
+	void loadAllItems() throws Exception{
 		entityList = Util.getApplicationInstance().getDataProvider().loadAllMuavin();
        	
 	}
@@ -49,7 +49,7 @@ public class MuavinTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void deleteEntity(Object object) {
+	void deleteEntity(Object object) throws Exception{
 		Util.getApplicationInstance().getDataProvider().deleteHost(object);
 		
 	}

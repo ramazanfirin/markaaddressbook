@@ -29,6 +29,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
+import util.LogClass;
 import util.Util;
 
 abstract class  PersonPage extends BasicPersonPage {
@@ -100,8 +101,16 @@ abstract class  PersonPage extends BasicPersonPage {
       phoneSecond.addVerifyListener(digitVerifyListener);
       phoneSecond.setTextLimit(10);
       
-      List cityList=Util.getApplicationInstance().getDataProvider().loadCities();
-      cityList.add(0,Util.getString("select"));
+      List cityList = null;
+	try {
+		cityList = Util.getApplicationInstance().getDataProvider().loadCities();
+		
+	} catch (Exception e1) {
+		MessageDialog.openError(this.getShell(), "Hata", e1.getMessage());
+		e1.printStackTrace();
+		LogClass.logger.error("Error", e1);
+	}
+      
       
       label = new Label(container, SWT.NULL);
       label.setText(Util.getString("city"));
