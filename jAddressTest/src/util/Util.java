@@ -77,9 +77,9 @@ public class Util {
 	public static List<String> getServerAddresses(){
 		String[] serverAddresses=null;
 		if(Util.isFromJNPL()){
-			serverAddresses= getParameter("serverAddress").split(",");
+			serverAddresses= getParameter("serverConnectionAddressForClient").split(",");
 		}else
-			serverAddresses = getParameterProperties("serverAddress").split(",");
+			serverAddresses = getParameterProperties("serverConnectionAddressForClient").split(",");
 		List<String> serverAddress = new ArrayList<String>();
 		for (int i = 0; i < serverAddresses.length; i++) {
 			serverAddress.add(serverAddresses[i]);
