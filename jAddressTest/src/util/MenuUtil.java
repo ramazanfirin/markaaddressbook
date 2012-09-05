@@ -127,6 +127,36 @@ public class MenuUtil {
 				Util.getApplicationInstance().getTabItemBusOwner().newEntity();
 			}
 		});
+		
+		MenuItem subItemMuavin = new MenuItem(menu, SWT.NONE);
+		subItemMuavin.setEnabled(Util.isAdmin());
+		subItemMuavin.setText(Util.getString("newEntityMenu.newMuavin"));
+		subItemMuavin.setAccelerator(SWT.MOD1 + 'N');
+		subItemMuavin.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				Util.getApplicationInstance().getTabItemMuavin().newEntity();
+			}
+		});
+		
+		MenuItem subItemOutOffice = new MenuItem(menu, SWT.NONE);
+		subItemOutOffice.setEnabled(Util.isAdmin());
+		subItemOutOffice.setText(Util.getString("newEntityMenu.newOutOffice"));
+		subItemOutOffice.setAccelerator(SWT.MOD1 + 'N');
+		subItemOutOffice.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				Util.getApplicationInstance().getTabItemOutOffice().newEntity();
+			}
+		});
+		
+		MenuItem subItemServiceArea = new MenuItem(menu, SWT.NONE);
+		subItemServiceArea.setEnabled(Util.isAdmin());
+		subItemServiceArea.setText(Util.getString("newEntityMenu.newServiceArea"));
+		subItemServiceArea.setAccelerator(SWT.MOD1 + 'N');
+		subItemServiceArea.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				Util.getApplicationInstance().getTabItemServiceArea().newEntity();
+			}
+		});
 }
 
 	
@@ -157,18 +187,43 @@ public class MenuUtil {
 		final Composite _parent=parent;
 		ToolBar toolBar = new ToolBar(parent, SWT.FLAT | SWT.WRAP | SWT.RIGHT);
 		toolBar.setSize(300,70);
-	    ToolItem itemDriver = new ToolItem(toolBar, SWT.PUSH);
+	    
+		ToolItem itemUserUpdate = new ToolItem(toolBar, SWT.PUSH);
+	    itemUserUpdate.setText(Util.getString("userOperationMenu.update"));
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    ClassLoader classLoader = parent.getClass().getClassLoader();
+	    Image icon = new Image(parent.getShell().getDisplay(), classLoader.getResourceAsStream("resources/user_list.png"));
+	    itemUserUpdate.setImage(icon);
+	    itemUserUpdate.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				User user = Util.getApplicationInstance().getLoginUser();
+				UserUpdateWizard updateWizard = new UserUpdateWizard(user,"Kullanici Bilgileri"); 
+				WizardDialog wizardDialog = new WizardDialog(_parent.getShell(), updateWizard);
+				if(wizardDialog.open()==Window.OK){
+					try {
+						Util.getApplicationInstance().getDataProvider().saveOrUpdate(user);
+					} catch (Exception e1) {
+						MessageDialog.openError(wizardDialog.getShell(), "Error", e1.getMessage());
+						e1.printStackTrace();
+					}
+					
+				}
+			}
+		});
+
+		
+		ToolItem itemDriver = new ToolItem(toolBar, SWT.PUSH);
 	    itemDriver.setEnabled(Util.isAdmin());
 	    itemDriver.setText(Util.getString("toolbar.new.driver"));
 	    //Image icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");    
-	    ClassLoader classLoader = parent.getClass().getClassLoader();
-	    Image icon = new Image(parent.getShell().getDisplay(), classLoader.getResourceAsStream("resources/user_list.png"));
 	    itemDriver.setImage(icon);
 	    itemDriver.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				Util.getApplicationInstance().getTabItemDriver().newEntity();
 			}
 		});
+	    
+	    	    
 	    ToolItem itemBus = new ToolItem(toolBar, SWT.PUSH);
 	    itemBus.setEnabled(Util.isAdmin());
 	    itemBus.setText(Util.getString("toolbar.new.bus"));
@@ -202,6 +257,40 @@ public class MenuUtil {
 			}
 		});
 	    
+	    ToolItem itemMuavin = new ToolItem(toolBar, SWT.PUSH);
+	    itemMuavin.setEnabled(Util.isAdmin());
+	    itemMuavin.setText(Util.getString("toolbar.new.muavin"));
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemMuavin.setImage(icon);
+	    itemMuavin.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				Util.getApplicationInstance().getTabItemMuavin().newEntity();
+			}
+		});
+	    
+	    ToolItem itemOutOffice = new ToolItem(toolBar, SWT.PUSH);
+	    itemOutOffice.setEnabled(Util.isAdmin());
+	    itemOutOffice.setText(Util.getString("toolbar.new.outOffice"));
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemOutOffice.setImage(icon);
+	    itemOutOffice.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				Util.getApplicationInstance().getTabItemOutOffice().newEntity();
+			}
+		});
+	    
+	    ToolItem itemServiceArea = new ToolItem(toolBar, SWT.PUSH);
+	    itemServiceArea.setEnabled(Util.isAdmin());
+	    itemServiceArea.setText(Util.getString("toolbar.new.serviceArea"));
+	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
+	    itemServiceArea.setImage(icon);
+	    itemServiceArea.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				Util.getApplicationInstance().getTabItemServiceArea().newEntity();
+			}
+		});
+	    
+	    
 	    ToolItem itemUser = new ToolItem(toolBar, SWT.PUSH);
 	    itemUser.setEnabled(Util.isAdmin());
 	    itemUser.setText(Util.getString("toolbar.new.user"));
@@ -212,29 +301,6 @@ public class MenuUtil {
 				Util.getApplicationInstance().getTabItemUser().newEntity();
 			}
 		});
-	    
-	    ToolItem itemUserUpdate = new ToolItem(toolBar, SWT.PUSH);
-	    itemUserUpdate.setText(Util.getString("userOperationMenu.update"));
-	    //icon = new Image(parent.getShell().getDisplay(), "./img/artwork/toolbar/user_list.png");
-	    itemUserUpdate.setImage(icon);
-	    itemUserUpdate.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-				User user = Util.getApplicationInstance().getLoginUser();
-				UserUpdateWizard updateWizard = new UserUpdateWizard(user,"Kullanici Bilgileri"); 
-				WizardDialog wizardDialog = new WizardDialog(_parent.getShell(), updateWizard);
-				if(wizardDialog.open()==Window.OK){
-					try {
-						Util.getApplicationInstance().getDataProvider().saveOrUpdate(user);
-					} catch (Exception e1) {
-						MessageDialog.openError(wizardDialog.getShell(), "Error", e1.getMessage());
-						e1.printStackTrace();
-					}
-					
-				}
-			}
-		});
-	
-	    
 	    
 	    return toolBar;
 	}
