@@ -2,6 +2,8 @@ package server;
 
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 
+import util.Util;
+
 public class Server {
 	public Server() {
 	  IHelloWorld helloWorld = new HelloWorldImpl();
@@ -10,7 +12,7 @@ public class Server {
 	  //register WebService interface
 	  factory.setServiceClass(IHelloWorld.class);
 	  //publish the interface
-	  factory.setAddress("http://localhost:9000/OtobusFihrist");
+	  factory.setAddress("http://localhost:"+Util.getParameter("localServerPort")+"/OtobusFihrist");
 	  factory.setServiceBean(helloWorld);
 	  //create WebService instance
 	  factory.create();
