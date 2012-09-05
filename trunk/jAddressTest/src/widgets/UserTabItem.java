@@ -58,7 +58,7 @@ public class UserTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void loadAllItems() {
+	void loadAllItems() throws Exception{
 		entityList =Util.getApplicationInstance().getDataProvider().loadUsers();
 		
 	}
@@ -98,7 +98,7 @@ public class UserTabItem extends PersonTabItem{
 	}
 
 	@Override
-	void deleteEntity(Object object) {
+	void deleteEntity(Object object) throws Exception{
 		Util.getApplicationInstance().getDataProvider().delete(object);
 	}
 

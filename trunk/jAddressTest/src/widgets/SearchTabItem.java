@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
+import util.LogClass;
 import util.Util;
 import wizards.BusEntityWizard;
 
@@ -152,8 +153,16 @@ public class SearchTabItem extends BasicTabItem{
 		outOfficeCityLabel.setText(Util.getString("outOffice") +" "+ Util.getString("city") );
 		outOfficeCityLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 		
-		List cityList = Util.getApplicationInstance().getDataProvider().loadCities();
-		cityList.add(0, Util.getString("select"));
+		List cityList=null;
+		try {
+			cityList = Util.getApplicationInstance().getDataProvider().loadCities();
+			cityList.add(0, Util.getString("select"));
+		} catch (Exception e1) {
+			MessageDialog.openError(shell, "Hata", e1.getMessage());
+			e1.printStackTrace();
+			LogClass.logger.error("Error", e1);
+		}
+		
 		
 		outOfficeCity = new ComboViewer(grpLocation, SWT.READ_ONLY);
 		outOfficeCity.getCombo().setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -278,7 +287,7 @@ public class SearchTabItem extends BasicTabItem{
 
 
 	@Override
-	void deleteEntity(Object object) {
+	void deleteEntity(Object object) throws Exception{
 		Util.getApplicationInstance().getDataProvider().delete(object);
 		
 	}

@@ -6,20 +6,19 @@ import model.model.City;
 import model.model.OutLocation;
 import model.model.OutOffice;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import util.LogClass;
 import util.Util;
 import wizards.OutLocationWizard;
 
@@ -42,7 +41,7 @@ public class OutOfficeTabItem extends BasicTabItem{
 	}
 
 	@Override
-	void search() {
+	void search() throws Exception{
 		IStructuredSelection selection = (IStructuredSelection)city.getSelection();
 	    String cityId="";
 		if(selection.isEmpty() || selection.getFirstElement() instanceof String){
@@ -66,9 +65,17 @@ public class OutOfficeTabItem extends BasicTabItem{
 		textDriverName=new Text(grpLocation,SWT.BORDER);
 		textDriverName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		
-		List cityList = Util.getApplicationInstance().getDataProvider()
-				.loadCities();
-		cityList.add(0, Util.getString("select"));
+		List cityList= null;
+		try {
+			cityList = Util.getApplicationInstance().getDataProvider()
+					.loadCities();
+			cityList.add(0, Util.getString("select"));
+		} catch (Exception e1) {
+			MessageDialog.openError(shell, "Hata", e1.getMessage());
+			e1.printStackTrace();
+			LogClass.logger.error("Error", e1);
+		}
+		
 
 		Label label = null;
 		label = new Label(grpLocation, SWT.NULL);
@@ -93,7 +100,7 @@ public class OutOfficeTabItem extends BasicTabItem{
 	}
 
 	@Override
-	void loadAllItems() {
+	void loadAllItems() throws Exception{
 		entityList = Util.getApplicationInstance().getDataProvider().loadAllOutOffice();
        	
 	}

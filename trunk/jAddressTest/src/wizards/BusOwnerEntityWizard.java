@@ -20,22 +20,22 @@ public BusOwnerEntityWizard(AbsractInterface _entity, String _title) {
 		// TODO Auto-generated constructor stub
 	}
 
-public BusOwnerPage page1;
+public BusOwnerPage page2;
 
   public void addPages() {
-    page1 = new BusOwnerPage(selection,entity,title);
-    addPage(page1);
+    page2 = new BusOwnerPage(selection,entity,title);
+    addPage(page2);
   }
 
   public boolean performFinish() {
 
 
 	 	 BusOwner person = (BusOwner)entity;
-		 person.setName(page1.getNameVariable().getText());
-		 person.setSurname(page1.getSurname().getText());
-		 person.setPhone(page1.getPhone().getText());
-		 person.setShortCode(page1.getShortCode().getText()); 
+		 person.setShortCode(page2.getShortCode().getText()); 
 		 
+		 page1=page2;
+		
+		 super.performFinish();
 		 return true;
 
 	 

@@ -30,7 +30,7 @@ public class DBDataProvider implements DataProvider{
 			return instance;
 		}
 	 
-	 public void saveOrUpdate(Object o) {
+	 public void saveOrUpdate(Object o) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -47,7 +47,7 @@ public class DBDataProvider implements DataProvider{
 			}
 	 }
 	 
-	 public void delete(Object o){
+	 public void delete(Object o) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -83,7 +83,8 @@ public class DBDataProvider implements DataProvider{
 //			
 //	 }
 	 
-	 public List<AbsractInterface> loadAllDriver2(){
+	 public List<AbsractInterface> loadAllDriver2() throws Exception{
+		 //testException();
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -140,7 +141,7 @@ public class DBDataProvider implements DataProvider{
 //			
 //	 }
 	 
-	 public User getUser(Long id) {
+	 public User getUser(Long id) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -162,7 +163,7 @@ public class DBDataProvider implements DataProvider{
 			
 	 }
 	 
-	 public List<AbsractInterface> loadAllBus2(){
+	 public List<AbsractInterface> loadAllBus2() throws Exception {
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -182,7 +183,7 @@ public class DBDataProvider implements DataProvider{
 	 }
 	 
 	 
-	 public List<AbsractInterface> loadUsers(){
+	 public List<AbsractInterface> loadUsers()throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -201,7 +202,7 @@ public class DBDataProvider implements DataProvider{
 			
 	 }
 	 
-	 public List<AbsractInterface> loadHosts(){
+	 public List<AbsractInterface> loadHosts()throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -219,7 +220,7 @@ public class DBDataProvider implements DataProvider{
 			}
 	 }
 	 
-	 public List<AbsractInterface> loadAllMuavin(){
+	 public List<AbsractInterface> loadAllMuavin()throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -235,7 +236,7 @@ public class DBDataProvider implements DataProvider{
 			}
 	 }
 	 
-	 public List<AbsractInterface> loadBusOwners(){
+	 public List<AbsractInterface> loadBusOwners()throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -254,7 +255,7 @@ public class DBDataProvider implements DataProvider{
 			
 	 }
 	 
-	 public List<AbsractInterface> loadAuthorith(){
+	 public List<AbsractInterface> loadAuthorith()throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -273,7 +274,7 @@ public class DBDataProvider implements DataProvider{
 			
 	 }
 	 
-	 public User checkPassword(String username,String password){
+	 public User checkPassword(String username,String password)throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -293,7 +294,7 @@ public class DBDataProvider implements DataProvider{
 		
 	 }
 	 
-	 public List<AbsractInterface> searchEntiy(Class clazz,String name,String surname,String phone){
+	 public List<AbsractInterface> searchEntiy(Class clazz,String name,String surname,String phone) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -318,7 +319,7 @@ public class DBDataProvider implements DataProvider{
 	 }
 
 	 public List<AbsractInterface> searchBus(String plate,String shortCode,String phone,String driverName,String driverSurname,
-			 String hostName,String hostSurname,String busOwnerName,String busOwnerSurname){
+			 String hostName,String hostSurname,String busOwnerName,String busOwnerSurname) throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			boolean driverNameExist=false;
@@ -405,7 +406,7 @@ public class DBDataProvider implements DataProvider{
 			}
 	 }
 	 
-	 public void deleteBusOwner(Object object){
+	 public void deleteBusOwner(Object object) throws Exception{
 		BusOwner busOwner = (BusOwner)object;
 		Session session=null;
 		Transaction tx=null;
@@ -436,7 +437,7 @@ public class DBDataProvider implements DataProvider{
 	}
 	
 	 
-	 public void deleteHost(Object object){
+	 public void deleteHost(Object object) throws Exception{
 			Host obj = (Host)object;
 			Session session=null;
 			Transaction tx=null;
@@ -459,7 +460,7 @@ public class DBDataProvider implements DataProvider{
 			}
 		}
 	 
-	 public void deleteMuavin(Object object){
+	 public void deleteMuavin(Object object) throws Exception{
 			Host obj = (Host)object;
 			Session session=null;
 			Transaction tx=null;
@@ -483,7 +484,7 @@ public class DBDataProvider implements DataProvider{
 		}
 		 
 	 
-	 public void deleteDriver(Object object){
+	 public void deleteDriver(Object object) throws Exception{
 			Driver driver = (Driver)object;
 			Session session=null;
 			Transaction tx=null;
@@ -521,7 +522,7 @@ public class DBDataProvider implements DataProvider{
 
 
 
-	 public List<AbsractInterface> loadAllOutOffice(){
+	 public List<AbsractInterface> loadAllOutOffice() throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -537,7 +538,7 @@ public class DBDataProvider implements DataProvider{
 			}
 	 }
 	 
-	 public List<AbsractInterface> loadAllServiceArea(){
+	 public List<AbsractInterface> loadAllServiceArea() throws Exception{
 		 Session session=null;
 			Transaction tx=null;
 			try {
@@ -570,8 +571,8 @@ public class DBDataProvider implements DataProvider{
 			}
 	}
 
-	@Override
-	public List<AbsractInterface> searchOutOffice(String name,String cityId) {
+
+	public List<AbsractInterface> searchOutOffice(String name,String cityId) throws Exception{
 		Session session=null;
 		Transaction tx=null;
 		boolean driverNameExist=false;
@@ -597,7 +598,7 @@ public class DBDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> searchServiceArea(String name,String cityId) {
+	public List<AbsractInterface> searchServiceArea(String name,String cityId) throws Exception {
 		Session session=null;
 		Transaction tx=null;
 		try {
@@ -622,7 +623,7 @@ public class DBDataProvider implements DataProvider{
 
 	@Override
 	public List<AbsractInterface> searchGeneral(String name, String surname,
-			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) {
+			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) throws Exception{
 		
 		Set<AbsractInterface> result= new HashSet<AbsractInterface>();
 		
@@ -663,7 +664,7 @@ public class DBDataProvider implements DataProvider{
 
 	@Override
 	public void testException() throws Exception {
-		// TODO Auto-generated method stub
+		throw new Exception("deneme2");
 		
 	}
 	 

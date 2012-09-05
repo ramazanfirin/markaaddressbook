@@ -4,9 +4,9 @@ import java.util.List;
 
 import model.model.OutLocation;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
-import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -14,6 +14,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import util.LogClass;
 import util.Util;
 
 public class OutLocationLocationPage extends BasicPage{
@@ -104,8 +105,16 @@ public class OutLocationLocationPage extends BasicPage{
 	      
 	      createLine(container, layout.numColumns);
 	      
-	      List cityList=Util.getApplicationInstance().getDataProvider().loadCities();
-	      cityList.add(0,Util.getString("select"));
+	      List cityList = null;
+		try {
+			cityList = Util.getApplicationInstance().getDataProvider().loadCities();
+			cityList.add(0,Util.getString("select"));
+		} catch (Exception e1) {
+			MessageDialog.openError(this.getShell(), "Hata", e1.getMessage());
+			e1.printStackTrace();
+			LogClass.logger.error("Error", e1);
+		}
+	      
 	      
 	      label = new Label(container, SWT.NULL);
 	      label.setText(Util.getString("city"));

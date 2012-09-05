@@ -7,6 +7,7 @@ import model.model.Authority;
 import model.model.Bus;
 import model.model.User;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
@@ -20,6 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+import util.LogClass;
 import util.Util;
 
 class UserPage extends PersonPage {
@@ -98,7 +100,14 @@ class UserPage extends PersonPage {
 	    		return super.getText(element);
 	    	}
 	    });
-	    List busList=Util.getApplicationInstance().getDataProvider().loadAuthorith();
+	    List busList = null;
+		try {
+			busList = Util.getApplicationInstance().getDataProvider().loadAuthorith();
+		} catch (Exception e1) {
+			MessageDialog.openError(this.getShell(), "Hata", e1.getMessage());
+			e1.printStackTrace();
+			LogClass.logger.error("Error", e1);
+		}
 	    viewer.setInput(busList);
 	    viewer.addSelectionChangedListener(comboSelectionChangeProvider);
 	    

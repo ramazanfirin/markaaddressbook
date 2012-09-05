@@ -31,7 +31,7 @@ public abstract class PersonTabItem extends BasicTabItem{
 
 	
 	@Override
-	void search() {
+	void search() throws Exception{
 		if(entity == null)
 			createNewEntity();
 		entityList = Util.getApplicationInstance().getDataProvider().searchEntiy(entity.getClass(), textDriverName.getText(), textDriverSurname.getText(), textDriverPhone.getText());		

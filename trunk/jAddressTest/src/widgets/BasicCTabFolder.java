@@ -10,7 +10,7 @@ public class BasicCTabFolder extends CTabFolder{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void refreshAllTabItems(){
+	public void refreshAllTabItems() throws Exception{
 		
 		for (int i = 0; i < getItemCount(); i++) {
 			if(getItem(i) instanceof BasicTabItem)

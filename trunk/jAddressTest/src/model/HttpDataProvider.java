@@ -45,7 +45,7 @@ public class HttpDataProvider implements DataProvider{
 	
 	
 	@Override
-	public List<AbsractInterface> loadAllDriver2() {
+	public List<AbsractInterface> loadAllDriver2() throws Exception{
 		String result = iHelloWorld.loadAllDriver2();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -54,7 +54,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadAllBus2() {
+	public List<AbsractInterface> loadAllBus2() throws Exception{
 		String result = iHelloWorld.loadAllBus2();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -63,7 +63,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadUsers() {
+	public List<AbsractInterface> loadUsers() throws Exception{
 		String result = iHelloWorld.loadUsers();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -72,7 +72,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public User getUser(Long id) {
+	public User getUser(Long id) throws Exception{
 		String result = iHelloWorld.getUser(id);
 		XStream xstream = new XStream();
 		User user = (User)xstream.fromXML(result);
@@ -80,7 +80,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadHosts() {
+	public List<AbsractInterface> loadHosts() throws Exception{
 		String result = iHelloWorld.loadHosts();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -89,7 +89,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadAllMuavin() {
+	public List<AbsractInterface> loadAllMuavin()throws Exception {
 		String result = iHelloWorld.loadAllMuavin();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -98,7 +98,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadBusOwners() {
+	public List<AbsractInterface> loadBusOwners() throws Exception{
 		String result = iHelloWorld.loadBusOwners();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -107,7 +107,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadAuthorith() {
+	public List<AbsractInterface> loadAuthorith()throws Exception {
 		String result = iHelloWorld.loadAuthorith();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -116,7 +116,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public User checkPassword(String username, String password) {
+	public User checkPassword(String username, String password)throws Exception {
 		String result = iHelloWorld.checkPassword(username, password);
 		if(result==null || result.equals("") )
 			return null;
@@ -127,7 +127,7 @@ public class HttpDataProvider implements DataProvider{
 
 	@Override
 	public List<AbsractInterface> searchEntiy(Class clazz, String name,
-			String surname, String phone) {
+			String surname, String phone)throws Exception {
 		String result = iHelloWorld.searchEntiy(clazz, name, surname, phone);
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -138,7 +138,7 @@ public class HttpDataProvider implements DataProvider{
 	@Override
 	public List<AbsractInterface> searchBus(String plate, String shortCode,String phone,
 			String driverName, String driverSurname, String hostName,
-			String hostSurname, String busOwnerName, String busOwnerSurname) {
+			String hostSurname, String busOwnerName, String busOwnerSurname)throws Exception {
 		
 		String result = iHelloWorld.searchBus(plate,shortCode, phone, driverName, driverSurname, hostName, hostSurname, busOwnerName, busOwnerSurname);
 		XStream xstream = new XStream();
@@ -149,7 +149,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadAllOutOffice() {
+	public List<AbsractInterface> loadAllOutOffice() throws Exception{
 		String result = iHelloWorld.loadAllOutOffice();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -158,7 +158,7 @@ public class HttpDataProvider implements DataProvider{
 	}
 
 	@Override
-	public List<AbsractInterface> loadAllServiceArea() {
+	public List<AbsractInterface> loadAllServiceArea() throws Exception{
 		String result = iHelloWorld.loadAllServiceArea();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -181,7 +181,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public void delete(Object o){
+	public void delete(Object o) throws Exception{
 		XStream xstream = new XStream();
 		String string = xstream.toXML(o);
 		iHelloWorld.delete(string);
@@ -190,7 +190,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public void deleteBusOwner(Object object) {
+	public void deleteBusOwner(Object object)throws Exception {
 		XStream xstream = new XStream();
 		String string = xstream.toXML(object);
 		iHelloWorld.deleteBusOwner(string);
@@ -199,7 +199,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public void deleteHost(Object object) {
+	public void deleteHost(Object object) throws Exception{
 		XStream xstream = new XStream();
 		String string = xstream.toXML(object);
 		iHelloWorld.deleteHost(string);
@@ -208,7 +208,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public void deleteMuavin(Object object) {
+	public void deleteMuavin(Object object)throws Exception {
 		XStream xstream = new XStream();
 		String string = xstream.toXML(object);
 		iHelloWorld.deleteMuavin(string);
@@ -217,7 +217,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public void deleteDriver(Object object) {
+	public void deleteDriver(Object object) throws Exception{
 		XStream xstream = new XStream();
 		String string = xstream.toXML(object);
 		iHelloWorld.deleteDriver(string);
@@ -225,7 +225,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public List<AbsractInterface> loadCities() {
+	public List<AbsractInterface> loadCities() throws Exception{
 		String result = iHelloWorld.loadCities();
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -235,7 +235,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public List<AbsractInterface> searchOutOffice(String name,String city) {
+	public List<AbsractInterface> searchOutOffice(String name,String city) throws Exception{
 		String result = iHelloWorld.searchOutOffice(name,city);
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -245,7 +245,7 @@ public class HttpDataProvider implements DataProvider{
 
 
 	@Override
-	public List<AbsractInterface> searchServiceArea(String name,String city) {
+	public List<AbsractInterface> searchServiceArea(String name,String city) throws Exception{
 		String result = iHelloWorld.searchServiceArea(name,city);
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
@@ -256,7 +256,7 @@ public class HttpDataProvider implements DataProvider{
 
 	@Override
 	public List<AbsractInterface> searchGeneral(String name, String surname,
-			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) {
+			String busPlate, String busShortCode,String outOfficeName,String outOfficeCityId,String serviceAreaName,String serviceAreaCityId) throws Exception{
 		String result = iHelloWorld.searchGeneral(name, surname, busPlate, busShortCode, outOfficeName, outOfficeCityId, serviceAreaName, serviceAreaCityId);
 		XStream xstream = new XStream();
 		List<AbsractInterface> list = (List<AbsractInterface>)xstream.fromXML(result);
