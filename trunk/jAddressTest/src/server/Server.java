@@ -1,6 +1,7 @@
 package server;
 
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
+import org.apache.cxf.transport.DestinationFactory;
 
 import util.Util;
 
@@ -12,10 +13,21 @@ public class Server {
 	  //register WebService interface
 	  factory.setServiceClass(IHelloWorld.class);
 	  //publish the interface
-	  factory.setAddress("http://localhost:"+Util.getParameter("localServerPort")+"/OtobusFihrist");
+	  factory.setAddress("http://0.0.0.0:"+Util.getParameter("localServerPort")+"/OtobusFihrist");
+	 // factory.setAddress("http://127.0.0.1:"+Util.getParameter("localServerPort")+"/OtobusFihrist");
+	 // factory.setAddress("/"+Util.getParameter("localServerPort")+"/OtobusFihrist");
 	  factory.setServiceBean(helloWorld);
 	  //create WebService instance
-	  factory.create();
+	  org.apache.cxf.endpoint.Server s = factory.create();
+	  
+	  s.getDestination();
+	 
+	
+	  System.out.println("dfsdf");
+	  
+//	  factory.setDestinationFactory(destinationFactory);
+	
+
 	}
 	 
 	public static void main(String[] args) throws InterruptedException {

@@ -15,8 +15,8 @@ public class Client {
 	    factory.setAddress("http://localhost:9000/HelloWorld");
 	    
 	    IHelloWorld iHelloWorld = (IHelloWorld) factory.create();
-	    System.out.println("invoke webservice...");
-	    System.out.println("message context is:" + iHelloWorld.loadAllDriver2());
+//	    System.out.println("invoke webservice...");
+//	    System.out.println("message context is:" + iHelloWorld.loadAllDriver2());
 	    
 	    
 	    

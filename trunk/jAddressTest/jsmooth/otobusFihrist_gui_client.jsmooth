@@ -56,6 +56,9 @@
 <classPath>..\lib\xom-1.1.jar</classPath>
 <classPath>..\lib\xpp3_min-1.1.4c.jar</classPath>
 <classPath>..\lib\xstream-1.4.3.jar</classPath>
+<classPath>..\lib\jnlp-1.6.jar</classPath>
+<classPath>..\lib\geronimo-jaxws_2.2_spec-1.1.jar</classPath>
+<classPath>..\lib\jaxb-api-2.2.6.jar</classPath>
 <currentDirectory>${EXECUTABLEPATH}</currentDirectory>
 <embeddedJar>false</embeddedJar>
 <executableName>..\OtobusFihristClient.exe</executableName>
@@ -65,25 +68,13 @@
 <maximumMemoryHeap>268435456</maximumMemoryHeap>
 <maximumVersion></maximumVersion>
 <minimumVersion>1.6.0</minimumVersion>
-<skeletonName>Windowed Wrapper</skeletonName>
+<skeletonName>Console Wrapper</skeletonName>
 <skeletonProperties>
 <key>Message</key>
 <value>Java has not been found on your computer. Do you want to download it?</value>
 </skeletonProperties>
 <skeletonProperties>
-<key>URL</key>
-<value></value>
-</skeletonProperties>
-<skeletonProperties>
-<key>SingleProcess</key>
-<value>0</value>
-</skeletonProperties>
-<skeletonProperties>
-<key>SingleInstance</key>
-<value>0</value>
-</skeletonProperties>
-<skeletonProperties>
-<key>JniSmooth</key>
+<key>PressKey</key>
 <value>0</value>
 </skeletonProperties>
 <skeletonProperties>
