@@ -65,7 +65,7 @@ public class Util {
 		String message ="";
 		try {
 			props.load(new FileInputStream("config/parameters.properties"));
-			props.setProperty("serverAddress", name);
+			props.setProperty("serverConnectionAddressForClient", name);
 			props.store(new FileOutputStream("config/parameters.properties"),"no comments");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

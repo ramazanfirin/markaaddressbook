@@ -1,28 +1,57 @@
 package test;
 
 import junit.framework.TestCase;
-import model.HttpDataProvider;
-import server.Server;
+
+import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.bio.SocketConnector;
+
+
+
 
 public class TestSaveUser extends TestCase{
 	
 	
-public void testSoapFault(){
+	public void testJetty() throws Exception{
+		Server server;
 		
-		new Server();
-		HttpDataProvider httpDataProvider = new HttpDataProvider();
-		httpDataProvider.prepareEndPoint("http://localhost:8090/OtobusFihrist");
-		
-		try {
-			httpDataProvider.testException();
-			System.out.println("hatasiz bitti");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			System.out.println("hata var= "+ e.getMessage());
-		}
-		
+		server = new Server();
+		SocketConnector connector = new SocketConnector();
+		connector.setPort(8080);
+		server.setConnectors(new Connector[] { connector });
+//		WebAppContext context = new WebAppContext();
+//		context.setServer(server);
+//		context.setContextPath("/wicket-jpa");
+//		context.setWar("src/main/webapp");
+//		server.addHandler(context);
+//        Thread monitor = new MonitorThread();
+//        monitor.start();
+        server.start();
+        server.join();
+        
+        System.out.println("bitti");
+
 	}
+	
+//public void testSoapFault(){
+//		
+//		new Server();
+//		while(true){
+//			System.out.println("devam et");
+//		}
+////		HttpDataProvider httpDataProvider = new HttpDataProvider();
+////		httpDataProvider.prepareEndPoint("http://localhost:8090/OtobusFihrist");
+////		
+////		try {
+////			httpDataProvider.testException();
+////			System.out.println("hatasiz bitti");
+////		} catch (Exception e) {
+////			// TODO Auto-generated catch block
+////			//e.printStackTrace();
+////			System.out.println("hata var= "+ e.getMessage());
+////		}
+//		
+//	}
 
 //	public void testDriverCreate(){
 //		
