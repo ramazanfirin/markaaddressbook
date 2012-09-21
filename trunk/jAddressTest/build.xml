@@ -13,7 +13,7 @@
 	<property name="jsmooth.dir" value="C:/Program Files (x86)/JSmooth 0.9.9-7" />
 
 	<property name="root" value="." />
-	<property name="version" value="_v.1.2_beta" />
+	<property name="version" value="_v.1.8_beta" />
 	<!-- Test the OS -->
 	<condition property="isWindows">
 		<and>
