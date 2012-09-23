@@ -65,13 +65,13 @@ h3 {font-size:1em}
 #header .nav li a.last:hover b {background:url(images/nav-right1.gif) no-repeat right top}
 #header .nav li a.last-current {background:url(images/nav-bg2.gif) left top repeat-x;color:#fff}
 #header .nav li a.last-current b {background:url(images/nav-right1.gif) no-repeat right top !important;padding-right:55px}
-.main-box {background:url(images/main-box.jpg) no-repeat left top;height:270px;position:relative}
+.main-box {background:url(images/main-box.jpg) no-repeat right top;height:270px;position:relative}
 .main-box .inner {padding:43px 0 0 50px}
 .main-box ul {font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:1.29em;padding:14px 0 0 0}
 .main-box ul li {background:url(images/bull.gif) no-repeat left 8px;padding:0 0 0 19px;position:relative}
 .main-box ul li a {color:#fff;text-decoration:none}
 .main-box ul li a:hover {text-decoration:underline}
-.main-box .extra-banner {position:absolute;left:310px;top:100px;width:120px;text-align:center}
+.main-box .extra-banner {position:absolute;left:60px;top:230px;width:150px;text-align:center}
 .main-box .extra-banner img {margin-bottom:22px}
 .main-box .extra-banner a {font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:1.29em;color:#f4a03b;text-transform:uppercase}
 /* content */
@@ -108,3 +108,90 @@ table tbody td.last {padding-bottom:20px}
 #footer .nav {text-align:center;padding-bottom:14px}
 #footer .nav li {display:inline}
 #footer .nav li a {padding:0 38px 0 35px;color:#292929}
+
+#slides {
+	position:absolute;
+	top:15px;
+	left:4px;
+	z-index:100;
+}
+
+/*
+	Slides container
+	Important:
+	Set the width of your slides container
+	Set to display none, prevents content flash
+*/
+
+.slides_container {
+	width:570px;
+	overflow:hidden;
+	position:relative;
+	display:none;
+}
+
+/*
+	Each slide
+	Important:
+	Set the width of your slides
+	If height not specified height will be set by the slide content
+	Set to display block
+*/
+
+.slides_container a {
+	width:570px;
+	height:270px;
+	display:block;
+}
+
+.slides_container a img {
+	display:block;
+}
+
+/*
+	Next/prev buttons
+*/
+
+#slides .next,#slides .prev {
+	position:absolute;
+	top:107px;
+	left:-39px;
+	width:24px;
+	height:43px;
+	display:block;
+	z-index:101;
+}
+
+#slides .next {
+	left:585px;
+}
+
+/*
+	Pagination
+*/
+
+.pagination {
+	margin:26px auto 0;
+	width:100px;
+}
+
+.pagination li {
+	float:left;
+	margin:0 1px;
+	list-style:none;
+}
+
+.pagination li a {
+	display:block;
+	width:12px;
+	height:0;
+	padding-top:12px;
+	background-image:url(../img/pagination.png);
+	background-position:0 0;
+	float:left;
+	overflow:hidden;
+}
+
+.pagination li.current a {
+	background-position:0 -12px;
+}

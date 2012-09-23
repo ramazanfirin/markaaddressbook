@@ -1,12 +1,7 @@
 ﻿﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>Home | Free website template from TemplateMonster.com</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="description" content="Home page - feel free to download free hoting website template at TemplateMonster.com."/>
-<link href="style.css" rel="stylesheet" type="text/css" />
-<link href="layout.css" rel="stylesheet" type="text/css" />
+<?php include 'include.php'; ?>
 </head>
 
 <body id="page1">
@@ -21,7 +16,7 @@
 				 	<?php include 'menu.php'; ?>
 				 
 			</div>
-				 <div class="row-3" id="main-box">
+				 <div class="row-3">
 				 	<?php include 'main-box.php'; ?>
 				 </div>
 		</div>
@@ -39,28 +34,28 @@
 				 <div class="indent">
 						<div class="wrapper line-ver">
 							 <div class="col-1">
-									<h2>Special Offers!</h2>
+									<h2>Otobus Fihrist V2.0</h2>
 									<ul class="list1">
-										 <li>$9.95 worth domain for FREE with the ‘Ultimate’ hosting plan</li>
-										 <li>50% discount for returning customers!</li>
-										 <li>Free eCommerce installation!</li>
-										 <li>$75 commission for top performing affiliates!</li>
-										 <li>20% discount for ‘Dedicated server’ orders for 24+ months!</li>
-										 <li>$25 Google AdWords and Yahoo website marketing credits!</li>
-										 <li class="last"><a href="#">Learn More</a></li>
+										 <li>Otobüs,Şoför,Host,Muavin,Otobüs Sahibi,Dış Yazıhane,Dinlenme Tesisi Modulleri</li>
+										 <li>Şifre ile sisteme Giriş</li>
+										 <li>Sınırsız Kullanıcı Tanımlama</li>
+										 <li>Kullanıcı Yetkilendirmesi</li>
+										 <li>Windows ve Linux Server Desteği</li>
+										 <li>Kolay Kurulum ve Kolay Kullanım</li>
+										 <li class="last"><a href="#">Ayrıntılı Bilgi</a></li>
 									</ul>
 							 </div>
 							 <div class="col-2">
-							 	<h2>Transfer Domain - <span>FREE!</span></h2>
-									<img class="img-indent fright" alt="" src="images/1page-img1.jpg" />
-									<p class="p1">With our company you may transfer the domain from other host absolutely for free.</p>
-									<p class="p1">In addition to that we will provide a free technical assistance during the transfer process.</p>
-									<a href="#">Learn More</a>
+							 	<h2>Seyahat Firmalarına Özel Çözüm</h2>
+									<!-- <img class="img-indent fright" alt="" src="images/1page-img1.jpg" /> -->
+									<p class="p1">Marka Bilgisayar olarak Seyakat Firmalarına Çözümümüz ile karşınızdayız.</p>
+									<p class="p1">Otobüs Fihrist v2.0 ile Otobüs,Şoför,Host,Muavin,Otobüs Sahibi,Dış Yazıhane,Dinlenme Tesisi kayıtlarınız tutabilir, hem firma içerisinden hem de şubelerinizdeb bu bilgilere erişilmesini sağlayabilirsiniz.</p>
+									<a href="#">Ayrıntılı Bilgi</a>
 							 </div>
 						</div>
 				 </div>
 				 
-				 <!-- box begin -->
+				 <!-- box begin 
 				 <div class="box">
 				 	<div class="border-top">
 							<div class="border-right">
@@ -95,6 +90,7 @@
 				<?php include 'footer.php'; ?>
 				
 			</div>
+	</div>
 	</div>
 </body>
 </html>
