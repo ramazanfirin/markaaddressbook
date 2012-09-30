@@ -8,12 +8,13 @@
 										 <li><a href="#">Otomatik Versiyon Güncelleme</a></li>
 										 <li><a href="#">Database ve Web Sunucu İçeren Sistem</a></li>
 										 <li><a href="#">İsteğe Göre Yeni Geliştirme</a></li>
+										 <li><a href="#">Server Programı için Hosting İmkanı</a></li>
 										 <!-- <li class="last"><a href="#">Ayrıntılı Bilgi</a></li>	-->
 									</ul>
 									
 									<div class="extra-banner">
 										<!-- <img alt="" src="images/extra-banner.jpg" /> -->
-										 <a href="#">Ayrıntılı Bilgi</a>
+										 <a href="/ayrintilar.php">Ayrıntılı Bilgi</a>
 									</div>
 									 
 									 
