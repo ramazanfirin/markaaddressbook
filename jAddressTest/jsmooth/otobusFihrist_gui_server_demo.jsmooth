@@ -60,10 +60,10 @@
 <classPath>..\lib\jaxb-api-2.2.6.jar</classPath>
 <currentDirectory>${EXECUTABLEPATH}</currentDirectory>
 <embeddedJar>false</embeddedJar>
-<executableName>..\OtobusFihristClient.exe</executableName>
+<executableName>..\OtobusFihristDemo.exe</executableName>
 <iconLocation>..\img\bus-icon.png</iconLocation>
 <initialMemoryHeap>67108864</initialMemoryHeap>
-<mainClassName>com.AddressBookNewClient</mainClassName>
+<mainClassName>com.AddressBookNewDemo</mainClassName>
 <maximumMemoryHeap>268435456</maximumMemoryHeap>
 <maximumVersion></maximumVersion>
 <minimumVersion>1.6.0</minimumVersion>
