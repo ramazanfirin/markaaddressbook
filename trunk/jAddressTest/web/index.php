@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <?php include 'include.php'; ?>
@@ -6,7 +6,7 @@
 
 <body id="page1">
 
-
+   
 	<div id="main">
 		<!-- header -->
 		<div id="header">
@@ -24,13 +24,15 @@
 		<!-- content -->
 		<div id="content"><div class="inner_copy"><div class="inner_copy"> Need a website? 
 		<a href="http://www.websitetemplatesonline.com">Free website templates</a> by professional designers.</div></div>
+			
 			<ul class="banners">
-				
+				<!-- 
 				<li><a href="#"><img alt="" src="images/banner1.jpg" /></a></li>
 				<li><a href="#"><img alt="" src="images/banner2.jpg" /></a></li>
 				<li class="last"><a href="#"><img alt="" src="images/banner3.jpg" /></a></li>
+			 	 -->
 			 </ul>
-				 
+				  
 				 <div class="indent">
 						<div class="wrapper line-ver">
 							 <div class="col-1">
@@ -42,7 +44,7 @@
 										 <li>Kullanıcı Yetkilendirmesi</li>
 										 <li>Windows ve Linux Server Desteği</li>
 										 <li>Kolay Kurulum ve Kolay Kullanım</li>
-										 <li class="last"><a href="#">Ayrıntılı Bilgi</a></li>
+										 <li class="last"><a href="/ayrintilar.php">Ayrıntılı Bilgi</a></li>
 									</ul>
 							 </div>
 							 <div class="col-2">
@@ -50,7 +52,7 @@
 									<!-- <img class="img-indent fright" alt="" src="images/1page-img1.jpg" /> -->
 									<p class="p1">Marka Bilgisayar olarak Seyakat Firmalarına Çözümümüz ile karşınızdayız.</p>
 									<p class="p1">Otobüs Fihrist v2.0 ile Otobüs,Şoför,Host,Muavin,Otobüs Sahibi,Dış Yazıhane,Dinlenme Tesisi kayıtlarınız tutabilir, hem firma içerisinden hem de şubelerinizdeb bu bilgilere erişilmesini sağlayabilirsiniz.</p>
-									<a href="#">Ayrıntılı Bilgi</a>
+									<a href="/ayrintilar.php">Ayrıntılı Bilgi</a>
 							 </div>
 						</div>
 				 </div>

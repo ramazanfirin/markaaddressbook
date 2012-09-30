@@ -67,6 +67,11 @@
 						1. Client versiyon kullanırken : Yeni versiyonun kurulması gerekmektedir.<br/> 
 				 		2. Web üzerinden çalıştırırken : Herhangi bir işlem yapmanıza gerek yoktur. Her zaman en güncel versiyon çalışacatır. </p>	
 				
+						<h3>Server Program için Hosting İmkanı</h3>
+						<p>İsterseniz server programı için hosting imkanı sunuyoruz. Böylece kendi serverlarınıza herhang bir program kurmak zorunda kalmıyorsunuz.<br/>
+						Programı direkt olarak kullanmaya başlayabilirsiniz.
+						 </p>	
+				
 						
 				 </div>
 				 

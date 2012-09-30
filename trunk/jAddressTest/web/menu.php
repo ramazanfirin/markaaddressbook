@@ -1,7 +1,7 @@
 	<ul class="nav">
 		<?php 
 	
-if( strtolower($_SERVER["REQUEST_URI"]) == "/index.php" ) {
+if( strtolower($_SERVER["REQUEST_URI"]) == "/index.php" || strtolower($_SERVER["REQUEST_URI"]) == "/" ) {
 
  echo  '<li><a href="index.php" class="first current"><em><b>Ana Sayfa</b></em></a></li>';
 }
@@ -33,7 +33,7 @@ else {
  echo    '<li><a href="testimonials.php"><b>Ekran Görüntüleri</b></a></li>';
 }
 
-if( strtolower($_SERVER["REQUEST_URI"]) == "/contacts.php" ) {
+if( strtolower($_SERVER["REQUEST_URI"]) == "/iletisim.php" ) {
   echo   '<li><a href="iletisim.php" class="current"><b>İletişim</b></a></li>';
 }
 else {

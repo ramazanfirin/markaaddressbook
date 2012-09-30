@@ -1,7 +1,7 @@
-<title>Home | Free website template from TemplateMonster.com</title>
+<title>www.otobusfihrist.com</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Style-Type" content="text/css" />
-<meta name="description" content="Home page - feel free to download free hoting website template at TemplateMonster.com."/>
+<meta name="description" content="Otobus Fihrsit.com"/>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <link href="layout.css" rel="stylesheet" type="text/css" />
 
@@ -64,14 +64,5 @@
 	
 	
 	
-	$(function(){
-			$('#slides').slides({
-				preload: true,
-				preloadImage: 'img/loading.gif',
-				play: 5000,
-				pause: 2500,
-				hoverPause: true
-			});
-		});
 	</script>
 	

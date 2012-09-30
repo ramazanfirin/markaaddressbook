@@ -42,8 +42,8 @@ h2 span {color:#f4a03b}
 h3 {font-size:1em}
 .line-ver {background-image:url(images/line-ver.gif);background-repeat:repeat-y}
 /* header */
-#header .row-1 {height:107px}
-#header .row-1 .logo {padding:25px 0 0 40px;float:left}
+#header .row-1 {height:77px}
+#header .row-1 .logo {padding:25px 0 0 0px;float:left}
 #header .row-2 {height:53px}
 #header .nav {width:100%;overflow:hidden} 
 #header .nav li {display:inline}
@@ -57,21 +57,21 @@ h3 {font-size:1em}
 #header .nav li a.first b {background:url(images/nav-left.gif) no-repeat left top;padding-left:55px}
 #header .nav li a.first em {background:url(images/divider.gif) no-repeat right top}
 #header .nav li a.first:hover em {background:none}
-#header .nav li a.first:hover b {background:url(images/nav-left1.gif) no-repeat left top;padding-left:55px}
+#header .nav li a.first:hover b {background:url(images/nav-left1_new.gif) no-repeat left top;padding-left:55px}
 #header .nav li a.first-current {background:url(images/nav-bg2.gif) left top repeat-x;color:#fff}
 #header .nav li a.first-current em {background:none}
 #header .nav li a.first-current b {background:url(images/nav-left1.gif) no-repeat left top !important;padding-left:55px}
 #header .nav li a.last b {background:url(images/nav-right.gif) no-repeat right top;padding-right:55px}
-#header .nav li a.last:hover b {background:url(images/nav-right1.gif) no-repeat right top}
-#header .nav li a.last-current {background:url(images/nav-bg2.gif) left top repeat-x;color:#fff}
+#header .nav li a.last:hover b {background:url(images/nav-right1_new.gif) no-repeat right top}
+#header .nav li a.last-current {background:url(images/nav-bg2.gif) left top repeat-x;color:#aaa}
 #header .nav li a.last-current b {background:url(images/nav-right1.gif) no-repeat right top !important;padding-right:55px}
-.main-box {background:url(images/main-box.jpg) no-repeat right top;height:270px;position:relative}
+.main-box {background:url(images/main-box.jpg) no-repeat right top;height:310px;position:relative}
 .main-box .inner {padding:43px 0 0 50px}
 .main-box ul {font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:1.29em;padding:14px 0 0 0}
 .main-box ul li {background:url(images/bull.gif) no-repeat left 8px;padding:0 0 0 19px;position:relative}
 .main-box ul li a {color:#fff;text-decoration:none}
 .main-box ul li a:hover {text-decoration:underline}
-.main-box .extra-banner {position:absolute;left:60px;top:230px;width:150px;text-align:center}
+.main-box .extra-banner {position:absolute;left:60px;top:260px;width:150px;text-align:center}
 .main-box .extra-banner img {margin-bottom:22px}
 .main-box .extra-banner a {font-family:"Trebuchet MS", Helvetica, sans-serif;font-size:1.29em;color:#f4a03b;text-transform:uppercase}
 /* content */

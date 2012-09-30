@@ -53,6 +53,8 @@
 							 <dt>S. Server programını çalıştırmal için hangi özelliklerdeki bir server a ihtiyaç vardır?</dt>
 							 <dd>C. Programdan ayrı olarak database ve web sunuucu kurulmayacağı için, düşük özellikte dahi olsa herhangi bir server kullanabilirsiniz.</dd>
 							 
+							  <dt>S. Server Program Hosting imkanı nedir?</dt>
+							 <dd>C. İsterseniz server programını kendi sunucularımıza kuruyoruz. Böylece server kurulumu, server bakımı, sorun durumlarında sunucuya müdahale vs işlemleri siz yerine biz yapıyoruz.</dd>
 							 
 						</dl>
 				 </div>

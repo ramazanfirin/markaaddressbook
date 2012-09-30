@@ -29,7 +29,7 @@
 									<dl class="contacts">
 										<dt>E-mail:</dt>
 										 <dd><a href="#">destek@otobusfihrist.com</a><br />
-										 <a href="#">kalitebilgisayar@kalitebilgisayar.com</a></dd>
+										 <a href="#">info@otobusfihrist.com</a></dd>
 									</dl>
 									<dl class="contacts">
 										<dt>Online Chat:</dt>

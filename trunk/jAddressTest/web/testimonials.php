@@ -2,6 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <?php include 'include.php'; ?>
+<script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="/css/jquery.fancybox.js?v=2.1.0"></script>
+<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=2.1.0" media="screen" />
+
+<script>
+$(document).ready(function() {
+	$('.fancybox').fancybox();
+});
+
+
+</script>
+
 </head>
 
 <body id="page4">
@@ -22,29 +34,76 @@
 		<!-- content -->
 		<div id="content"><div class="inner_copy"><div class="inner_copy"> Need a website? <a href="http://www.websitetemplatesonline.com">Free website templates</a> by professional designers.</div></div>
 				 <div class="indent">
-						<h2>Testimonials</h2>
-						<dl>
-							<dt>John Doe</dt>
-							 <dd><blockquote><div>&ldquo;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.&ldquo;</div></blockquote></dd>
-							 
-							 <dt>Kevin Smith</dt>
-							 <dd><blockquote><div>&ldquo;Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.&ldquo;</div></blockquote></dd>
-							 
-							 <dt>Jim Handrix</dt>
-							 <dd><blockquote><div>&ldquo;Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.&ldquo;</div></blockquote></dd>
-							 
-							 <dt>Jay Imbris</dt>
-							 <dd><blockquote><div>&ldquo;Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.&ldquo;</div></blockquote></dd>
-							 
-							 <dt>Cindy S.</dt>
-							 <dd><blockquote><div>&ldquo;Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur.&ldquo;</div></blockquote></dd>
-						</dl>
+						<h2>Ekran Görüntüleri</h2>
+						
+					
+						
+						
+							<table border="3">
+<tr>
+<td>
+	<a class="fancybox" href="/screenshots/client_login.jpg" data-fancybox-group="gallery" title="Lorem ipsum dolor sit amet"><img src="/screenshots/client_login_s.jpg" alt="" /></a>
+    	<br/>Client Login
+</td>
+<td>
+	<a class="fancybox" href="/screenshots/dis_yazihane_1.png" data-fancybox-group="gallery" title="Etiam quis mi eu elit temp"><img src="/screenshots/dis_yazihane_1_s.jpg" alt="" /></a>
+	<br/>Dış Yazıhane-1
+	</td>
+<td>
+	<a class="fancybox" href="/screenshots/dis_yazihane_2.jpg" data-fancybox-group="gallery" title="Cras neque mi, semper leon"><img src="/screenshots/dis_yazihane_2_s.jpg" alt="" /></a>
+	<br/>Dış Yazıhane-2
+	</td>
+</tr>
+<tr>
+<td>
+	<a class="fancybox" href="/screenshots/login_server.jpg" data-fancybox-group="gallery" title="Sed vel sapien vel sem uno"><img src="/screenshots/login_server_s.jpg" alt="" /></a>
+	<br/>Server Login
+</td>
+<td>
+	<a class="fancybox" href="/screenshots/sofor_kayit.jpg" data-fancybox-group="gallery" title="Sed vel sapien vel sem uno"><img src="/screenshots/sofor_kayit_s.jpg" alt="" /></a>
+	<br/>Şöför Kayıt
+</td>
+<td>
+<a class="fancybox" href="/screenshots/otobus_kayit.jpg" data-fancybox-group="gallery" title="Sed vel sapien vel sem uno"><img src="/screenshots/otobus_kayit_S.jpg" alt="" /></a> 
+	<br/>Otobüs Kayıt
+</td>
+</tr>
+
+<tr>
+<td colspan=”3″>
+<a class="fancybox" href="/screenshots/genel_gorunum.jpg" data-fancybox-group="gallery" title="Sed vel sapien vel sem uno"><img src="/screenshots/genel_gorunum_s2.jpg" alt="" /></a>				                                 
+		<br/>Genel Görünüm	
+</td>
+
+<td>
+<a class="fancybox" href="/screenshots/kullanici_kayit.jpg" data-fancybox-group="gallery" title="Sed vel sapien vel sem uno"><img src="/screenshots/kullanici_kayit_s.jpg" alt="" /></a> 
+	<br/>Kullanıcı Kayıt
+</td>
+
+<td>
+<a class="fancybox" href="/screenshots/kullanici_bilgi_guncelleme.jpg" data-fancybox-group="gallery" title="Sed vel sapien vel sem uno"><img src="/screenshots/kullanici_bilgi_guncelleme_s.jpg" alt="" /></a> 
+	<br/>Kullanıcı Bilgi Güncelleme
+</td>
+
+</tr>
+</table>
+							
+	
+																	
+							
+							
+							
+						   
+						   
+							
+						
 				 </div>
 		</div>
 		<!-- footer -->
 		<div id="footer">
 				<?php include 'footer.php'; ?>
 			</div>
+	</div>
 	</div>
 </body>
 </html>
