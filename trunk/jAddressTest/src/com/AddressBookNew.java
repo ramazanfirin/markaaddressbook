@@ -96,6 +96,8 @@ public class AddressBookNew {
 	 
 	 CustomLoginDialog dialog;
 	 public Boolean loginDialogServerAddressEnabled = false;
+	
+	 public Boolean isDemo = false;
 	 
 	 protected static AddressBookNew instance = new AddressBookNew();
 	 public static AddressBookNew getInstance() {
@@ -117,7 +119,7 @@ public static void main(String[] args){
 		instance.isRunning=true;
 		display = new Display();
 		Shell shell = instance.open(display);
-		
+
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
@@ -128,6 +130,13 @@ public static void main(String[] args){
 		e.printStackTrace();
 	}
 }
+public AddressBookNew() {
+	super();
+	
+}
+
+
+
 public Shell open(Display display) throws Exception{
 	prepareDataProvider();
 	
