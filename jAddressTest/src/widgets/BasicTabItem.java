@@ -209,6 +209,14 @@ public abstract class BasicTabItem extends CTabItem{
 				//wizard.getWindowTitle();
 				if(!Util.isAdmin() )
 					return;
+				
+				if(Util.getApplicationInstance().isDemo){
+					List list=Util.getApplicationInstance().getDataProvider().searchEntiy(entity.getClass(), "", "", "");
+					if(list.size()>2){
+						MessageDialog.openError(shell, "Error", "Demo Versiyonda maximum 3 adet kayda izin verilmektedir.");
+						return;
+				}
+				}
 				Util.getApplicationInstance().getDataProvider().saveOrUpdate(entity);
 				//saveData();
 				//loadAllItems();

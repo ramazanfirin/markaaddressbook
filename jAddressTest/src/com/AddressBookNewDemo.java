@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.ToolBar;
 import org.mihalis.opal.login.LoginDialog;
 
+import server.Server;
 import util.MenuUtil;
 import util.Util;
 import widgets.BasicCTabFolder;
@@ -51,42 +52,44 @@ import widgets.UserTabItem;
  * saveR, load, sorting, and searching functions common
  * to basic address books.
  */
-public class AddressBookNewClient extends AddressBookNew{
+public class AddressBookNewDemo extends AddressBookNew{
 
 
-	protected static AddressBookNewClient instance = new AddressBookNewClient();
-	 public static AddressBookNewClient getInstance() {
+	protected static AddressBookNewDemo instance = new AddressBookNewDemo();
+	 public static AddressBookNewDemo getInstance() {
 			return instance;
 	 }
 	
 	public static void main(String[] args) {
+		System.out.println("basliyoruz");
 		
-		System.out.println("basliyoruz2");
+		
+		
+		
 		try {
+			Server server = new Server();
 			display = new Display();
-			instance.userLocalDB=false;
+			instance.userLocalDB=true;
 			instance.isRunning=true;
-			instance.loginDialogServerAddressEnabled  = true;
+			instance.isDemo = true;
+			System.out.println("geldik.");
 			Shell shell = instance.open(display);
+
 			while(!shell.isDisposed()){
 				if(!display.readAndDispatch())
 					display.sleep();
 			}
 			display.dispose();
+			System.exit(0);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-//	public AddressBookNewClient() {
+//	public AddressBookNewDemo() {
 //		super();
-//		
-//		userLocalDB=false;
-//		isRunning=true;
+//		isDemo = true;
 //	}
 
-	public List<String> getServerAddresses(){
-		return Util.getServerAddresses();
-	}
 	
 }

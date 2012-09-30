@@ -17,8 +17,10 @@ import javax.jnlp.UnavailableServiceException;
 import model.HttpDataProvider;
 
 import org.apache.commons.codec.binary.Base64;
+
 import com.AddressBookNew;
 import com.AddressBookNewClient;
+import com.AddressBookNewDemo;
 
 public class Util {
 
@@ -163,6 +165,8 @@ public class Util {
 	 public static AddressBookNew getApplicationInstance(){
 		 if(AddressBookNew.getInstance().isRunning)
 			 return AddressBookNew.getInstance();
+		 if(AddressBookNewDemo.getInstance().isRunning)
+			 return AddressBookNewDemo.getInstance();
 		 else
 			 return AddressBookNewClient.getInstance();
 	 }
