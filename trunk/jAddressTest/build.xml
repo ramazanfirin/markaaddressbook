@@ -13,7 +13,7 @@
 	<property name="jsmooth.dir" value="C:/Program Files (x86)/JSmooth 0.9.9-7" />
 
 	<property name="root" value="." />
-	<property name="version" value="_v.1.8_beta" />
+	<property name="version" value="v.2.0" />
 	<!-- Test the OS -->
 	<condition property="isWindows">
 		<and>
@@ -23,16 +23,20 @@
 
 
 	<target name="zip3">
-		<zip destfile="${root}/installer/SuhaTurizm_OtobusFihristServer${version}.zip" basedir="${root}" includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihrist.exe" update="true"></zip>
+		<zip destfile="${root}/installer/OtobusFihrist_Server_${version}.zip" basedir="${root}" includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihrist.exe" update="true"></zip>
 	</target>
 
 	<target name="zip4">
-		<zip destfile="${root}/installer/SuhaTurizm_OtobusFihristClient${version}.zip" basedir="${root}" includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihristClient.exe" update="true"></zip>
+		<zip destfile="${root}/installer/OtobusFihrist_Client_${version}.zip" basedir="${root}" includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihristClient.exe" update="true"></zip>
 	</target>
 
 	<target name="zipJavaWebStartFiles">
-		<zip destfile="${root}/installer/SuhaTurizm_OtobusFihrist_WebStart_${version}.zip" basedir="${root}" 
-			includes="lib/**,javawebstart/resources/**,javawebstart/otobusFihristClient.jnlp,.keystore2,singjar.bat"  update="true"></zip>
+		<zip destfile="${root}/installer/OtobusFihrist_WebStart_${version}.zip" basedir="${root}" 
+			includes="lib/**,javawebstart/resources/**,OtobusFihristClient.jnlp"  update="true"></zip>
+	</target>
+	
+	<target name="zipServerDemo">
+		<zip destfile="${root}/installer/OtobusFihrist_Demo_${version}.zip" basedir="${root}" includes="config/**,img/**,lib/**,logs/**,translations/**,OtobusFihristDemo.exe" update="true"></zip>
 	</target>
 
 	<target name="build-exe">
@@ -112,6 +116,17 @@
 		<delete dir="${root}/classes" />
 	</target>
 
+	<target name="copyWebStartFiles">
+	<copy todir="${root}/web/jnlp/lib">
+	    <fileset dir="${root}/lib">
+	    	<include name="**" />
+	    </fileset> 	
+		<fileset dir="${root}/javawebstart/resources">
+			<include name="**" />
+		</fileset>
+	</copy>
+	</target>
+	
 	<target name="compileall">
 		<description>Global compilation task (builds areca.jar and libarecafs.so)</description>
 		<antcall target="compilejava" />
@@ -122,6 +137,8 @@
 		<antcall target="zip3" />
 		<antcall target="zip4" />
 		<antcall target="zipJavaWebStartFiles" />
+		<antcall target="zipServerDemo" />
+		<antcall target="copyWebStartFiles" />
 	</target>
 
 
