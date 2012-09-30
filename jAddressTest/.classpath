@@ -55,5 +55,8 @@
 	<classpathentry kind="lib" path="lib/xmlschema-core-2.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/xom-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="lib/jnlp-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/geronimo-jaxws_2.2_spec-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-api-2.2.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
