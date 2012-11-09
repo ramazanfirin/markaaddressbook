@@ -46,6 +46,8 @@ import org.mihalis.opal.opalDialog.Dialog;
 import org.mihalis.opal.utils.ResourceManager;
 import org.mihalis.opal.utils.SWTGraphicUtil;
 
+import util.Util;
+
 /**
  * Instances of this class are Login Dialog box, which is composed of
  * <p>
@@ -78,6 +80,8 @@ public class CustomLoginDialog {
         
         private List<String> serverList = new ArrayList<String>();
         private Boolean serverAddressEnabled = true;
+        private Text textPasswordServerAddress;
+        
         /**
          * Constructor
          */
@@ -109,7 +113,8 @@ public class CustomLoginDialog {
                 buildShell();
                 buildImage();
                 buildDescription();
-                buildServerAddress();
+                //buildServerAddress();
+                buildServerAddressSecretSuha();
                 buildLogin();
                 buildPassword();
                 if (this.displayRememberPassword) {
@@ -255,6 +260,58 @@ public class CustomLoginDialog {
             
         }
 
+        
+        /**
+         * Build the login part of the box
+         */
+        private void buildServerAddressSecretSuha() {
+                final Label label = new Label(this.shell, SWT.NONE);
+                final GridData gridData = new GridData(GridData.END, GridData.END, false, false, 1, 1);
+                gridData.horizontalIndent = 35;
+                gridData.verticalIndent = 15;
+                label.setLayoutData(gridData);
+                label.setText("Server Adres");
+
+				// Combo
+                
+                if(Util.getApplicationInstance().userLocalDB){
+				final Combo combo = new Combo(this.shell, SWT.BORDER );
+				combo.setLayoutData(new GridData(GridData.FILL, GridData.END, true,
+						false, 3, 1));
+				for (final String loginToAdd : this.serverList) {
+					combo.add(loginToAdd);
+				}
+				combo.setEnabled(serverAddressEnabled);
+				combo.setText(this.login == null ? "" : this.login);
+				combo.setFocus();
+				combo.setText(serverList.get(0));  
+				server  =serverList.get(0);
+				combo.addModifyListener(new ModifyListener() {
+					@Override
+					public void modifyText(final ModifyEvent e) {
+						CustomLoginDialog.this.server = combo.getText();
+						changeButtonOkState();
+					}
+				});
+                }else{
+				textPasswordServerAddress = new Text(shell, SWT.SINGLE | SWT.BORDER);
+				textPasswordServerAddress.setLayoutData(new GridData(GridData.FILL, GridData.END, true,false, 3, 1));
+				textPasswordServerAddress.setEnabled(serverAddressEnabled);
+				textPasswordServerAddress.setText(serverList.get(0));
+				textPasswordServerAddress.setEchoChar('*');
+				server  =serverList.get(0);
+                
+				textPasswordServerAddress.addModifyListener(new ModifyListener() {
+				
+					@Override
+					public void modifyText(final ModifyEvent e) {
+						CustomLoginDialog.this.server = textPasswordServerAddress.getText();
+						changeButtonOkState();
+					}
+				});
+                }
+            
+        }
         
         
         /**
