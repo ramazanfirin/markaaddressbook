@@ -15,6 +15,7 @@ package com;
 
 /* Imports */
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ import model.DBDataProvider;
 import model.DataProvider;
 import model.model.User;
 
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -62,12 +64,20 @@ public class AddressBookNewClient extends AddressBookNew{
 	public static void main(String[] args) {
 		
 		System.out.println("basliyoruz2");
+		System.out.println("time ="+ new Date());
+
 		try {
 			display = new Display();
 			instance.userLocalDB=false;
 			instance.isRunning=true;
 			instance.loginDialogServerAddressEnabled  = true;
+			if(isSuha() && Util.isFromJNPL()){
+				MessageDialog.openError(null, "Error", "Error: Global Error Handler ");
+				return;
+			}
+			System.out.println("time2 ="+ new Date());
 			Shell shell = instance.open(display);
+			
 			while(!shell.isDisposed()){
 				if(!display.readAndDispatch())
 					display.sleep();
@@ -78,6 +88,10 @@ public class AddressBookNewClient extends AddressBookNew{
 		}
 	}
 
+	public static boolean isSuha(){
+		return true;
+	}
+	
 //	public AddressBookNewClient() {
 //		super();
 //		

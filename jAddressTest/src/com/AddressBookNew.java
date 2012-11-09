@@ -15,6 +15,7 @@ package com;
 
 /* Imports */
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -61,7 +62,7 @@ import widgets.UserTabItem;
  * to basic address books.
  */
 public class AddressBookNew {
-
+	
 	boolean checkLogin=true;
 	public static ResourceBundle resAddressBook = ResourceBundle.getBundle("addressbook",new Locale("tr", "TR"));
 	public static ResourceBundle parameters = ResourceBundle.getBundle("parameters",new Locale("tr", "TR"));
@@ -109,6 +110,8 @@ public class AddressBookNew {
 public static void main(String[] args){
 
 	System.out.println("basliyoruz");
+	System.out.println("time ="+ new Date());
+
 	
 	
 	
@@ -119,7 +122,7 @@ public static void main(String[] args){
 		instance.isRunning=true;
 		display = new Display();
 		Shell shell = instance.open(display);
-
+		System.out.println("time2 ="+ new Date());  
 		while(!shell.isDisposed()){
 			if(!display.readAndDispatch())
 				display.sleep();
@@ -153,7 +156,7 @@ public Shell open(Display display) throws Exception{
 	shell.setLayout(layout);
 	 
     if(checkLogin())
-    	shell.setText(Util.getString("firm.name")+"-"+Util.getString("welcome.message",loginUser.getNameSurname())+" useLocalDB="+userLocalDB);
+    	shell.setText(Util.getString("firm.name")+"-"+Util.getString("welcome.message",loginUser.getNameSurname()));
     else{
     	shell.dispose();
     	return shell;

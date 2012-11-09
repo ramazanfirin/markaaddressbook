@@ -90,10 +90,11 @@ public class Util {
 	}
 	
 	public static Boolean isFromJNPL(){
+		
 		try { 
-	        // Lookup the javax.jnlp.BasicService object 
-	        BasicService bs = (BasicService)ServiceManager.lookup("javax.jnlp.BasicService"); 
-	        // Invoke the showDocument method 
+//			if(true) //SUHA kontrol
+//				return false;
+			BasicService bs = (BasicService)ServiceManager.lookup("javax.jnlp.BasicService"); 
 	       return true;
 	    } catch(UnavailableServiceException ue) { 
 	        // Service is not supported 
@@ -115,7 +116,9 @@ public class Util {
 	public static void setServerEndPoint(){
         if(!Util.getApplicationInstance().userLocalDB){
          	String address = Util.getApplicationInstance().getDialog().getServer();
-        	HttpDataProvider dataProvider = (HttpDataProvider)Util.getApplicationInstance().getDataProvider();
+         	if(!address.contains("http"))
+         		address = "http://"+address+"/OtobusFihrist";
+         	HttpDataProvider dataProvider = (HttpDataProvider)Util.getApplicationInstance().getDataProvider();
         	dataProvider.prepareEndPoint(address);
         }
 	}
