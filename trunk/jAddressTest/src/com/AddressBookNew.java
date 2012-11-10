@@ -192,6 +192,7 @@ public Shell open(Display display) throws Exception{
     tabItemUser = new UserTabItem(cTabFolder,Util.getString("user.list"));
     
     cTabFolder.forceFocus();
+    cTabFolder.refreshAllTabItems();
     shell.open();
 	return shell;
 }
